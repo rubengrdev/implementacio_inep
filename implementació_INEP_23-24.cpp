@@ -2,7 +2,7 @@
 #include <pqxx/pqxx>
 #include "capaPresentacio.h"
 
-using namespace std;
+//delete namespace
 
 bool sessioIniciada = false;
 string sobrenom;
