@@ -1,5 +1,6 @@
 #include <iostream>
 #include <pqxx/pqxx>
+#include "capaPresentacio.h"
 
 using namespace std;
 
@@ -8,6 +9,7 @@ string sobrenom;
 
 int main() {
 	int op;
+	capaPresentacio cP = capaPresentacio();
 	while (true) {
 		if (not sessioIniciada) {
 			while (not sessioIniciada) {
@@ -17,11 +19,11 @@ int main() {
 				cin >> op;
 				switch (op){
 					case 1:
-						//Cridar CU IniciarSessio
+						cP.iniciarSessioPres();
 						sessioIniciada = true;
 						break;
 					case 2:
-						//Cridar CU ResgistrarUsuari
+						cP.registrarUsuariPres();
 						break;
 					case 3:
 						return 0;
