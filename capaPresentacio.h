@@ -1,35 +1,37 @@
 #include <iostream>
 
+using namespace std;
+
 class capaPresentacio {
-	private:
+private:
 
-	public:
-		capaPresentacio();
-		
-		~capaPresentacio();
+public:
+	capaPresentacio();
 
-		void iniciarSessioPres();
+	~capaPresentacio();
 
-		void registrarUsuariPres();
+	void iniciarSessioPres();
 
-		void consultarUsuariPres();
+	void registrarUsuariPres();
 
-		void modificarUsuariPres();
+	void consultarUsuariPres();
 
-		void esborrarUsuariPres();
+	void modificarUsuariPres();
 
-		void comprarVideojocPres();
+	void esborrarUsuariPres();
 
-		void comprarPaquetPres();
+	void comprarVideojocPres();
 
-		void consultarCompresPres();
+	void comprarPaquetPres();
 
-		void consultarVideojocPres();
+	void consultarCompresPres();
 
-		void consultarVideojocsPres(); //mirar si vol dir que es paquet
+	void consultarVideojocPres();
 
-		void consultarVideojocsEdatPres();
+	void consultarVideojocsPres(); //mirar si vol dir que es paquet
 
-		void consultarNovetatsPres();
+	void consultarVideojocsEdatPres();
+
+	void consultarNovetatsPres();
 
 };

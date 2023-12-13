@@ -54,7 +54,3 @@ void capaPresentacio::consultarVideojocsEdatPres() {
 void capaPresentacio::consultarNovetatsPres() {
 	cout << "WORK IN PROGRESS" << endl;
 }
-
-void capaPresentacio::registrarUsuariPres() {
-	cout << "WORK IN PROGRESS" << endl;
-}
