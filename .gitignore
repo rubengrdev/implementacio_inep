@@ -2,4 +2,7 @@
 x64/
 *.exe
 *.sln
+*.vcxproj
 *.vcxproj.*
+Debug/
+*.json
