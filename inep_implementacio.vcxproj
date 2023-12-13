@@ -149,11 +149,13 @@
   <ItemGroup>
     <ClCompile Include="inep_implementacio.cpp" />
     <ClCompile Include="capaPresentacio.cpp" />
-	<ClCompile Include="capaDomini.cpp" />
+    <ClCompile Include="capaDomini.cpp" />
+    <ClCompile Include="capaDades.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="capaPresentacio.h" />
-	<ClCompile Include="capaDomini.h" />
+	<ClInclude Include="capaDomini.h" />
+	<ClInclude Include="capaDades.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
