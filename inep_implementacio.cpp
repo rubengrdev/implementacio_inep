@@ -11,8 +11,8 @@ int main() {
 	int op;
 	capaPresentacio cP = capaPresentacio();
 	while (true) {
-		if (not sessioIniciada) {
-			while (not sessioIniciada) {
+		if (!sessioIniciada) {
+			while (!sessioIniciada) {
 				cout << "1. Iniciar la sessio" << endl;
 				cout << "2. Registrar un usuari" << endl;
 				cout << "3. Sortir" << endl;
@@ -125,8 +125,11 @@ int main() {
 		}
 		cout << "------------------------------" << endl;
 	}
+	return 0;
+}
 
-	/*try {
+/*int main() {
+	try {
 		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
 		if (conn.is_open()) {
 			cout << "Connexio exitosa amb la base de dades." << endl << endl;
@@ -171,6 +174,5 @@ int main() {
 	catch (const exception& e) {
 		cerr << "Error: " << e.what() << endl;
 		return 1;
-	}*/
-	return 0;
-}
+	}
+}*/

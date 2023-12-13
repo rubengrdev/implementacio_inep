@@ -1,9 +1,12 @@
 #include <iostream>
+#include "capaDomini.h"
 
 using namespace std;
 
 class capaPresentacio {
 private:
+
+	capaDomini cDom;
 
 public:
 	capaPresentacio();

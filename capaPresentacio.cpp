@@ -1,7 +1,7 @@
 #include "capaPresentacio.h"
 
 capaPresentacio::capaPresentacio() {
-
+	cDom = capaDomini();
 }
 
 capaPresentacio::~capaPresentacio() {
