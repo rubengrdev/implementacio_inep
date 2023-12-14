@@ -5,6 +5,8 @@ using namespace std;
 class capaDades {
 	private:
 
+		
+
 	public:
 		
 		capaDades();

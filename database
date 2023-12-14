@@ -1,0 +1,23 @@
+CREATE TABLE public."ElementCompra"(
+
+);
+
+CREATE TABLE public."Videojoc"(
+
+);
+
+CREATE TABLE public."PaquetVideojocs"(
+
+);
+
+CREATE TABLE public."Usuari"(
+
+);
+
+CREATE TABLE public."Compra"(
+
+);
+
+CREATE TABLE public."Etiqueta"(
+
+);
