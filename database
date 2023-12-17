@@ -1,23 +1,42 @@
-CREATE TABLE public."ElementCompra"(
+CREATE TABLE public."Genere"(
+	nom text NOT NULL,
+	PRIMARY KEY(nom)
+);
 
+CREATE TABLE public."ElementCompra"(
+	
 );
 
 CREATE TABLE public."Videojoc"(
-
+	nom text NOT NULL,
+	qualificacioEdat int NOT NULL,
+	dataLlancament date NOT NULL,
+	minsEstimat int,
+	genere text,
+	FOREIGN KEY (nom) REFERENCES ElementCompra(nom),
+	FOREIGN KEY (genere) REFERENCES Genere(nom)
 );
 
 CREATE TABLE public."PaquetVideojocs"(
-
+	nom text NOT NULL,
+	FOREIGN KEY (nom) REFERENCES ElementCompra(nom)
 );
 
 CREATE TABLE public."Usuari"(
-
+	sobrenom text NOT NULL,
+	nom text NOT NULL,
+	contrasenya text NOT NULL,
+	correuElectronic text NOT NULL UNIQUE,
+	dataNaixement date NOT NULL
 );
 
 CREATE TABLE public."Compra"(
-
+	
 );
 
-CREATE TABLE public."Etiqueta"(
-
+CREATE TABLE public."Conte"(
+	paquet text NOT NULL,
+	videojoc text NOT NULL,
+	FOREIGN KEY (paquet) REFERENCES PaquetVideojocs(nom),
+	FOREIGN KEY (videojoc) REFERENCES Videojoc(nom)
 );
