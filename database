@@ -1,25 +1,6 @@
 CREATE TABLE public."Genere"(
 	nom text NOT NULL,
-	PRIMARY KEY(nom)
-);
-
-CREATE TABLE public."ElementCompra"(
-	
-);
-
-CREATE TABLE public."Videojoc"(
-	nom text NOT NULL,
-	qualificacioEdat int NOT NULL,
-	dataLlancament date NOT NULL,
-	minsEstimat int,
-	genere text,
-	FOREIGN KEY (nom) REFERENCES ElementCompra(nom),
-	FOREIGN KEY (genere) REFERENCES Genere(nom)
-);
-
-CREATE TABLE public."PaquetVideojocs"(
-	nom text NOT NULL,
-	FOREIGN KEY (nom) REFERENCES ElementCompra(nom)
+	PRIMARY KEY (nom)
 );
 
 CREATE TABLE public."Usuari"(
@@ -27,11 +8,45 @@ CREATE TABLE public."Usuari"(
 	nom text NOT NULL,
 	contrasenya text NOT NULL,
 	correuElectronic text NOT NULL UNIQUE,
-	dataNaixement date NOT NULL
+	dataNaixement date NOT NULL,
+	PRIMARY KEY (sobrenom)
+);
+
+CREATE TABLE public."ElementCompra"(
+	nom text NOT NULL,
+	descripcio text NOT NULL,
+	preu float NOT NULL,
+	CHECK (preu > 0),
+	tipus text NOT NULL,
+	CHECK (tipus == 'paquet' || tipus == 'videojoc'),
+	PRIMARY KEY (nom)
+);
+
+CREATE TABLE public."PaquetVideojocs"(
+	nom text NOT NULL,
+	FOREIGN KEY (nom) REFERENCES ElementCompra(nom)
+);
+
+CREATE TABLE public."Videojoc"(
+	nom text NOT NULL,
+	genere text NOT NULL,
+	qualificacioEdat int NOT NULL,
+	dataLlancament date NOT NULL,
+	minsEstimat int,
+	FOREIGN KEY (nom) REFERENCES ElementCompra(nom),
+	FOREIGN KEY (genere) REFERENCES Genere(nom),
+	CHECK (qualificacioEdat == 3 || qualificacioEdat == 7 || qualificacioEdat == 12 || qualificacioEdat == 16 || qualificacioEdat == 18),
+	CHECK (minsEstimat == NULL ||minsEstimat > 0)
 );
 
 CREATE TABLE public."Compra"(
-	
+	usuari text NOT NULL,
+	element text NOT NULL,
+	data date NOT NULL,
+	preuPagat float NOT NULL,
+	FOREIGN KEY (usuari) REFERENCES Usuari(sobrenom) ON DELETE CASCADE,
+	FOREIGN KEY (element) REFERENCES ElementCompra(nom) ON DELETE CASCADE,
+	CHECK (preuPagat > 0)
 );
 
 CREATE TABLE public."Conte"(
