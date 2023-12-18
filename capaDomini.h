@@ -1,10 +1,15 @@
-#include "capaDades.h"
+#include "cercadoraUsuari.h"
+#include "passarelaUsuari.h"
+#include "cercadoraCompra.h"
+#include "passarelaCompra.h"
 
 class capaDomini {
 	private:
-		capaDades cDades;
+
 	public:
 		capaDomini();
 
 		~capaDomini();
+
+
 };
