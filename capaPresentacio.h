@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdlib.h>
 #include "capaDomini.h"
 
 using namespace std;
