@@ -16,6 +16,7 @@ int main() {
 				cout << "1. Iniciar la sessio" << endl;
 				cout << "2. Registrar un usuari" << endl;
 				cout << "3. Sortir" << endl;
+				cout << "Opcio: ";
 				cin >> op;
 				switch (op) {
 				case 1:
@@ -36,6 +37,7 @@ int main() {
 		cout << "2. Gestio de compres" << endl;
 		cout << "3. Consultes de videojocs" << endl;
 		cout << "4. Sortir" << endl;
+		cout << "Opcio: ";
 		cin >> op;
 		switch (op) {
 		case 1:
@@ -45,6 +47,7 @@ int main() {
 			cout << "3. Modificar l'usuari" << endl;
 			cout << "4. Esborrar l'usuari" << endl;
 			cout << "5. Tornar" << endl;
+			cout << "Opcio: ";
 			cin >> op;
 			switch (op) {
 			case 1:
@@ -72,6 +75,7 @@ int main() {
 			cout << "2. Compra paquet videojocs" << endl;
 			cout << "3. Consulta compres" << endl;
 			cout << "4. Tornar" << endl;
+			cout << "Opcio: ";
 			cin >> op;
 			switch (op) {
 			case 1:
@@ -97,6 +101,7 @@ int main() {
 			cout << "3. Consultar un videojoc per edat" << endl;
 			cout << "4. Consultar novetats" << endl;
 			cout << "5. Tornar" << endl;
+			cout << "Opcio: ";
 			cin >> op;
 			switch (op) {
 			case 1:
