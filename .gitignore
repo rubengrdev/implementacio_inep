@@ -6,4 +6,5 @@ x64/
 *.vcxproj.*
 Debug/
 *.json
-MAKEFILE
+Makefile
+*.o
