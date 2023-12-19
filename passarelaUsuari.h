@@ -1,4 +1,5 @@
 #pragma once
+#include<pqxx/pqxx>
 #include<iostream>
 
 using namespace std;
@@ -14,6 +15,8 @@ class passarelaUsuari
 		passarelaUsuari(string n, string sn, string c, string cE, string dN);
 
 		~passarelaUsuari();
+
+		void insereix();
 
 		string getNom();
 
