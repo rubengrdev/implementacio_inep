@@ -1,3 +1,10 @@
+-- crea base de dades abans de començar a interactuar amb ella
+-- CREATE DATABASE PROJECTE;
+-- apunta a la bd del projecte
+--\c projecte;
+
+
+-- Creació de taules i restriccions de la BD
 CREATE TABLE public."Genere"(
 	nom text NOT NULL,
 	PRIMARY KEY (nom)
@@ -16,27 +23,28 @@ CREATE TABLE public."ElementCompra"(
 	nom text NOT NULL,
 	descripcio text NOT NULL,
 	preu float NOT NULL,
-	CHECK (preu > 0),
 	tipus text NOT NULL,
-	CHECK (tipus == 'paquet' || tipus == 'videojoc'),
+	CHECK (preu > 0),
+	CHECK (tipus = 'paquet'),
+	CHECK (tipus = 'videojoc'),
 	PRIMARY KEY (nom)
 );
 
 CREATE TABLE public."PaquetVideojocs"(
-	nom text NOT NULL,
-	FOREIGN KEY (nom) REFERENCES ElementCompra(nom)
+	nom text NOT NULL UNIQUE,
+	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom)
 );
 
 CREATE TABLE public."Videojoc"(
-	nom text NOT NULL,
+	nom text NOT NULL UNIQUE,
 	genere text NOT NULL,
 	qualificacioEdat int NOT NULL,
 	dataLlancament date NOT NULL,
 	minsEstimat int,
-	FOREIGN KEY (nom) REFERENCES ElementCompra(nom),
-	FOREIGN KEY (genere) REFERENCES Genere(nom),
-	CHECK (qualificacioEdat == 3 || qualificacioEdat == 7 || qualificacioEdat == 12 || qualificacioEdat == 16 || qualificacioEdat == 18),
-	CHECK (minsEstimat == NULL ||minsEstimat > 0)
+	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom),
+	FOREIGN KEY (genere) REFERENCES "Genere"(nom),
+	CHECK (qualificacioEdat = 3 OR qualificacioEdat = 7 OR qualificacioEdat = 12 OR qualificacioEdat = 16 OR qualificacioEdat = 18),
+	CHECK (minsEstimat = NULL OR minsEstimat > 0)
 );
 
 CREATE TABLE public."Compra"(
@@ -44,14 +52,14 @@ CREATE TABLE public."Compra"(
 	element text NOT NULL,
 	data date NOT NULL,
 	preuPagat float NOT NULL,
-	FOREIGN KEY (usuari) REFERENCES Usuari(sobrenom) ON DELETE CASCADE,
-	FOREIGN KEY (element) REFERENCES ElementCompra(nom) ON DELETE CASCADE,
+	FOREIGN KEY (usuari) REFERENCES "Usuari"(sobrenom) ON DELETE CASCADE,
+	FOREIGN KEY (element) REFERENCES "ElementCompra"(nom) ON DELETE CASCADE,
 	CHECK (preuPagat > 0)
 );
 
 CREATE TABLE public."Conte"(
 	paquet text NOT NULL,
 	videojoc text NOT NULL,
-	FOREIGN KEY (paquet) REFERENCES PaquetVideojocs(nom),
-	FOREIGN KEY (videojoc) REFERENCES Videojoc(nom)
+	FOREIGN KEY (paquet) REFERENCES "PaquetVideojocs"(nom),
+	FOREIGN KEY (videojoc) REFERENCES "Videojoc"(nom)
 );
