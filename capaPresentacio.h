@@ -16,6 +16,8 @@ public:
 
 	void iniciarSessioPres();
 
+	void tancarSessioPres();
+
 	void registrarUsuariPres();
 
 	void consultarUsuariPres();
@@ -32,10 +34,14 @@ public:
 
 	void consultarVideojocPres();
 
-	void consultarVideojocsPres(); //mirar si vol dir que es paquet
+	void consultarVideojocsPres();
 
 	void consultarVideojocsEdatPres();
 
 	void consultarNovetatsPres();
+
+	void consultarPaquetPres();
+
+	void consultarPaquetsPres();
 
 };

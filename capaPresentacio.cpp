@@ -9,7 +9,36 @@ capaPresentacio::~capaPresentacio() {
 }
 
 void capaPresentacio::iniciarSessioPres() {
-	cout << "WORK IN PROGRESS" << endl;
+	cin.ignore();
+	system("CLS");
+	string s, c;
+	cout << "** Inici sessio **" << endl;
+	cout << "Sobrenom: ";
+	getline(cin, s);
+	cout << "Contrasenya: ";
+	getline(cin, c);
+	//Crida a cDom
+	//Tractament errors
+	cout << "Sessio iniciada correctament!" << endl;
+}
+
+void capaPresentacio::tancarSessioPres() {
+	cin.ignore();
+	system("CLS");
+	string op;
+	cout << "** Tancar sessio **" << endl;
+	cout << "Vols tancar la sessio (S/N): ";
+	cin >> op;
+	if (op == "S") {
+		//crida a cDom
+		cout << "Sessio tancada correctament!" << endl;
+	}
+	else if (op == "N") {
+		return;
+	}
+	else {
+		cout << "Has de contestar amb S o N!" << endl;
+	}
 }
 
 void capaPresentacio::registrarUsuariPres() {
@@ -33,40 +62,73 @@ void capaPresentacio::registrarUsuariPres() {
 }
 
 void capaPresentacio::consultarUsuariPres() {
+	cin.ignore();
+	system("CLS");
+	cout << "** Consulta usuari **" << endl;
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::modificarUsuariPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::esborrarUsuariPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::comprarVideojocPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::comprarPaquetPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::consultarCompresPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::consultarVideojocPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
-void capaPresentacio::consultarVideojocsPres() { //mirar si vol dir que es paquet
+void capaPresentacio::consultarVideojocsPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 void capaPresentacio::consultarVideojocsEdatPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }
 
 void capaPresentacio::consultarNovetatsPres() {
+	cin.ignore();
+	system("CLS");
+	cout << "WORK IN PROGRESS" << endl;
+}
+
+void capaPresentacio::consultarPaquetPres() {
+	cin.ignore();
+	system("CLS");
+	cout << "WORK IN PROGRESS" << endl;
+}
+
+void capaPresentacio::consultarPaquetsPres() {
+	cin.ignore();
+	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
 }

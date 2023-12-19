@@ -13,8 +13,9 @@ int main() {
 	while (true) {
 		if (!sessioIniciada) {
 			while (!sessioIniciada) {
-				cout << "1. Iniciar la sessio" << endl;
-				cout << "2. Registrar un usuari" << endl;
+				cout << "*********************" << endl << "    Menu Principal" << endl << "*********************" << endl;
+				cout << "1. Iniciar sessio" << endl;
+				cout << "2. Registrar usuari" << endl;
 				cout << "3. Sortir" << endl;
 				cout << "Opcio: ";
 				cin >> op;
@@ -30,50 +31,47 @@ int main() {
 				default:
 					cout << "Selecciona una opcio valida amb les tecles de l'1 al 3" << endl;
 				}
-				cout << "------------------------------" << endl;
 			}
 		}
-		cout << "1. Gestio d'usuari" << endl;
-		cout << "2. Gestio de compres" << endl;
-		cout << "3. Consultes de videojocs" << endl;
-		cout << "4. Sortir" << endl;
+		cout << "*********************" << endl << "Menu Principal" << endl << "*********************" << endl;
+		cout << "1. Gestionar usuari" << endl;
+		cout << "2. Gestionar compres" << endl;
+		cout << "3. Consultar" << endl;
+		cout << "4. Tancar sessio" << endl;
+		cout << "5. Sortir" << endl;
 		cout << "Opcio: ";
 		cin >> op;
 		switch (op) {
 		case 1:
-			cout << endl << "--- GESTIO D'USUARI ---" << endl;
-			cout << "1. Registrar usuari" << endl;
-			cout << "2. Consultar l'usuari" << endl;
-			cout << "3. Modificar l'usuari" << endl;
-			cout << "4. Esborrar l'usuari" << endl;
-			cout << "5. Tornar" << endl;
+			cout << endl << "--- GESTIONAR USUARI ---" << endl;
+			cout << "1. Consultar l'usuari" << endl;
+			cout << "2. Modificar l'usuari" << endl;
+			cout << "3. Esborrar l'usuari" << endl;
+			cout << "4. Tornar" << endl;
 			cout << "Opcio: ";
 			cin >> op;
 			switch (op) {
 			case 1:
-				cP.registrarUsuariPres();
-				break;
-			case 2:
 				cP.consultarUsuariPres();
 				break;
-			case 3:
+			case 2:
 				cP.modificarUsuariPres();
 				break;
-			case 4:
+			case 3:
 				cP.esborrarUsuariPres();
 				break;
-			case 5:
+			case 4:
 				break;
 			default:
-				cout << "Selecciona una opcio valida amb les tecles de l'1 al 5" << endl;
+				cout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << endl;
 				break;
 			}
 			break;
 		case 2:
 			cout << endl << "--- GESTIO DE COMPRES ---" << endl;
-			cout << "1. Compra videojoc" << endl;
-			cout << "2. Compra paquet videojocs" << endl;
-			cout << "3. Consulta compres" << endl;
+			cout << "1. Comprar videojoc" << endl;
+			cout << "2. Comprar paquet videojocs" << endl;
+			cout << "3. Consultar compres" << endl;
 			cout << "4. Tornar" << endl;
 			cout << "Opcio: ";
 			cin >> op;
@@ -96,11 +94,13 @@ int main() {
 			break;
 		case 3:
 			cout << endl << "--- CONSULTES DE VIDEOJOCS ---" << endl;
-			cout << "1. Consultar un videojoc" << endl;
-			cout << "2. Consultar videojocs" << endl; //NO SERIA PAQUET?
-			cout << "3. Consultar un videojoc per edat" << endl;
-			cout << "4. Consultar novetats" << endl;
-			cout << "5. Tornar" << endl;
+			cout << "1. Consultar videojoc" << endl;
+			cout << "2. Consultar videojocs" << endl;
+			cout << "3. Consultar videojocs per edat" << endl;
+			cout << "4. Consultar novetats videojocs" << endl;
+			cout << "5. Consultar paquet videojocs" << endl;
+			cout << "6. Consultar paquets videojocs" << endl;
+			cout << "7. Tornar" << endl;
 			cout << "Opcio: ";
 			cin >> op;
 			switch (op) {
@@ -117,18 +117,25 @@ int main() {
 				cP.consultarNovetatsPres();
 				break;
 			case 5:
+				cP.consultarPaquetPres();
+				break;
+			case 6:
+				cP.consultarPaquetsPres();
+			case 7:
 				break;
 			default:
-				cout << "Selecciona una opcio valida amb les tecles de l'1 al 5" << endl;
+				cout << "Selecciona una opcio valida amb les tecles de l'1 al 7" << endl;
 				break;
 			}
 			break;
 		case 4:
+			cP.tancarSessioPres();
+			break;
+		case 5:
 			return 0;
 		default:
-			cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 3" << endl;
+			cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 5" << endl;
 		}
-		cout << "------------------------------" << endl;
 	}
 	return 0;
 }
