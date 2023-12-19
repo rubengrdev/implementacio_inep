@@ -25,8 +25,7 @@ CREATE TABLE public."ElementCompra"(
 	preu float NOT NULL,
 	tipus text NOT NULL,
 	CHECK (preu > 0),
-	CHECK (tipus = 'paquet'),
-	CHECK (tipus = 'videojoc'),
+	CHECK (tipus = 'paquet' OR tipus = 'videojoc'),
 	PRIMARY KEY (nom)
 );
 
@@ -63,3 +62,4 @@ CREATE TABLE public."Conte"(
 	FOREIGN KEY (paquet) REFERENCES "PaquetVideojocs"(nom),
 	FOREIGN KEY (videojoc) REFERENCES "Videojoc"(nom)
 );
+
