@@ -14,6 +14,7 @@ void capaDomini::registrarUsuari(string nom, string sobrenom, string contrasenya
 }
 
 pqxx::result capaDomini::totsVideojocs() {
-	cercadoraVideojocs videojoc();
-	return videojoc.totsVideojocs
+	//cercadoraVideojocs videojoc();
+	//return videojoc.totsVideojocs
+	return pqxx::result result();
 }
