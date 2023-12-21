@@ -134,7 +134,11 @@ int main() {
 		case 5:
 			return 0;
 		default:
+<<<<<<< HEAD
 			cout << "Selecciona una opcio vï¿½lida amb les tecles de l'1 al 5" << endl;
+=======
+			cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 5" << endl;
+>>>>>>> 5a95daf21fd6fbbd077a1b75075f8bc767c02a5d
 		}
 	}
 	return 0;
