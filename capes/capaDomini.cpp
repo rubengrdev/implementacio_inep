@@ -12,3 +12,10 @@ void capaDomini::registrarUsuari(string nom, string sobrenom, string contrasenya
 	passarelaUsuari usuari(nom, sobrenom, contrasenya, correuE, dataN);
 	usuari.insereix();
 }
+/*
+pqxx::result capaDomini::totsVideojocs() {
+	//cercadoraVideojocs videojoc();
+	//return videojoc.totsVideojocs
+	//return pqxx::result result();
+}
+*/

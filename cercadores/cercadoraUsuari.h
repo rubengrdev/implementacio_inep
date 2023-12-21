@@ -1,6 +1,6 @@
 #include<pqxx/pqxx>
 #include<iostream>
-#include "passarelaUsuari.h"
+#include "passareles/passarelaUsuari.h"
 
 class cercadoraUsuari
 {

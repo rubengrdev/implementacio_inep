@@ -5,10 +5,20 @@
 
 
 -- Creació de taules i restriccions de la BD
+
 CREATE TABLE public."Genere"(
 	nom text NOT NULL,
 	PRIMARY KEY (nom)
 );
+
+INSERT INTO public."Genere" VALUES 
+	('Accio'), 
+	('Aventura'), 
+	('Esports'), 
+	('Estrategia'), 
+	('Rol'), 
+	('Simulacio'), 
+	('Tir');
 
 CREATE TABLE public."Usuari"(
 	sobrenom text NOT NULL,
@@ -24,14 +34,39 @@ CREATE TABLE public."ElementCompra"(
 	descripcio text NOT NULL,
 	preu float NOT NULL,
 	tipus text NOT NULL,
-	CHECK (preu > 0),
+	CHECK (preu >= 0),
 	CHECK (tipus = 'paquet' OR tipus = 'videojoc'),
 	PRIMARY KEY (nom)
 );
 
+INSERT INTO public."ElementCompra" VALUES
+	('Cyberpunk 2077', 'Cyberpunk 2077 is an open-world, action-adventure RPG set in the dark future of Night City — a dangerous megalopolis obsessed with power, glamor, and ceaseless body modification.', 59.99, 'videojoc'),
+	('Forza Horizon 5', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars.', 59.99, 'videojoc'),
+	('Deep Rock Galactic', 'Deep Rock Galactic is a 1-4 player co-op FPS featuring badass space Dwarves, 100% destructible environments, procedurally-generated caves, and endless hordes of alien monsters.', 29.99, 'videojoc'),
+	('The Elder Scrolls V: Skyrim Special Edition', 'Winner of more than 200 Game of the Year Awards, The Elder Scrolls V: Skyrim Special Edition brings the epic fantasy to life in stunning detail. The Special Edition includes the critically acclaimed game and add-ons with all-new features.', 39.99, 'videojoc'),
+	('Counter-Strike 2', 'For over two decades, Counter-Strike has offered an elite competitive experience, one shaped by millions of players from across the globe. And now the next chapter in the CS story is about to begin. This is Counter-Strike 2.', 0, 'videojoc'),
+	('Northgard', 'Northgard is a critically acclaimed strategy game based on Norse mythology. Lead your clan, uncover the secrets of a mysterious newfound continent and defeat your enemies to conquer the Throne!', 27.99, 'videojoc'),
+	('EA SPORTS FC 24', 'EA SPORTS FC 24 welcomes you to The World’s Game: the most true-to-football experience ever with HyperMotionV, PlayStyles optimised by Opta, and an enhanced Frostbite Engine.', 69.99, 'videojoc'),
+	('F1 23', 'Be the last to brake in EA SPORTS F1 23, the official video game of the 2023 FIA Formula One World Championship. A new chapter in the thrilling "Braking Point" story mode delivers high-speed drama and heated rivalries.', 69.99, 'videojoc'),
+	('UNCHARTED: Legacy of Thieves Collection', 'Play as Nathan Drake and Chloe Frazer in their own standalone adventures as they confront their pasts and forge their own legacies. This game includes the critically acclaimed single-player stories from both UNCHARTED 4: A Thief’s End and UNCHARTED: The Lost Legacy.', 49.99, 'videojoc'),
+	('Portal', 'Portal is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.', 9.75, 'videojoc'),
+	('Portal 2', 'The "Perpetual Testing Initiative" has been expanded to allow you to design co-op puzzles for you and your friends!', 9.75, 'videojoc'),
+	('Half-Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve's debut title wins more than 50 game-of-the-year awards on its way to being named "Best PC Game Ever" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.', 9.75, 'videojoc'),
+	('Metro Exodus', 'Flee the shattered ruins of the Moscow Metro and embark on an epic, continent-spanning journey across the post-apocalyptic Russian wilderness. Explore vast, non-linear levels, lose yourself in an immersive, sandbox survival experience, and follow a thrilling story-line that spans an entire year in the greatest Metro adventure yet.', 29.99, 'videojoc'),
+	('METAL GEAR SOLID V: THE PHANTOM PAIN', 'Ushering in a new era for the METAL GEAR franchise with cutting-edge technology powered by the Fox Engine, METAL GEAR SOLID V: The Phantom Pain, will provide players a first-rate gaming experience as they are offered tactical freedom to carry out open-world missions.', 29.99, 'videojoc'),
+	('Euro Truck Simulator 2', 'Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! With dozens of cities to explore, your endurance, skill and speed will all be pushed to their limits.', 29.99, 'videojoc'),
+	('DOOM Eternal', 'Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you.', 39.99, 'videojoc'),
+	('DOOM 3', 'A demonic invasion has overwhelmed the Union Aerospace Corporation's Mars research facility. As one of only a few survivors, you must fight your way to hell and back against a horde of demons in this award-winning horror/action FPS and reimagining of the original DOOM.', 9.99, 'videojoc'),
+	('DOOM (1993)', 'You’re a marine—one of Earth’s best—recently assigned to the Union Aerospace Corporation (UAC) research facility on Mars. When an experiment malfunctions and creates a portal to Hell, the base is overrun by blood-thirsty demons. You must shoot your way out to survive.', 4.99, 'videojoc'),
+	('DOOM II', 'Hell has invaded Earth, and to save it, you must battle mightier demons with even more powerful weapons. This beloved sequel to the groundbreaking DOOM (1993) introduced players to the brutal Super Shotgun, the infamous Icon of Sin boss, and more intense FPS action.', 4.99, 'videojoc');
+
 CREATE TABLE public."PaquetVideojocs"(
 	nom text NOT NULL UNIQUE,
 	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom)
+);
+
+INSERT INTO public."PaquetVideojocs"(
+	
 );
 
 CREATE TABLE public."Videojoc"(
@@ -45,6 +80,27 @@ CREATE TABLE public."Videojoc"(
 	CHECK (qualificacioEdat = 3 OR qualificacioEdat = 7 OR qualificacioEdat = 12 OR qualificacioEdat = 16 OR qualificacioEdat = 18),
 	CHECK (minsEstimat = NULL OR minsEstimat > 0)
 );
+
+INSERT INTO public."Videojoc" VALUES 
+	('Cyberpunk 2077', 'Rol', 18, '2020-12-10'),
+	('Forza Horizon 5', 'Simulacio', 3, '2021-11-09'),
+	('Deep Rock Galactic', 'Accio', 16, '2020-05-13'),
+	('The Elder Scrolls V: Skyrim Special Edition', 'Aventura', 18, '2016-10-28'),
+	('Counter-Strike 2', 'Tir', 16, '2012-08-21'),
+	('Northgard', 'Estrategia', 12, '2018-03-07'),
+	('EA SPORTS FC 24', 'Esports', 3, '2023-09-29'),
+	('F1 23', 'Simulacio', 3, '2023-06-16'),
+	('UNCHARTED: Legacy of Thieves Collection', 'Aventura', 16, '2022-10-19'),
+	('Portal', 'Aventura', 3, '2007-10-10'),
+	('Portal 2', 'Aventura', 3, '2011-04-19'),
+	('Half-Life 2', 'Aventura', 16, '2004-11-16'),
+	('Metro Exodus', 'Accio', 18, '2019-02-14'),
+	('METAL GEAR SOLID V: THE PHANTOM PAIN', 'Tir', 18, '2015-09-01'),
+	('Euro Truck Simulator 2', 'Simulacio', 3, '2012-10-18'),
+	('DOOM Eternal', 'Tir', 18, '2020-03-20'),
+	('DOOM 3', 'Tir', 18, '2012-10-19'),
+	('DOOM (1993)', 'Tir', 16, '1995-04-30'),
+	('DOOM II', 'Tir', 16, '1994-05-05');
 
 CREATE TABLE public."Compra"(
 	usuari text NOT NULL,
@@ -63,3 +119,6 @@ CREATE TABLE public."Conte"(
 	FOREIGN KEY (videojoc) REFERENCES "Videojoc"(nom)
 );
 
+INSERT INTO public."Conte"(
+
+);
