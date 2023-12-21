@@ -77,7 +77,13 @@ void capaPresentacio::modificarUsuariPres() {
 void capaPresentacio::esborrarUsuariPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string c;
+	cout << "** Esborrar usuari **" << endl;
+	cout << "Introdueix la teva contrasenya per confirmar l'esborrat: ";
+	cin >> c;
+	//crida a cDom
+	//Tractament d'errors
+	cout << "Usuari esborrat correctament!" << endl;
 }
 
 void capaPresentacio::comprarVideojocPres() {
@@ -101,34 +107,67 @@ void capaPresentacio::consultarCompresPres() {
 void capaPresentacio::consultarVideojocPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string s;
+	cout << "** Consulta videojoc **" << endl;
+	cout << "Introdueix el nom del videojoc a consultar : ";
+	getline(cin, s);
+	//Crida a cDom
+	//Tractament errors
+	cout << "Informació sobre el videojoc..." << endl;
+	//Mostrar resposta de cDom
 }
 
 void capaPresentacio::consultarVideojocsPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	cout << "** Consulta tots els videojocs **" << endl;
+	//Crida a cDom
+	pqxx::result result = cDom.totsVideojocs();
+	for (size_t i = 0; i < result.size(); ++i) {
+		for (size_t j = 0; j < result[i].size(); ++j) {
+			cout << result[i][j].name() << ": " << result[i][j].c_str() << "\t";
+		}
+		cout << endl;
+	}
+	//Mostrar resposta de cDom
 }
 void capaPresentacio::consultarVideojocsEdatPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	int edat;
+	cout << "** Consulta videojocs per edat **" << endl;
+	cout << "Edat maxima (anys): ";
+	//Crida
+	//Mostrar resultat
 }
 
 void capaPresentacio::consultarNovetatsPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string data;
+	cout << "** Consulta novetats **" << endl;
+	cout << "Data (DD/MM/AAAA): ";
+	getline(cin, data);
+	//Crida
+	//Mostrar resultat
 }
 
 void capaPresentacio::consultarPaquetPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string nPaquet;
+	cout << "** Consulta paquet **" << endl;
+	cout << "Nom paquet: ";
+	getline(cin, nPaquet);
+	//Crida
+	//Tractament errors
+	//Mostrar resultat
 }
 
 void capaPresentacio::consultarPaquetsPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	cout << "** Consulta paquets **" << endl;
+	//Crida
+	//Mostrar resultat
 }

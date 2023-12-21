@@ -16,4 +16,6 @@ class capaDomini {
 		~capaDomini();
 
 		void registrarUsuari(string nom, string sobrenom, string contrasenya, string correuE, string dataN);
+
+		pqxx::result totsVideojocs();
 };

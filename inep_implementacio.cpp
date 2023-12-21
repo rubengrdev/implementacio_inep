@@ -44,9 +44,9 @@ int main() {
 		switch (op) {
 		case 1:
 			cout << endl << "--- GESTIONAR USUARI ---" << endl;
-			cout << "1. Consultar l'usuari" << endl;
-			cout << "2. Modificar l'usuari" << endl;
-			cout << "3. Esborrar l'usuari" << endl;
+			cout << "1. Consultar usuari" << endl;
+			cout << "2. Modificar usuari" << endl;
+			cout << "3. Esborrar usuari" << endl;
 			cout << "4. Tornar" << endl;
 			cout << "Opcio: ";
 			cin >> op;
