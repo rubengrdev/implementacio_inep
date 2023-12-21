@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
-#include "capaDomini.h"
+#include "transaccions/capaDomini.h"
 
 using namespace std;
 
