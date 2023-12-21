@@ -1,6 +1,6 @@
 #include <iostream>
 #include <pqxx/pqxx>
-#include "capaPresentacio.h"
+#include "capes/capaPresentacio.h"
 
 using namespace std;
 

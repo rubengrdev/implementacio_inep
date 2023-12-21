@@ -1,11 +1,11 @@
-#include "cercadoraUsuari.h"
-#include "cercadoraCompra.h"
-#include "passareles/passarelaUsuari.h"
-#include "passareles/passarelaCompra.h"
-#include "passareles/passarelaConte.h"
-#include "passareles/passarelaElementCompra.h"
-#include "passareles/passarelaPaquetVideojocs.h"
-#include "passareles/passarelaVideojoc.h"
+#include "../cercadores/cercadoraCompra.h"
+#include "../cercadores/cercadoraUsuari.h"
+#include "../passareles/passarelaUsuari.h"
+#include "../passareles/passarelaCompra.h"
+#include "../passareles/passarelaConte.h"
+#include "../passareles/passarelaElementCompra.h"
+#include "../passareles/passarelaPaquetVideojocs.h"
+#include "../passareles/passarelaVideojoc.h"
 
 class capaDomini {
 	private:
