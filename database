@@ -51,17 +51,18 @@ INSERT INTO public."ElementCompra" VALUES
 	('UNCHARTED: Legacy of Thieves Collection', 'Play as Nathan Drake and Chloe Frazer in their own standalone adventures as they confront their pasts and forge their own legacies. This game includes the critically acclaimed single-player stories from both UNCHARTED 4: A Thief’s End and UNCHARTED: The Lost Legacy.', 49.99, 'videojoc'),
 	('Portal', 'Portal is a new single player game from Valve. Set in the mysterious Aperture Science Laboratories, Portal has been called one of the most innovative new games on the horizon and will offer gamers hours of unique gameplay.', 9.75, 'videojoc'),
 	('Portal 2', 'The "Perpetual Testing Initiative" has been expanded to allow you to design co-op puzzles for you and your friends!', 9.75, 'videojoc'),
-	('Half-Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valve's debut title wins more than 50 game-of-the-year awards on its way to being named "Best PC Game Ever" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.', 9.75, 'videojoc'),
+	('Half-Life 2', '1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling. Valves debut title wins more than 50 game-of-the-year awards on its way to being named "Best PC Game Ever" by PC Gamer, and launches a franchise with more than eight million retail units sold worldwide.', 9.75, 'videojoc'),
 	('Metro Exodus', 'Flee the shattered ruins of the Moscow Metro and embark on an epic, continent-spanning journey across the post-apocalyptic Russian wilderness. Explore vast, non-linear levels, lose yourself in an immersive, sandbox survival experience, and follow a thrilling story-line that spans an entire year in the greatest Metro adventure yet.', 29.99, 'videojoc'),
 	('METAL GEAR SOLID V: THE PHANTOM PAIN', 'Ushering in a new era for the METAL GEAR franchise with cutting-edge technology powered by the Fox Engine, METAL GEAR SOLID V: The Phantom Pain, will provide players a first-rate gaming experience as they are offered tactical freedom to carry out open-world missions.', 29.99, 'videojoc'),
 	('Euro Truck Simulator 2', 'Travel across Europe as king of the road, a trucker who delivers important cargo across impressive distances! With dozens of cities to explore, your endurance, skill and speed will all be pushed to their limits.', 29.99, 'videojoc'),
 	('DOOM Eternal', 'Hell’s armies have invaded Earth. Become the Slayer in an epic single-player campaign to conquer demons across dimensions and stop the final destruction of humanity. The only thing they fear... is you.', 39.99, 'videojoc'),
-	('DOOM 3', 'A demonic invasion has overwhelmed the Union Aerospace Corporation's Mars research facility. As one of only a few survivors, you must fight your way to hell and back against a horde of demons in this award-winning horror/action FPS and reimagining of the original DOOM.', 9.99, 'videojoc'),
+	('DOOM 3', 'A demonic invasion has overwhelmed the Union Aerospace Corporations Mars research facility. As one of only a few survivors, you must fight your way to hell and back against a horde of demons in this award-winning horror/action FPS and reimagining of the original DOOM.', 9.99, 'videojoc'),
 	('DOOM (1993)', 'You’re a marine—one of Earth’s best—recently assigned to the Union Aerospace Corporation (UAC) research facility on Mars. When an experiment malfunctions and creates a portal to Hell, the base is overrun by blood-thirsty demons. You must shoot your way out to survive.', 4.99, 'videojoc'),
 	('DOOM II', 'Hell has invaded Earth, and to save it, you must battle mightier demons with even more powerful weapons. This beloved sequel to the groundbreaking DOOM (1993) introduced players to the brutal Super Shotgun, the infamous Icon of Sin boss, and more intense FPS action.', 4.99, 'videojoc');
 
 CREATE TABLE public."PaquetVideojocs"(
-	nom text NOT NULL UNIQUE,
+	nom text NOT NULL,
+	PRIMARY KEY (nom),
 	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom)
 );
 
@@ -70,11 +71,12 @@ INSERT INTO public."PaquetVideojocs"(
 );
 
 CREATE TABLE public."Videojoc"(
-	nom text NOT NULL UNIQUE,
+	nom text NOT NULL,
 	genere text NOT NULL,
 	qualificacioEdat int NOT NULL,
 	dataLlancament date NOT NULL,
 	minsEstimat int,
+	PRIMARY KEY (nom),
 	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom),
 	FOREIGN KEY (genere) REFERENCES "Genere"(nom),
 	CHECK (qualificacioEdat = 3 OR qualificacioEdat = 7 OR qualificacioEdat = 12 OR qualificacioEdat = 16 OR qualificacioEdat = 18),
@@ -107,6 +109,7 @@ CREATE TABLE public."Compra"(
 	element text NOT NULL,
 	data date NOT NULL,
 	preuPagat float NOT NULL,
+	PRIMARY KEY (usuari, element),
 	FOREIGN KEY (usuari) REFERENCES "Usuari"(sobrenom) ON DELETE CASCADE,
 	FOREIGN KEY (element) REFERENCES "ElementCompra"(nom) ON DELETE CASCADE,
 	CHECK (preuPagat > 0)
@@ -115,6 +118,7 @@ CREATE TABLE public."Compra"(
 CREATE TABLE public."Conte"(
 	paquet text NOT NULL,
 	videojoc text NOT NULL,
+	PRIMARY KEY (paquet, videojoc),
 	FOREIGN KEY (paquet) REFERENCES "PaquetVideojocs"(nom),
 	FOREIGN KEY (videojoc) REFERENCES "Videojoc"(nom)
 );
