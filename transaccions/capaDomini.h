@@ -1,5 +1,5 @@
-#include "../cercadores/cercadoraCompra.h"
-#include "../cercadores/cercadoraUsuari.h"
+#include "../cercadors/cercadoraUsuari.h"
+#include "../cercadors/cercadoraCompra.h"
 #include "../passareles/passarelaUsuari.h"
 #include "../passareles/passarelaCompra.h"
 #include "../passareles/passarelaConte.h"
@@ -17,5 +17,5 @@ class capaDomini {
 
 		void registrarUsuari(string nom, string sobrenom, string contrasenya, string correuE, string dataN);
 
-		pqxx::result totsVideojocs();
+		//pqxx::result totsVideojocs();
 };

@@ -130,13 +130,13 @@ void capaPresentacio::consultarVideojocsPres() {
 		}
 		cout << endl;
 	}
-	*/
 	//Mostrar resposta de cDom
+	*/
 }
 void capaPresentacio::consultarVideojocsEdatPres() {
 	cin.ignore();
 	system("CLS");
-	int edat;
+	int edat = 0;	//to do, asignar valor a edat per warning al vstudio
 	cout << "** Consulta videojocs per edat **" << endl;
 	cout << "Edat maxima (anys): ";
 	//Crida
