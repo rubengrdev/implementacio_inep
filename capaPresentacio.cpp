@@ -2,8 +2,11 @@
 
 capaPresentacio::capaPresentacio() {
 	cDom = capaDomini();
+<<<<<<< HEAD
 	txIniSessio = TXIniciarSessio();
 
+=======
+>>>>>>> 2354cd233d55582b222f9a67a4ba556e093b764f
 }
 
 capaPresentacio::~capaPresentacio() {
@@ -20,10 +23,15 @@ void capaPresentacio::iniciarSessioPres() {
 	cout << "Contrasenya: ";
 	getline(cin, c);
 	//Crida a cDom
+<<<<<<< HEAD
 	txIniSessio.iniciarSessio(s, c);
 	//Tractament errors
 	cout << "Sessio iniciada correctament!" << endl;
 
+=======
+	//Tractament errors
+	cout << "Sessio iniciada correctament!" << endl;
+>>>>>>> 2354cd233d55582b222f9a67a4ba556e093b764f
 }
 
 void capaPresentacio::tancarSessioPres() {
@@ -117,11 +125,18 @@ void capaPresentacio::consultarVideojocPres() {
 	getline(cin, s);
 	//Crida a cDom
 	//Tractament errors
+<<<<<<< HEAD
 	cout << "Informaciï¿½ sobre el videojoc..." << endl;
 	//Mostrar resposta de cDom
 }
 
 /*TO DO... revisar pqxx::result dona error*/
+=======
+	cout << "Informació sobre el videojoc..." << endl;
+	//Mostrar resposta de cDom
+}
+
+>>>>>>> 2354cd233d55582b222f9a67a4ba556e093b764f
 void capaPresentacio::consultarVideojocsPres() {
 	cin.ignore();
 	system("CLS");

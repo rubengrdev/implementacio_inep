@@ -17,6 +17,9 @@ class capaDomini {
 
 		void registrarUsuari(string nom, string sobrenom, string contrasenya, string correuE, string dataN);
 
+<<<<<<< HEAD
 		void iniciarSessio(string nom, string contrasenya);
+=======
+>>>>>>> 2354cd233d55582b222f9a67a4ba556e093b764f
 		//pqxx::result totsVideojocs();
 };
