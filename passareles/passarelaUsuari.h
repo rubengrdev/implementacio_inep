@@ -16,8 +16,6 @@ class passarelaUsuari
 
 		~passarelaUsuari();
 
-		void insereix();
-
 		string getNom();
 
 		string getSobrenom();
@@ -37,5 +35,11 @@ class passarelaUsuari
 		void setCorreu(string cE);
 
 		void setDataN(string dN);
+
+		void insereix();
+
+		void modifica();
+
+		void esborra();
 };
 

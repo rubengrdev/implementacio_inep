@@ -8,3 +8,11 @@ passarelaConte::passarelaConte(string v, string p) {
 passarelaConte::~passarelaConte() {
 
 }
+
+string passarelaConte::getVideojoc() {
+	return videojoc;
+}
+
+string passarelaConte::getPaquet() {
+	return paquet;
+}

@@ -12,25 +12,6 @@ passarelaUsuari::~passarelaUsuari() {
 
 }
 
-void passarelaUsuari::insereix() {
-	/*try {
-		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
-		if (conn.is_open()) {
-			cout << "Connexio exitosa amb la base de dades." << endl;
-			pqxx::work txn(conn);
-			string comanda = "INSERT INTO public.Usuari VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
-			pqxx::result result = txn.exec(comanda);
-			txn.commit();
-		}
-		else {
-			cerr << "Error de connexio amb la base de dades." << endl << endl;
-		}
-		
-	}catch (const exception& e) {
-		cerr << "Error: " << e.what() << endl;
-	}*/
-}
-
 string passarelaUsuari::getNom() {
 	return nom;
 }
@@ -69,4 +50,31 @@ void passarelaUsuari::setCorreu(string cE) {
 
 void passarelaUsuari::setDataN(string dN) {
 	dataN = dN;
+}
+
+void passarelaUsuari::insereix() {
+	/*try {
+		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
+		if (conn.is_open()) {
+			cout << "Connexio exitosa amb la base de dades." << endl;
+			pqxx::work txn(conn);
+			string comanda = "INSERT INTO public.Usuari VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
+			pqxx::result result = txn.exec(comanda);
+			txn.commit();
+		}
+		else {
+			cerr << "Error de connexio amb la base de dades." << endl << endl;
+		}
+
+	}catch (const exception& e) {
+		cerr << "Error: " << e.what() << endl;
+	}*/
+}
+
+void passarelaUsuari::modifica() {
+
+}
+
+void passarelaUsuari::esborra() {
+
 }

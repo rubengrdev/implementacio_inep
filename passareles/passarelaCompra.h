@@ -20,5 +20,11 @@ class passarelaCompra
 
 		string getData();
 
+		void insereix();
+
+		void modifica();
+
+		void esborra();
+
 };
 

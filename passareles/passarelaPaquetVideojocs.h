@@ -14,5 +14,7 @@ class passarelaPaquetVideojocs
 		passarelaPaquetVideojocs(string n);
 
 		~passarelaPaquetVideojocs();
+
+		string getNom();
 };
 

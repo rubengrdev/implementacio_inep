@@ -24,11 +24,7 @@ class passarelaElementCompra
 
 		string getTipus();
 
-		void setDescripcio(string desc);
-
-		void setPreu(double p);
-
-		//Preguntar si cal setter pel tipus
+		//No fan falta setters ni operacions sobre la BD ja que l'usuari no pot modificar el cataleg
 
 };
 

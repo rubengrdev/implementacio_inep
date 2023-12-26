@@ -7,3 +7,7 @@ passarelaPaquetVideojocs::passarelaPaquetVideojocs(string n) {
 passarelaPaquetVideojocs::~passarelaPaquetVideojocs() {
 
 }
+
+string passarelaPaquetVideojocs::getNom() {
+	return nom;
+}

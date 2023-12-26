@@ -21,3 +21,15 @@ string passarelaCompra::getElement() {
 string passarelaCompra::getData() {
 	return data;
 }
+
+void passarelaCompra::insereix() {
+
+}
+
+void passarelaCompra::modifica() {
+
+}
+
+void passarelaCompra::esborra() {
+
+}

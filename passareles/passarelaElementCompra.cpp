@@ -26,11 +26,3 @@ double passarelaElementCompra::getPreu() {
 string passarelaElementCompra::getTipus() {
 	return tipus;
 }
-
-void passarelaElementCompra::setDescripcio(string desc) {
-	descripcio = desc;
-}
-
-void passarelaElementCompra::setPreu(double p) {
-	preu = p;
-}
