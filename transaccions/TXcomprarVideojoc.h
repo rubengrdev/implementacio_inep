@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -10,7 +11,7 @@ class TXcomprarVideojoc {
 
 		~TXcomprarVideojoc();
 
-		void executa();
+		void executar();
 
 		//obtenirResultat
 };

@@ -1,7 +1,7 @@
 #include "capaPresentacio.h"
 
 capaPresentacio::capaPresentacio() {
-	cDom = capaDomini();
+
 }
 
 capaPresentacio::~capaPresentacio() {
@@ -56,7 +56,8 @@ void capaPresentacio::registrarUsuariPres() {
 	getline(cin, correuE);
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
-	cDom.registrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
+	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
+	op.executar();
 	//Tractament d'errors
 	cout << "Usuari registrat correctament!" << endl;
 }

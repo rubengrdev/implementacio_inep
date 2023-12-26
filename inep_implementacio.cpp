@@ -4,11 +4,9 @@
 
 using namespace std;
 
-bool sessioIniciada = false;
-string sobrenom;
-
 int main() {
 	int op;
+	bool sessioIniciada = false;
 	capaPresentacio cP = capaPresentacio();
 	while (true) {
 		if (!sessioIniciada) {

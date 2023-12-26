@@ -21,8 +21,6 @@ using namespace std;
 class capaPresentacio {
 private:
 
-	capaDomini cDom;
-
 public:
 	capaPresentacio();
 

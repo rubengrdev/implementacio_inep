@@ -12,4 +12,4 @@ void TXconsultarVideojoc::executar(){
 
 }
 
-void TXconsultarVideojoc::resultat
+//void TXconsultarVideojoc::resultat()

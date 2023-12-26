@@ -1,17 +1,17 @@
-#include "TXiniciarSessio.h"
+#include "TXtancarSessio.h"
 
-TXiniciarSessio::TXiniciarSessio() {
-
-}
-
-TXiniciarSessio::~TXiniciarSessio() {
+TXtancarSessio::TXtancarSessio() {
 
 }
 
-void TXiniciarSessio::executar(){
+TXtancarSessio::~TXtancarSessio() {
 
 }
 
-/*void TXiniciarSessio::resultat{
+void TXtancarSessio::executar(){
+
+}
+
+/*void TXtancarSessio::resultat{
 
 }*/

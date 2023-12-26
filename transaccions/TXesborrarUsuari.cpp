@@ -1,16 +1,13 @@
-#include <iostream>
+#include "TXesborrarUsuari.h"
 
-using namespace std;
+TXesborrarUsuari::TXesborrarUsuari() {
 
-class TXesborrarUsuari {
-	private:
-		//Resultat
-	public:
-		TXesborrarUsuari();
+}
 
-		~TXesborrarUsuari();
+TXesborrarUsuari::~TXesborrarUsuari() {
 
-		void executa();
+}
 
-		//obtenirResultat
-};
+void TXesborrarUsuari::executar() {
+
+}

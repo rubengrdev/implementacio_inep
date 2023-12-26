@@ -1,7 +1,8 @@
 #include "TXiniciarSessio.h"
 
-TXiniciarSessio::TXiniciarSessio(string nom, string cs) {
-
+TXiniciarSessio::TXiniciarSessio(string sn, string cs) {
+	sobrenom = sn;
+	contrasenya = cs;
 }
 
 TXiniciarSessio::~TXiniciarSessio() {

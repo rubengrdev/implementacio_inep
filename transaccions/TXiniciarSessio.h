@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 using namespace std;
@@ -5,13 +6,14 @@ using namespace std;
 class TXiniciarSessio {
 	private:
 		string sobrenom, contrasenya;
-		//Resultat
 	public:
-		TXiniciarSessio(string nom, string cs);
+
+		TXiniciarSessio(string sn, string cs);
 
 		~TXiniciarSessio();
 
-		void executa();
+		void executar();
 
 		//obtenirResultat
+
 };
