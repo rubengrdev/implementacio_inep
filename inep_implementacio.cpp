@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 	int op;
-	bool sessioIniciada = true; //Canviar quan implementem iniciSessio
+	bool sessioIniciada = false; 
 	capaPresentacio cP = capaPresentacio();
 	while (true) {
 		if (!sessioIniciada) {
@@ -19,7 +19,7 @@ int main() {
 				cin >> op;
 				switch (op) {
 				case 1:
-					cP.iniciarSessioPres();
+					sessioIniciada = cP.iniciarSessioPres();
 					break;
 				case 2:
 					cP.registrarUsuariPres();
@@ -132,7 +132,7 @@ int main() {
 		case 5:
 			return 0;
 		default:
-			cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 5" << endl;
+			cout << "Selecciona una opcio vÃ lida amb les tecles de l'1 al 5" << endl;
 		}
 	}
 	return 0;
@@ -149,25 +149,25 @@ int main() {
 			return 1;
 		}
 		// Per realitzar una consulta...
-		// 1.- es crea un pqxx::work amb la connexió que hem creat
+		// 1.- es crea un pqxx::work amb la connexiÃ³ que hem creat
 		pqxx::work txn(conn);
 		// 2.- s'executa una comanda en SQL que correspon a la consulta
 		pqxx::result result = txn.exec("SELECT * FROM musics");
-		// si a l'executar us dóna el missatge que no troba la taula, potser necessiteu posar :
+		// si a l'executar us dÃ³na el missatge que no troba la taula, potser necessiteu posar :
 		// "SELECT * FROM public.musics" o ""SELECT * FROM public.\"MUSICS\"
-		// podeu confirmar la sintaxi de la comanda en el pgAdmin, sobre la taula escollir la opció Scripts\SELECT Script
-		// Per mostrar el resultat de la consulta, hem de recórrer les files (primer for) ...
+		// podeu confirmar la sintaxi de la comanda en el pgAdmin, sobre la taula escollir la opciÃ³ Scripts\SELECT Script
+		// Per mostrar el resultat de la consulta, hem de recÃ³rrer les files (primer for) ...
 		cout << "--------------------------------------------" << endl;
 		cout << "Opcio de recorrer el resultat amb dos loops" << endl;
 		cout << "-------------------------------------------" << endl;
 		for (const auto& row : result) {
-			// ... i per cada fila, es recorren els camps (l'ordre és el que es veu a les columnes al pgAdmin
+			// ... i per cada fila, es recorren els camps (l'ordre Ã©s el que es veu a les columnes al pgAdmin
 			for (const auto& field : row) {
 				cout << field.name() << ": " << field.c_str() << "\t";
 			}
 			cout << endl;
 		}
-		// també es poden recórrer els resultats com si fosin una matriu de files i columnes(amb indexos començant per 0)
+		// tambÃ© es poden recÃ³rrer els resultats com si fosin una matriu de files i columnes(amb indexos comenÃ§ant per 0)
 		cout << "---------------------------------------------" << endl;
 		cout << "Opcio de recorrer el resultat com una matriu" << endl;
 		cout << "---------------------------------------------" << endl;
@@ -177,9 +177,9 @@ int main() {
 			}
 			cout << endl;
 		}
-		// Finalment, s'ha de confirmar la transacción
+		// Finalment, s'ha de confirmar la transacciÃ³n
 		txn.commit();
-		// La connexió es tanca automàticament al sortir del try
+		// La connexiÃ³ es tanca automÃ ticament al sortir del try
 	}
 	catch (const exception& e) {
 		cerr << "Error: " << e.what() << endl;
