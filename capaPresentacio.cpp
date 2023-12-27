@@ -112,8 +112,15 @@ void capaPresentacio::consultarVideojocPres() {
 	cout << "** Consulta videojoc **" << endl;
 	cout << "Introdueix el nom del videojoc a consultar : ";
 	getline(cin, s);
-	//Crida a cDom
-	//Tractament errors
+	TXconsultarVideojoc op = TXconsultarVideojoc(s);
+	try {
+		op.executar();
+	}
+	catch (const exception& e) {//MIRAR SI FUNCIONA
+		cout << e.what() << endl;
+		return;
+	}
+	
 	cout << "Informació sobre el videojoc..." << endl;
 	//Mostrar resposta de cDom
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 int main() {
 	int op;
-	bool sessioIniciada = false;
+	bool sessioIniciada = true; //Canviar quan implementem iniciSessio
 	capaPresentacio cP = capaPresentacio();
 	while (true) {
 		if (!sessioIniciada) {
@@ -140,7 +140,7 @@ int main() {
 
 /*int main() {
 	try {
-		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
+		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr=127.0.0.1 port=5432");
 		if (conn.is_open()) {
 			cout << "Connexio exitosa amb la base de dades." << endl << endl;
 		}

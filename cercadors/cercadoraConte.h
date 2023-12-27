@@ -15,8 +15,6 @@ class cercadoraConte
 
 		~cercadoraConte();
 
-		vector<passarelaConte> cercaPerVideojoc(string nomV);
-
-		vector<passarelaConte> cercaPerPaquet(string nomP);
+		vector<passarelaConte> cerca(string n);
 };
 
