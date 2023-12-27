@@ -17,9 +17,14 @@ void capaPresentacio::iniciarSessioPres() {
 	getline(cin, s);
 	cout << "Contrasenya: ";
 	getline(cin, c);
-	//Crida a cDom
-	//Tractament errors
-	cout << "Sessio iniciada correctament!" << endl;
+	TXiniciarSessio op = TXiniciarSessio(s, c);
+	try{
+		op.executar();
+	}
+	catch(const exception& e){
+		cout << e.what() << endl;
+	}
+	if(op.obteResultat() == true) cout << "Sessio iniciada correctament!" << endl;
 }
 
 void capaPresentacio::tancarSessioPres() {

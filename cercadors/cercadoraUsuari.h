@@ -12,6 +12,6 @@ class cercadoraUsuari
 
 		~cercadoraUsuari();
 
-		passarelaUsuari cercaUsuari(string sobrenomU);
-};
+		passarelaUsuari cercaPerSobrenom(string sn);
 
+};

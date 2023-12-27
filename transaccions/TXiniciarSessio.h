@@ -1,11 +1,16 @@
 #pragma once
 #include <iostream>
+#include "../passareles/passarelaUsuari.h"
+#include "../cercadors/cercadoraUsuari.h"
 
 using namespace std;
 
 class TXiniciarSessio {
 	private:
+		
 		string sobrenom, contrasenya;
+		bool resultat;
+
 	public:
 
 		TXiniciarSessio(string sn, string cs);
@@ -14,6 +19,6 @@ class TXiniciarSessio {
 
 		void executar();
 
-		//obtenirResultat
+		bool obtenirResultat();
 
 };
