@@ -135,7 +135,7 @@ void capaPresentacio::consultarVideojocPres() {
 	cout << "Qualificacio edat: " << r.qualificacio << endl;
 	cout << "Genere: " << r.genere << endl;
 	cout << "Data llancament: " << r.data << endl;
-	cout << "Preu: " << r.preu << "euros" << endl;
+	cout << "Preu: " << r.preu << " euros" << endl;
 	cout << "Paquets on esta inclos: ";
 	for (int i = 0; i < r.paquets.size(); i++) {
 		if (i == r.paquets.size() - 1) {
