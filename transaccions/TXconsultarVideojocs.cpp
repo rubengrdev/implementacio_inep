@@ -24,7 +24,7 @@ void TXconsultarVideojocs::executar(){
 			r.genere = pvid.getGenere();
 			r.data = pvid.getDataLlan();
 			r.qualificacio = pvid.getQualificacio();
-			for (int i = 0; i < pcon.size(); i++) r.paquets.push_back(pcon[i].getPaquet());
+			for (int j = 0; j < pcon.size(); j++) r.paquets.push_back(pcon[j].getPaquet());
 			resultat.push_back(r);
 		}
 	}

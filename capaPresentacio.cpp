@@ -164,7 +164,7 @@ void capaPresentacio::consultarVideojocsPres() {
 		cout << "Data llancament: " << r[i].data << endl;
 		cout << "Preu: " << r[i].preu << " euros" << endl;
 		cout << "Paquets on esta inclos: ";
-		for (int j = 0; i < r[i].paquets.size(); i++) {
+		for (int j = 0; j < r[i].paquets.size(); j++) {
 			if (j == r[i].paquets.size() - 1) {
 				cout << r[i].paquets[j];
 			}
