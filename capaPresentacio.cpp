@@ -22,7 +22,7 @@ bool capaPresentacio::iniciarSessioPres() {
 		op.executar();
 	}
 	catch(const exception& e){
-		cout << e.what() << endl;
+		cout << "Usuari o contrasenya incorrecta" << endl;
 	}
 	if (op.obteResultat()) cout << "Sessio iniciada correctament!" << endl;
 	return op.obteResultat();
