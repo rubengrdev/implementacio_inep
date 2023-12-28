@@ -2,6 +2,7 @@
 #include <iostream>
 #include "../passareles/passarelaUsuari.h"
 #include "../cercadors/cercadoraUsuari.h"
+#include "../videoconsola.h"
 
 using namespace std;
 

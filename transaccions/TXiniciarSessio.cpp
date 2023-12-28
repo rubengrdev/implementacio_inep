@@ -15,7 +15,8 @@ void TXiniciarSessio::executar(){
 	passarelaUsuari pus = us.cercaPerSobrenom(sobrenom);
 	if(pus.getContrasenya() == contrasenya){
 		resultat = true;
-		//Comunicacio amb Videoconsola
+		Videoconsola& vid = Videoconsola::getInstance();
+		vid.iniciarSessio(sobrenom);
 	}else{
 		throw exception("Contrasenya incorrecta");
 	}
