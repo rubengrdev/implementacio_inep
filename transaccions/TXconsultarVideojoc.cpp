@@ -25,6 +25,6 @@ void TXconsultarVideojoc::executar(){
 	for (int i = 0; i < pcon.size(); i++) resultat.paquets.push_back(pcon[i].getPaquet());
 }
 
-TXconsultarVideojoc::res TXconsultarVideojoc::obtenirResultat() {
+TXconsultarVideojoc::res TXconsultarVideojoc::obteResultat() {
 	return resultat;
 }

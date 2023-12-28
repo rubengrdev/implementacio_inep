@@ -12,9 +12,7 @@
 using namespace std;
 
 class TXconsultarVideojoc {
-	private:
-		
-		string nomV;
+	public:
 
 		struct res
 		{
@@ -24,14 +22,16 @@ class TXconsultarVideojoc {
 			vector<string> paquets;
 		};
 
-		res resultat;
-
-	public:
 		TXconsultarVideojoc(string n);
 
 		~TXconsultarVideojoc();
 
 		void executar();
 
-		res obtenirResultat();
+		res obteResultat();
+
+	private:
+
+		string nomV;
+		res resultat;
 };

@@ -8,8 +8,6 @@ class cercadoraVideojoc
 {
 	private:
 
-		pqxx::connection conn;
-
 	public:
 		
 		cercadoraVideojoc();

@@ -6,8 +6,6 @@
 class cercadoraConte
 {
 	private:
-		
-		pqxx::connection conn;
 
 	public:
 		

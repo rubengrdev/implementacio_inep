@@ -6,8 +6,6 @@ class cercadoraElementCompra
 {
 	private:
 
-		pqxx::connection conn;
-
 	public:
 		
 		cercadoraElementCompra();

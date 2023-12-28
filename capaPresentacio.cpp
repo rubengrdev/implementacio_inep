@@ -124,13 +124,28 @@ void capaPresentacio::consultarVideojocPres() {
 	try {
 		op.executar();
 	}
-	catch (const exception& e) {//MIRAR SI FUNCIONA
+	catch (const exception& e) {
 		cout << e.what() << endl;
 		return;
 	}
-	
-	cout << "Informació sobre el videojoc..." << endl;
-	//Mostrar resposta de cDom
+	cout << "Informacio sobre el videojoc..." << endl;
+	TXconsultarVideojoc::res r = op.obteResultat();
+	cout << "Nom videojoc: " << r.nom << endl;
+	cout << "Descripcio: " << r.desc << endl;
+	cout << "Qualificacio edat: " << r.qualificacio << endl;
+	cout << "Genere: " << r.genere << endl;
+	cout << "Data llancament: " << r.data << endl;
+	cout << "Preu: " << r.preu << "euros" << endl;
+	cout << "Paquets on esta inclos: ";
+	for (int i = 0; i < r.paquets.size(); i++) {
+		if (i == r.paquets.size() - 1) {
+			cout << r.paquets[i] << endl;
+		}
+		else {
+			cout << r.paquets[i] << ", ";
+		}
+	}
+	cout << endl;
 }
 
 void capaPresentacio::consultarVideojocsPres() {

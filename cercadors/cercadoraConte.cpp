@@ -10,7 +10,7 @@ cercadoraConte::~cercadoraConte() {
 
 vector<passarelaConte> cercadoraConte::cerca(string n){
 	vector<passarelaConte> res;
-	string comanda = "SELECT * FROM public.\"Conte\" WHERE paquet = " + n + " OR videojoc = " + n + ";";
+	string comanda = "SELECT * FROM public.\"Conte\" WHERE paquet = '" + n + "' OR videojoc = '" + n + "';";
 	pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr=127.0.0.1 port=5432");
 	pqxx::work txn = pqxx::work(conn);
 	pqxx::result  q = txn.exec(comanda);
