@@ -12,16 +12,15 @@ TXiniciarSessio::~TXiniciarSessio() {
 
 void TXiniciarSessio::executar(){
 	cercadoraUsuari us = cercadoraUsuari();
-	passarelaUsuari pus = us.cercaPerNom(sobrenom);
+	passarelaUsuari pus = us.cercaPerSobrenom(sobrenom);
 	if(pus.getContrasenya() == contrasenya){
 		resultat = true;
 		//Comunicacio amb Videoconsola
 	}else{
-		throw ("Contrasenya incorrecta");
+		throw exception("Contrasenya incorrecta");
 	}
-	
 }
 
-bool TXiniciarSessio::resultat(){
+bool TXiniciarSessio::obteResultat(){
 	return resultat;
 }

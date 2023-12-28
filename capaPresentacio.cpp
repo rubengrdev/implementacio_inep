@@ -8,7 +8,7 @@ capaPresentacio::~capaPresentacio() {
 
 }
 
-void capaPresentacio::iniciarSessioPres() {
+bool capaPresentacio::iniciarSessioPres() {
 	cin.ignore();
 	system("CLS");
 	string s, c;
@@ -24,7 +24,8 @@ void capaPresentacio::iniciarSessioPres() {
 	catch(const exception& e){
 		cout << e.what() << endl;
 	}
-	if(op.obteResultat() == true) cout << "Sessio iniciada correctament!" << endl;
+	if (op.obteResultat()) cout << "Sessio iniciada correctament!" << endl;
+	return op.obteResultat();
 }
 
 void capaPresentacio::tancarSessioPres() {

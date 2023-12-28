@@ -26,7 +26,7 @@ public:
 
 	~capaPresentacio();
 
-	void iniciarSessioPres();
+	bool iniciarSessioPres();
 
 	void tancarSessioPres();
 

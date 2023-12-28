@@ -19,6 +19,6 @@ class TXiniciarSessio {
 
 		void executar();
 
-		bool obtenirResultat();
+		bool obteResultat();
 
 };
