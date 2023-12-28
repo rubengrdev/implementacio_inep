@@ -28,23 +28,25 @@ bool capaPresentacio::iniciarSessioPres() {
 	return op.obteResultat();
 }
 
-void capaPresentacio::tancarSessioPres() {
+bool capaPresentacio::tancarSessioPres() {
 	cin.ignore();
 	system("CLS");
 	string op;
 	cout << "** Tancar sessio **" << endl;
 	cout << "Vols tancar la sessio (S/N): ";
 	cin >> op;
+	TXtancarSessio ts = TXtancarSessio();
 	if (op == "S") {
-		//crida a cDom
+		ts.executar();
 		cout << "Sessio tancada correctament!" << endl;
 	}
 	else if (op == "N") {
-		return;
+		return true;
 	}
 	else {
 		cout << "Has de contestar amb S o N!" << endl;
 	}
+	return ts.obteResultat();
 }
 
 void capaPresentacio::registrarUsuariPres() {

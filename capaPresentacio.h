@@ -28,7 +28,7 @@ public:
 
 	bool iniciarSessioPres();
 
-	void tancarSessioPres();
+	bool tancarSessioPres();
 
 	void registrarUsuariPres();
 

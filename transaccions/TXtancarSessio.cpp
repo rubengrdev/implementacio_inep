@@ -1,7 +1,7 @@
 #include "TXtancarSessio.h"
 
 TXtancarSessio::TXtancarSessio() {
-
+	resultat = true;
 }
 
 TXtancarSessio::~TXtancarSessio() {
@@ -9,9 +9,11 @@ TXtancarSessio::~TXtancarSessio() {
 }
 
 void TXtancarSessio::executar(){
-
+	Videoconsola& vid = Videoconsola::getInstance();
+	vid.tancarSessio();
+	resultat = false;
 }
 
-/*void TXtancarSessio::resultat{
-
-}*/
+bool TXtancarSessio::obteResultat(){
+	return resultat;
+}

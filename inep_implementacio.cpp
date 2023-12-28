@@ -127,7 +127,7 @@ int main() {
 			}
 			break;
 		case 4:
-			cP.tancarSessioPres();
+			sessioIniciada = cP.tancarSessioPres();
 			break;
 		case 5:
 			return 0;

@@ -1,17 +1,21 @@
 #pragma once
 #include <iostream>
+#include "../videoconsola.h"
 
 using namespace std;
 
 class TXtancarSessio {
 	private:
-		//Resultat
+
+		bool resultat;
+	
 	public:
+
 		TXtancarSessio();
 
 		~TXtancarSessio();
 
 		void executar();
 
-		//obtenirResultat
+		bool obteResultat();
 };
