@@ -18,7 +18,7 @@ void TXiniciarSessio::executar(){
 		Videoconsola& vid = Videoconsola::getInstance();
 		vid.iniciarSessio(sobrenom);
 	}else{
-		throw exception("Contrasenya incorrecta");
+		throw exception("Usuari o contrasenya incorrecta");
 	}
 }
 

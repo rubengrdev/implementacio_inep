@@ -16,7 +16,7 @@ passarelaUsuari cercadoraUsuari::cercaPerSobrenom(string sn){
 	try{
 		q = txn.exec1(comanda);
 	}catch(const exception& e){
-		throw exception("L'usuari especificat no existeix");
+		throw exception("Usuari o contrasenya incorrecta");
 	}
 	txn.commit();
 	passarelaUsuari res = passarelaUsuari(q[1].c_str(), q[0].c_str(), q[2].c_str(), q[3].c_str(), q[4].c_str());
