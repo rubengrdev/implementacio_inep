@@ -152,17 +152,29 @@ void capaPresentacio::consultarVideojocsPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta tots els videojocs **" << endl;
-	//Crida a cDom
-	/*
-	pqxx::result result = cDom.totsVideojocs();
-	for (size_t i = 0; i < result.size(); ++i) {
-		for (size_t j = 0; j < result[i].size(); ++j) {
-			cout << result[i][j].name() << ": " << result[i][j].c_str() << "\t";
+	TXconsultarVideojocs op = TXconsultarVideojocs();
+	op.executar();
+	cout << "Informacio sobre els videojocs..." << endl;
+	vector<TXconsultarVideojocs::res> r = op.obteResultat();
+	for (int i = 0; i < r.size(); i++) {
+		cout << "Nom videojoc: " << r[i].nom << endl;
+		cout << "Descripcio: " << r[i].desc << endl;
+		cout << "Qualificacio edat: " << r[i].qualificacio << endl;
+		cout << "Genere: " << r[i].genere << endl;
+		cout << "Data llancament: " << r[i].data << endl;
+		cout << "Preu: " << r[i].preu << " euros" << endl;
+		cout << "Paquets on esta inclos: ";
+		for (int j = 0; i < r[i].paquets.size(); i++) {
+			if (j == r[i].paquets.size() - 1) {
+				cout << r[i].paquets[j];
+			}
+			else {
+				cout << r[i].paquets[j] << ", ";
+			}
 		}
-		cout << endl;
+		if (i != r.size() - 1) cout << endl << "-----------------------------" << endl;
 	}
-	//Mostrar resposta de cDom
-	*/
+	cout << endl << endl;
 }
 void capaPresentacio::consultarVideojocsEdatPres() {
 	cin.ignore();

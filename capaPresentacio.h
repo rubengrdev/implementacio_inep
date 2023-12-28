@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <pqxx/pqxx>
+#include <vector>
 #include "transaccions/TXcomprarPaquet.h"
 #include "transaccions/TXcomprarVideojoc.h"
 #include "transaccions/TXconsultarCompres.h"
