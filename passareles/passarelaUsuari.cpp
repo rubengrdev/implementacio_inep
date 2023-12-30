@@ -53,7 +53,7 @@ void passarelaUsuari::setDataN(string dN) {
 }
 
 void passarelaUsuari::insereix() {
-	/*try {
+	try {
 		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
 		if (conn.is_open()) {
 			cout << "Connexio exitosa amb la base de dades." << endl;
@@ -68,7 +68,7 @@ void passarelaUsuari::insereix() {
 
 	}catch (const exception& e) {
 		cerr << "Error: " << e.what() << endl;
-	}*/
+	}
 }
 
 void passarelaUsuari::modifica() {
