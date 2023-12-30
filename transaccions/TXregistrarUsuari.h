@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "../passareles/passarelaUsuari.h"
 
 using namespace std;
 
@@ -13,6 +14,6 @@ class TXregistrarUsuari {
 		~TXregistrarUsuari();
 
 		void executar();
-
-		//obtenirResultat
+		
+		bool obteResultat();
 };

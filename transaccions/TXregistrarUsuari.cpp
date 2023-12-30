@@ -12,8 +12,15 @@ TXregistrarUsuari::~TXregistrarUsuari() {
 
 }
 
-void TXregistrarUsuari::executar(){
 
+void TXregistrarUsuari::executar(){
+	//crida al constructor per defecte
+	//TO DO... comprovació d'errors, dades correctes?
+	passarelaUsuari pus(nom, sobrenom, constrasenya, correuE, dataN);
+	pus.insereix();	//insereix encara no funciona
 }
 
-//void TXregistrarUsuari::resultat
+bool TXregistrarUsuari::obteResultat() {
+	bool result = false;	//to do...
+	return result;
+}
