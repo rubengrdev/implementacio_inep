@@ -204,9 +204,22 @@ void capaPresentacio::consultarPaquetPres() {
 	cout << "** Consulta paquet **" << endl;
 	cout << "Nom paquet: ";
 	getline(cin, nPaquet);
-	//Crida
-	//Tractament errors
-	//Mostrar resultat
+	TXconsultarPaquet op = TXconsultarPaquet(nPaquet);
+	try {
+		op.executar();
+	}
+	catch (const exception& e) {
+		cout << e.what() << endl;
+		return;
+	}
+	TXconsultarPaquet::res r = op.obteResultat();
+	cout << "Informacio paquet ..." << endl << endl;
+	cout << "Nom paquet: " << r.nom << endl << endl;
+	cout << "Descripcio: " << r.desc << endl << endl;
+	cout << "Preu: " << r.preu << " euros (estalvi de " << r.estalvi << " euros)" << endl << endl;
+	cout << endl;
+	cout << "Jocs inclosos:" << endl;
+	for (int i = 0; i < r.vnoms.size(); i++) cout << "- " << r.vnoms[i] << "; " << r.vdescs[i] << "; " << r.vpreus[i] << " euros" << endl << endl;
 }
 
 void capaPresentacio::consultarPaquetsPres() {

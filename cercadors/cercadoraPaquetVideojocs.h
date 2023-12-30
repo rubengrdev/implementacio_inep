@@ -2,14 +2,13 @@
 #include <iostream>
 #include <pqxx/pqxx>
 #include "../passareles/passarelaPaquetVideojocs.h"
+#include "../config.txt"
 
 using namespace std;
 
 class cercadoraPaquetVideojocs
 {
 	private:
-
-		pqxx::connection conn;
 
 	public:
 		

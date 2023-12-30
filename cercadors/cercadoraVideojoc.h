@@ -2,6 +2,7 @@
 #include <pqxx/pqxx>
 #include <iostream>
 #include "../passareles/passarelaVideojoc.h"
+#include "../config.txt"
 
 using namespace std;
 
