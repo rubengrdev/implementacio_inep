@@ -9,13 +9,13 @@ cercadoraUsuari::~cercadoraUsuari() {
 }
 
 passarelaUsuari cercadoraUsuari::cercaPerSobrenom(string sn){
-	pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr=127.0.0.1 port=5432");
+	pqxx::connection conn(PARAMS);
 	pqxx::work txn(conn);
 	string comanda = "SELECT * FROM public.\"Usuari\" WHERE sobrenom = '" + sn + "';";
 	pqxx::row q;
 	try{
 		q = txn.exec1(comanda);
-	}catch(const exception& e){
+	}catch(...){
 		throw exception("Sobrenom incorrecte");
 	}
 	txn.commit();

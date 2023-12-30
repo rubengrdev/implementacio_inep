@@ -21,7 +21,7 @@ bool capaPresentacio::iniciarSessioPres() {
 	try{
 		op.executar();
 	}
-	catch(const exception& e){
+	catch(...){
 		cout << "Usuari o contrasenya incorrecta" << endl;
 	}
 	if (op.obteResultat()) cout << "Sessio iniciada correctament!" << endl;
@@ -213,6 +213,11 @@ void capaPresentacio::consultarPaquetsPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta paquets **" << endl;
-	//Crida
-	//Mostrar resultat
+	TXconsultarPaquets op = TXconsultarPaquets();
+	op.executar();
+	vector<TXconsultarPaquets::res> v = op.obteResultat();
+	for (int i = 0; i < v.size(); i++) {
+		cout << v[i].nom << "; " << v[i].desc << "; " << v[i].preu << " euros (ESTALVI: " << v[i].estalvi << " euros)" << endl;
+		cout << endl;
+	}
 }

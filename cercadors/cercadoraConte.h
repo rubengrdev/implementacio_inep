@@ -2,6 +2,7 @@
 #include<pqxx/pqxx>
 #include<iostream>
 #include "../passareles/passarelaConte.h"
+#include "../config.txt"
 #include <vector>
 
 class cercadoraConte

@@ -10,7 +10,7 @@ TXconsultarVideojocs::~TXconsultarVideojocs() {
 
 void TXconsultarVideojocs::executar(){
 	cercadoraElementCompra el = cercadoraElementCompra();
-	vector<passarelaElementCompra> pel = el.totsElements();
+	vector<passarelaElementCompra> pel = el.totsVideojocs();
 	for (int i = 0; i < pel.size(); i++) {
 		if (pel[i].getTipus() == "videojoc") {
 			cercadoraVideojoc vid = cercadoraVideojoc();

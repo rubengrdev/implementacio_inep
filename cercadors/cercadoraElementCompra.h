@@ -3,6 +3,7 @@
 #include<iostream>
 #include<vector>
 #include "../passareles/passarelaElementCompra.h"
+#include "../config.txt"
 
 using namespace std;
 
@@ -18,7 +19,9 @@ class cercadoraElementCompra
 
 		passarelaElementCompra cercaPerNom(string n);
 
-		vector<passarelaElementCompra> totsElements();
+		vector<passarelaElementCompra> totsVideojocs();
+
+		vector<passarelaElementCompra> totsPaquets();
 
 };
 
