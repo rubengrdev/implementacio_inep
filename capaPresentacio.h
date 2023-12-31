@@ -22,8 +22,16 @@ using namespace std;
 class capaPresentacio {
 private:
 
+	capaPresentacio() {
+
+	};
+
 public:
-	capaPresentacio();
+
+	static capaPresentacio& getInstance() {
+		static capaPresentacio instance;
+		return instance;
+	}
 
 	~capaPresentacio();
 

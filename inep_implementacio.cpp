@@ -7,7 +7,7 @@ using namespace std;
 int main() {
 	int op;
 	bool sessioIniciada = false; 
-	capaPresentacio cP = capaPresentacio();
+	capaPresentacio& cP = capaPresentacio::getInstance();
 	while (true) {
 		if (!sessioIniciada) {
 			while (!sessioIniciada) {

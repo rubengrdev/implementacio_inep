@@ -1,9 +1,5 @@
 #include "capaPresentacio.h"
 
-capaPresentacio::capaPresentacio() {
-
-}
-
 capaPresentacio::~capaPresentacio() {
 
 }
