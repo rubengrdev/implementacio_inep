@@ -56,7 +56,7 @@ int main() {
 				cP.modificarUsuariPres();
 				break;
 			case 3:
-				cP.esborrarUsuariPres();
+				sessioIniciada = cP.esborrarUsuariPres();
 				break;
 			case 4:
 				break;

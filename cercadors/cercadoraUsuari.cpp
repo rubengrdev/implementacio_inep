@@ -21,6 +21,6 @@ passarelaUsuari cercadoraUsuari::cercaPerSobrenom(string sn) {
         throw exception("No existeix l'usuari a buscar");
     }
 
-    passarelaUsuari res = passarelaUsuari(q[0].c_str(), q[1].c_str(), q[2].c_str(), q[3].c_str(), q[4].c_str());
+    passarelaUsuari res = passarelaUsuari(q[1].c_str(), q[0].c_str(), q[2].c_str(), q[3].c_str(), q[4].c_str());
     return res;
 }

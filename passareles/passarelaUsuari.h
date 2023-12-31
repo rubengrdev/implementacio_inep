@@ -1,6 +1,7 @@
 #pragma once
 #include<pqxx/pqxx>
 #include<iostream>
+#include "../config.txt"
 
 using namespace std;
 
@@ -27,8 +28,6 @@ class passarelaUsuari
 		string getDataN();
 
 		void setNom(string n);
-
-		void setSobrenom(string sn);
 
 		void setContrasenya(string c);
 

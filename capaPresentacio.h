@@ -45,7 +45,7 @@ public:
 
 	void modificarUsuariPres();
 
-	void esborrarUsuariPres();
+	bool esborrarUsuariPres();
 
 	void comprarVideojocPres();
 

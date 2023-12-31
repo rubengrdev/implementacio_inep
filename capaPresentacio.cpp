@@ -79,16 +79,22 @@ void capaPresentacio::modificarUsuariPres() {
 	cout << "WORK IN PROGRESS" << endl;
 }
 
-void capaPresentacio::esborrarUsuariPres() {
+bool capaPresentacio::esborrarUsuariPres() {
 	cin.ignore();
 	system("CLS");
 	string c;
 	cout << "** Esborrar usuari **" << endl;
 	cout << "Introdueix la teva contrasenya per confirmar l'esborrat: ";
 	cin >> c;
-	//crida a cDom
-	//Tractament d'errors
-	cout << "Usuari esborrat correctament!" << endl;
+	TXesborrarUsuari op = TXesborrarUsuari(c);
+	try {
+		op.executar();
+		cout << "Usuari esborrat correctament!" << endl;
+	}
+	catch (const exception& e) {
+		cout << e.what() << endl;
+	}
+	return op.obteResultat();
 }
 
 void capaPresentacio::comprarVideojocPres() {

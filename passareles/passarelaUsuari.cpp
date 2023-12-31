@@ -36,9 +36,7 @@ void passarelaUsuari::setNom(string n) {
 	nom = n;
 }
 
-void passarelaUsuari::setSobrenom(string sn) { //No faria falta pq no es pot modificar el id (?)
-	sobrenom = sn;
-}
+//No hi ha setter pel sobrenom ja que es l'id
 
 void passarelaUsuari::setContrasenya(string c) {
 	contrasenya = c;
@@ -54,11 +52,11 @@ void passarelaUsuari::setDataN(string dN) {
 
 void passarelaUsuari::insereix() {
 	try {
-		pqxx::connection conn("dbname=postgres user=postgres password=1234 hostaddr = 127.0.0.1 port = 5432");
+		pqxx::connection conn(PARAMS);
 		if (conn.is_open()) {
 			cout << "Connexio exitosa amb la base de dades." << endl;
 			pqxx::work txn(conn);
-			string comanda = "INSERT INTO public.Usuari VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
+			string comanda = "INSERT INTO public.\"Usuari\" VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
 			pqxx::result result = txn.exec(comanda);
 			txn.commit();
 		}
@@ -76,5 +74,9 @@ void passarelaUsuari::modifica() {
 }
 
 void passarelaUsuari::esborra() {
-
+	pqxx::connection conn(PARAMS);
+	pqxx::work txn = pqxx::work(conn);
+	string comanda = "DELETE FROM public.\"Usuari\" WHERE sobrenom = '" + sobrenom + "';";
+	txn.exec(comanda);
+	txn.commit();
 }
