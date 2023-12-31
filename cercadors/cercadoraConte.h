@@ -17,4 +17,3 @@ class cercadoraConte
 
 		vector<passarelaConte> cerca(string n);
 };
-

@@ -1,6 +1,4 @@
 #include "TXconsultarCompres.h"
-#include "cercadoraCompra.h"
-#include <vector>
 
 TXconsultarCompres::TXconsultarCompres() {
     // Constructor
@@ -10,7 +8,7 @@ TXconsultarCompres::~TXconsultarCompres() {
     // Destructor
 }
 
-void TXconsultarCompres::executar() {
+void TXconsultarCompres::executar() {/*
     cercadoraCompra cercador = cercadoraCompra();
     // Aquí pots afegir el codi per a cercar compres.
     // Per exemple, cercar totes les compres d'un usuari específic.
@@ -25,9 +23,9 @@ void TXconsultarCompres::executar() {
         r.preu = compra.getPreu();
         r.data = compra.getData();
         resultat.push_back(r);
-    }
+    }*/
 }
 
-vector<TXconsultarCompres::res> TXconsultarCompres::obteResultat() {
+TXconsultarCompres::res TXconsultarCompres::obteResultat() {
     return resultat;
 }

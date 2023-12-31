@@ -7,10 +7,11 @@ class passarelaCompra
 	private:
 
 		string usuari, element, data;
+		double preuPagat;
 	
 	public:
 
-		passarelaCompra(string u, string e, string d);
+		passarelaCompra(string u, string e, string d, double p);
 
 		~passarelaCompra();
 

@@ -1,40 +1,38 @@
 #include "cercadoraCompra.h"
-#include <iostream>
-#include <stdexcept>
-#include <memory>
+
 
 cercadoraCompra::cercadoraCompra() {
-    // Constructor: Initialize database connection
-    dbConnection = std::make_unique<DatabaseConnection>();
-    dbConnection->open("path_to_database.db"); // Hypothetical open call
+
 }
 
 cercadoraCompra::~cercadoraCompra() {
-    // Destructor: Close database connection if open
-    dbConnection->close(); // Hypothetical close call
+
 }
 
-bool cercadoraCompra::findPurchaseByNickname(const std::string& nickname) {
+vector<passarelaCompra> cercadoraCompra::cercaPerUsuari(string u) {
+    vector<passarelaCompra> res;
+    pqxx::connection conn(PARAMS);
+    pqxx::work txn(conn);
+    string comanda = "SELECT * FROM Compra WHERE usuari = '" + u + "';";
+    pqxx::result r = txn.exec(comanda);
+    txn.commit();
+    for (int i = 0; i < r.size(); i++) {
+        res.push_back(passarelaCompra(r[i][0].c_str(), r[i][1].c_str(), r[i][2].c_str(), r[i][3].as<double>()));
+    }
+    return res;
+}
+
+passarelaCompra cercadoraCompra::cercaPerElement(string e) {
+    pqxx::row q;
     try {
         pqxx::connection conn(PARAMS);
-        pqxx::work txn(conn);
-        std::string query = "SELECT * FROM Compra WHERE usuari = " + conn.quote(nickname) + ";";
-        pqxx::result r = txn.exec(query);
+        pqxx::work txn = pqxx::work(conn);
+        string comanda = "SELECT * FROM Compra WHERE element = '" + e + "';";
+        q = txn.exec1(comanda);
         txn.commit();
-
-        if (r.empty()) {
-            std::cout << "No s'han trobat compres per a l'usuari: " << nickname << std::endl;
-            return false;
-        }
-
-        for (auto row : r) {
-            std::cout << "Compra trobada per a l'usuari: " << nickname << " - "
-                      << "Joc: " << row["gameName"].as<std::string>() << ", "
-                      << "Preu: " << row["price"].as<double>() << std::endl;
-        }
-        return true;
-    } catch (const std::exception& e) {
-        std::cerr << "S'ha produït un error: " << e.what() << std::endl;
-        return false;
     }
+    catch (...) {
+        throw exception("No hi ha cap compra registrada amb l'element especificat");
+    }
+    return passarelaCompra(q[0].c_str(), q[1].c_str(), q[2].c_str(), q[3].as<double>());
 }

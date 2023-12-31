@@ -1,17 +1,24 @@
 #pragma once
 #include <iostream>
+#include <ctime>
+#include "../cercadors/cercadoraElementCompra.h"
+#include "../cercadors/cercadoraPaquetVideojocs.h"
+#include "../passareles/passarelaCompra.h"
+#include "../videoconsola.h"
 
 using namespace std;
 
 class TXcomprarPaquet {
 	private:
-		//Resultat
+		
+		string nomPaquet;
+		string usuari;
+
 	public:
-		TXcomprarPaquet();
+		TXcomprarPaquet(string nom);
 
 		~TXcomprarPaquet();
 
 		void executar();
 
-		//obtenirResultat
 };

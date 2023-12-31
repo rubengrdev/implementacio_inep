@@ -1,42 +1,33 @@
 #include "TXcomprarPaquet.h"
-#include "cercadoraElementCompra.h"
-#include "cercadoraUsuari.h"
-// Fan falta més includes?
 
-TXcomprarPaquet::TXcomprarPaquet() {
-    // Constructor
+TXcomprarPaquet::TXcomprarPaquet(string nom) {
+    nomPaquet = nom;
+    Videoconsola& v = Videoconsola::getInstance();
+    usuari = v.getUsuari();
 }
 
 TXcomprarPaquet::~TXcomprarPaquet() {
-    // Destructor
+    
 }
 
 void TXcomprarPaquet::executar() {
     // Suposem que tenim un nom d'usuari i un nom de paquet com a atributs de la classe
     cercadoraElementCompra cercadorEl = cercadoraElementCompra();
-    cercadoraUsuari cercadorUs = cercadoraUsuari();
+    cercadoraPaquetVideojocs cercadorPa = cercadoraPaquetVideojocs();
 
     // Verificar existència del paquet
-    passarelaElementCompra paquet = cercadorEl.cercaPerNom(nomPaquet);
-    if (!paquet.isValid()) {
-        throw std::runtime_error("Paquet no trobat");
-    }
+    passarelaElementCompra el = cercadorEl.cercaPerNom(nomPaquet);
+    passarelaPaquetVideojocs pa = cercadorPa.cercaPerNom(nomPaquet);
 
-    // Verificar usuari
-    passarelaUsuari usuari = cercadorUs.cercaPerSobrenom(nomUsuari);
-    if (!usuari.isValid()) {
-        throw std::runtime_error("Usuari no trobat");
-    }
+    time_t ara = time(0);
+    struct tm temps;
+    localtime_s(&temps, &ara);
+    string data = to_string(temps.tm_year) + "-" + to_string(temps.tm_mon) + "-" + to_string(temps.tm_mday);
+    passarelaCompra compra = passarelaCompra(usuari, nomPaquet, data, el.getPreu());
+    compra.insereix();
 
     // Aquí s'ha de gestionar la lògica de la compra.
     // Per exemple, registrar la compra en una taula de compres, actualitzar estocs, etc.
 
     // Commit de la transacció, o rollback en cas d'error.
-}
-
-// Aquest mètode pot retornar informació sobre el resultat de la transacció
-// Depèn del que vulguis retornar
-// per exemple, si la compra ha estat exitosa, detalls de la compra, etc.
-TXcomprarPaquet::Res TXcomprarPaquet::obteResultat() {
-    return resultat;
 }

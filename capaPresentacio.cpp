@@ -189,8 +189,25 @@ void capaPresentacio::consultarNovetatsPres() {
 	cout << "** Consulta novetats **" << endl;
 	cout << "Data (DD/MM/AAAA): ";
 	getline(cin, data);
-	//Crida
-	//Mostrar resultat
+	TXconsultarNovetats op = TXconsultarNovetats(data);
+	op.executar();
+	vector<TXconsultarNovetats::res> r = op.obteResultat();
+	cout << endl;
+	for (int i = 0; i < r.size(); i++) {
+		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << " euros; " << r[i].qualificacio << " PEGI; " << r[i].genere << "; " << r[i].data;
+		if (r[i].paquets.size() != 0) {
+			cout << "; Paquets: ";
+			for (int j = 0; j < r[i].paquets.size(); j++) {
+				if (j == r[i].paquets.size() - 1) {
+					cout << r[i].paquets[j];
+				}
+				else {
+					cout << r[i].paquets[j] << ", ";
+				}
+			}
+		}
+		cout << endl << endl;
+	}
 }
 
 void capaPresentacio::consultarPaquetPres() {

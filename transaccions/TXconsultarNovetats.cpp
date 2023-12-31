@@ -1,9 +1,8 @@
 #include "TXconsultarNovetats.h"
-#include "cercadoraElementCompra.h"
-#include <vector>
 
-TXconsultarNovetats::TXconsultarNovetats() {
+TXconsultarNovetats::TXconsultarNovetats(string d) {
     // Constructor
+    data = d;
 }
 
 TXconsultarNovetats::~TXconsultarNovetats() {
@@ -11,19 +10,22 @@ TXconsultarNovetats::~TXconsultarNovetats() {
 }
 
 void TXconsultarNovetats::executar() {
-    cercadoraElementCompra cercador = cercadoraElementCompra();
-    // Aquí pots afegir el codi per a cercar les novetats.
-    // Per exemple, cercar tots els videojocs nous o els paquets recents.
-
-    // Suposem que tenim un mètode per obtenir les novetats
-    vector<passarelaElementCompra> novetats = cercador.novetats();
-
-    for (const auto& novetat : novetats) {
-        // Processar cada novetat i afegir al resultat
-        res r;
-        r.nom = novetat.getNom();
-        r.desc = novetat.getDescripcio();
-        r.preu = novetat.getPreu();
+    cercadoraElementCompra el = cercadoraElementCompra();
+    cercadoraVideojoc vid = cercadoraVideojoc();
+    cercadoraConte co = cercadoraConte();
+    vector<passarelaVideojoc> novetats = vid.cercaNovetats(data);
+    for (int i = 0; i < novetats.size(); i++) {
+        passarelaElementCompra pel = el.cercaPerNom(novetats[i].getNom());
+        vector<passarelaConte> pco = co.cerca(novetats[i].getNom());
+        res r = res();
+        r.nom = pel.getNom();
+        r.desc = pel.getDescripcio();
+        r.preu = pel.getPreu();
+        r.qualificacio = novetats[i].getQualificacio();
+        r.data = novetats[i].getDataLlan();
+        for (int j = 0; j < pco.size(); j++) {
+            r.paquets.push_back(pco[j].getPaquet());
+        }
         resultat.push_back(r);
     }
 }

@@ -1,9 +1,10 @@
 #include "passarelaCompra.h"
 
-passarelaCompra::passarelaCompra(string u, string e, string d) {
+passarelaCompra::passarelaCompra(string u, string e, string d, double p) {
 	usuari = u;
 	element = e;
 	data = d;
+	preuPagat = p;
 }
 
 passarelaCompra::~passarelaCompra() {

@@ -17,6 +17,8 @@ class cercadoraVideojoc
 		~cercadoraVideojoc();
 
 		passarelaVideojoc cercaPerNom(string n);
+		
+		vector<passarelaVideojoc> cercaNovetats(string d);
 
 };
 
