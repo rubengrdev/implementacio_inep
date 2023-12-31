@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "../passareles/passarelaUsuari.h"
+#include "../cercadors/cercadoraUsuari.h"
 
 using namespace std;
 
