@@ -18,31 +18,27 @@ void TXregistrarUsuari::executar(){
 	//TO DO... comprovació d'errors, dades correctes?
 	passarelaUsuari pus(nom, sobrenom, constrasenya, correuE, dataN);
 	cercadoraUsuari find_us = cercadoraUsuari();
-	int diff = strcmp(find_us.cercaPerSobrenom(sobrenom).getSobrenom().c_str(), sobrenom.c_str());
-	//si hi ha diferencies entre el sobrenom donat i trobat, el sobrenom és lliure
+	result = false;	//per defecte fals
+
+
 	try {
-		if (diff != 0) {
+		cercadoraUsuari find_us = cercadoraUsuari();
+		find_us.cercaPerSobrenom(sobrenom);
+	}
+	catch (...) {
+		try {
 			pus.insereix();
+			result = true;
 		}
+		catch (...) {
+			throw exception("Correu ja registrat.");
+		}
+		return;
 	}
-	catch (exception& e) {
-	
-	}
+	throw exception("L'usuari ja existeix.");
 
-	/*
-	if (strcmp(find_us.cercaPerSobrenom(sobrenom).getSobrenom().c_str(), sobrenom.c_str()) != 0) {
-		//pus.insereix();
-	}
-	else {
-		throw exception("Sobrenom ja en us");
-	}
-	*/
-	
-
-	
 }
 
 bool TXregistrarUsuari::obteResultat() {
-	bool result = false;	//to do...
 	return result;
 }
