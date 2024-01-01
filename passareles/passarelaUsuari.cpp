@@ -51,7 +51,6 @@ void passarelaUsuari::setDataN(string dN) {
 }
 
 void passarelaUsuari::insereix() {
-	try {
 		pqxx::connection conn(PARAMS);
 		if (conn.is_open()) {
 			cout << "Connexio exitosa amb la base de dades." << endl;
@@ -64,9 +63,7 @@ void passarelaUsuari::insereix() {
 			cerr << "Error de connexio amb la base de dades." << endl << endl;
 		}
 
-	}catch (const exception& e) {
-		cerr << "Error: " << e.what() << endl;
-	}
+	
 }
 
 void passarelaUsuari::modifica() {

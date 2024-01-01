@@ -61,9 +61,16 @@ void capaPresentacio::registrarUsuariPres() {
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
 	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
-	op.executar();
 	//Tractament d'errors
-	cout << "Usuari registrat correctament!" << endl;
+		try {
+		op.executar();
+		cout << "Usuari registrat correctament!" << endl;
+	}
+	catch (exception &e) {
+		cout << "Usuari no registrat" << endl;
+		cout << e.what() << endl;
+		return;
+	}
 }
 
 void capaPresentacio::consultarUsuariPres() {
