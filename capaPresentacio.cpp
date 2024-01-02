@@ -61,14 +61,12 @@ void capaPresentacio::registrarUsuariPres() {
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
 	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
-	//Tractament d'errors
-		try {
+	try {
 		op.executar();
 		cout << "Usuari registrat correctament!" << endl;
 	}
 	catch (exception &e) {
-		cout << "Usuari no registrat" << endl;
-		cout << e.what() << endl;
+		cout << "Usuari no registrat: " << e.what() << endl;
 		return;
 	}
 }
@@ -188,11 +186,24 @@ void capaPresentacio::consultarVideojocsPres() {
 void capaPresentacio::consultarVideojocsEdatPres() {
 	cin.ignore();
 	system("CLS");
-	int edat = 0;	//to do, asignar valor a edat per warning al vstudio
+	int edat;
 	cout << "** Consulta videojocs per edat **" << endl;
 	cout << "Edat maxima (anys): ";
-	//Crida
-	//Mostrar resultat
+	cin >> edat;
+	TXconsultarVideojocsPerEdat op = TXconsultarVideojocsPerEdat(edat);
+	op.executar();
+	cout << "** Consulta videojocs fins a " << edat << " anys **" << endl << endl;
+	vector<TXconsultarVideojocsPerEdat::res> r = op.obteResultat();
+	for (int i = 0; i < r.size(); i++) {
+		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << "; " << r[i].qualificacio << " PEGI" << "; " << r[i].genere << "; " << r[i].data;
+		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
+		for (int j = 0; j < r[i].paquets.size(); j++) {
+			if (j == r[i].paquets.size() - 1) cout << r[i].paquets[j];
+			else cout << r[i].paquets[j] << ", ";
+		}
+		if (i != r.size() - 1) cout << endl << endl;
+	}
+	cout << endl << endl;
 }
 
 void capaPresentacio::consultarNovetatsPres() {
@@ -208,16 +219,10 @@ void capaPresentacio::consultarNovetatsPres() {
 	cout << endl;
 	for (int i = 0; i < r.size(); i++) {
 		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << " euros; " << r[i].qualificacio << " PEGI; " << r[i].genere << "; " << r[i].data;
-		if (r[i].paquets.size() != 0) {
-			cout << "; Paquets: ";
-			for (int j = 0; j < r[i].paquets.size(); j++) {
-				if (j == r[i].paquets.size() - 1) {
-					cout << r[i].paquets[j];
-				}
-				else {
-					cout << r[i].paquets[j] << ", ";
-				}
-			}
+		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
+		for (int j = 0; j < r[i].paquets.size(); j++) {
+			if (j == r[i].paquets.size() - 1) cout << r[i].paquets[j];
+			else cout << r[i].paquets[j] << ", ";
 		}
 		cout << endl << endl;
 	}

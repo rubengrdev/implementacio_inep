@@ -35,3 +35,16 @@ vector<passarelaVideojoc> cercadoraVideojoc::cercaNovetats(string d) {
     }
     return res;
 }
+
+vector<passarelaVideojoc> cercadoraVideojoc::cercaPerEdat(int edat) {
+    vector<passarelaVideojoc> res;
+    string comanda = "SELECT * FROM public.\"Videojoc\" WHERE qualificacioEdat <= " + to_string(edat) + " ORDER BY qualificacioEdat DESC;";
+    pqxx::connection conn(PARAMS);
+    pqxx::work txn(conn);
+    pqxx::result r = txn.exec(comanda);
+    txn.commit();
+    for (int i = 0; i < r.size(); i++) {
+        res.push_back(passarelaVideojoc(r[i][0].c_str(), r[i][2].as<int>(), r[i][3].c_str(), r[i][1].c_str(), 0));
+    }
+    return res;
+}

@@ -20,5 +20,7 @@ class cercadoraVideojoc
 		
 		vector<passarelaVideojoc> cercaNovetats(string d);
 
+		vector<passarelaVideojoc> cercaPerEdat(int e);
+
 };
 

@@ -51,19 +51,11 @@ void passarelaUsuari::setDataN(string dN) {
 }
 
 void passarelaUsuari::insereix() {
-		pqxx::connection conn(PARAMS);
-		if (conn.is_open()) {
-			cout << "Connexio exitosa amb la base de dades." << endl;
-			pqxx::work txn(conn);
-			string comanda = "INSERT INTO public.\"Usuari\" VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
-			pqxx::result result = txn.exec(comanda);
-			txn.commit();
-		}
-		else {
-			cerr << "Error de connexio amb la base de dades." << endl << endl;
-		}
-
-	
+	pqxx::connection conn(PARAMS);
+	pqxx::work txn(conn);
+	string comanda = "INSERT INTO public.\"Usuari\" VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
+	pqxx::result result = txn.exec(comanda);
+	txn.commit();
 }
 
 void passarelaUsuari::modifica() {
