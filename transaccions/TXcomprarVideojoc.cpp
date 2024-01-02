@@ -1,6 +1,5 @@
 #include "TXcomprarVideojoc.h"
 
-
 TXcomprarVideojoc::TXcomprarVideojoc(string n) {
     // Constructor
     nom = n;
@@ -10,23 +9,26 @@ TXcomprarVideojoc::~TXcomprarVideojoc() {
     // Destructor
 }
 
-void TXcomprarVideojoc::executar() {/*
+void TXcomprarVideojoc::executar() {
     // Suposem que tenim un nom d'usuari i un nom de videojoc com a atributs de la classe
     cercadoraElementCompra cercadorEl = cercadoraElementCompra();
-    cercadoraUsuari cercadorUs = cercadoraUsuari();
-
-    // Verificar existència del videojoc
-    passarelaElementCompra videojoc = cercadorEl.cercaPerNom(nom);
-    //if (!videojoc.isValid()) {
-    //    throw std::runtime_error("Videojoc no trobat");
-    //}
+    cercadoraVideojoc cercadorVid = cercadoraVideojoc();
+    Videoconsola& consola = Videoconsola::getInstance();
+    string usuari = consola.getUsuari();
+    passarelaVideojoc pvid = cercadorVid.cercaPerNom(nom);
+    passarelaElementCompra pel = cercadorEl.cercaPerNom(nom);
+    time_t ara = time(0);
+    struct tm temps;
+    localtime_s(&temps, &ara);
+    string data = to_string(temps.tm_year) + "-" + to_string(temps.tm_mon) + "-" + to_string(temps.tm_mday);
+    passarelaCompra compra = passarelaCompra(usuari, nom, data, pel.getPreu());
+    compra.insereix();
 
     // Aquí s'ha de gestionar la lògica de la compra del videojoc.
     // Això podria incloure registrar la compra a la base de dades, verificar saldos, etc.
     // Aquesta part depèn de l'esquema i la lògica de negoci del teu sistema.
 
     // Commit de la transacció, o rollback en cas d'error.
-    */
 }
 
 // Aquest mètode pot retornar informació sobre el resultat de la transacció

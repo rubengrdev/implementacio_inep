@@ -23,6 +23,10 @@ string passarelaCompra::getData() {
 	return data;
 }
 
+double passarelaCompra::getPreu() {
+	return preuPagat;
+}
+
 void passarelaCompra::insereix() {
 	pqxx::connection conn(PARAMS);
 	pqxx::work txn = pqxx::work(conn);

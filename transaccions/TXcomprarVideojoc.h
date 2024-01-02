@@ -1,6 +1,10 @@
 #pragma once
 #include "../cercadors/cercadoraElementCompra.h"
 #include "../cercadors/cercadoraUsuari.h"
+#include "../cercadors/cercadoraVideojoc.h"
+#include "../videoconsola.h"
+#include "../cercadors/cercadoraConte.h"
+#include "../passareles/passarelaCompra.h"
 #include <iostream>
 #include <ctime>
 

@@ -105,7 +105,42 @@ bool capaPresentacio::esborrarUsuariPres() {
 void capaPresentacio::comprarVideojocPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string vid;
+	cout << "** Comprar videojoc **" << endl;
+	cout << "Nom videojoc: ";
+	getline(cin, vid);
+	TXconsultarVideojoc op1 = TXconsultarVideojoc(vid);
+	try {
+		op1.executar();
+	}
+	catch (const exception& e) {
+		cout << e.what() << endl;
+		return;
+	}
+	cout << "Informacio sobre el videojoc..." << endl;
+	TXconsultarVideojoc::res r = op1.obteResultat();
+	cout << "Nom videojoc: " << r.nom << endl;
+	cout << "Descripcio: " << r.desc << endl;
+	cout << "Qualificacio edat: " << r.qualificacio << endl;
+	cout << "Genere: " << r.genere << endl;
+	cout << "Data llancament: " << r.data << endl;
+	cout << "Preu: " << r.preu << " euros" << endl;
+	cout << endl;
+	cout << "Vols continuar amb la compra (S/N): ";
+	char conf;
+	cin >> conf;
+	if (conf == 'S') {
+		TXcomprarVideojoc op2 = TXcomprarVideojoc(vid);
+		try {
+			op2.executar();
+			cout << "Compra realitzada amb exit" << endl;
+		}
+		catch (const exception& e) {
+			cout << "Error: " << e.what() << endl;
+			return;
+		}
+	}
+	else return;
 }
 
 void capaPresentacio::comprarPaquetPres() {
@@ -117,7 +152,19 @@ void capaPresentacio::comprarPaquetPres() {
 void capaPresentacio::consultarCompresPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	cout << "** Consulta compres **" << endl;
+	TXconsultarCompres op = TXconsultarCompres();
+	op.executar();
+	TXconsultarCompres::res r = op.obteResultat();
+	for (int i = 0; i < r.elements.size(); i++) {
+		cout << r.elements[i].data << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << endl;
+		if (r.elements[i].tipus == "paquet") {
+			cout << "    Videojocs:" << endl;
+			for (int j = 0; j < r.elements[i].nomv.size(); j++) cout << "        " << r.elements[i].nomv[j] << "; " << r.elements[i].descv[j] << endl;
+		}
+	}
+	cout << "Total: " << r.total << endl;
+	cout << endl;
 }
 
 void capaPresentacio::consultarVideojocPres() {

@@ -24,6 +24,8 @@ class passarelaCompra
 
 		string getData();
 
+		double getPreu();
+
 		void insereix();
 
 		void modifica();

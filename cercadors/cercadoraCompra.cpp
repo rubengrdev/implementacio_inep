@@ -13,7 +13,7 @@ vector<passarelaCompra> cercadoraCompra::cercaPerUsuari(string u) {
     vector<passarelaCompra> res;
     pqxx::connection conn(PARAMS);
     pqxx::work txn(conn);
-    string comanda = "SELECT * FROM Compra WHERE usuari = '" + u + "';";
+    string comanda = "SELECT * FROM Compra WHERE usuari = '" + u + "' ORDER BY data DESC;";
     pqxx::result r = txn.exec(comanda);
     txn.commit();
     for (int i = 0; i < r.size(); i++) {
