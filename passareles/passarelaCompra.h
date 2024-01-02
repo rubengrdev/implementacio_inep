@@ -1,7 +1,10 @@
 #pragma once
-#include<iostream>
+#include <pqxx/pqxx>
+#include <iostream>
+#include "../config.txt"
 
 using namespace std;
+
 class passarelaCompra
 {
 	private:

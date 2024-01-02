@@ -24,7 +24,11 @@ string passarelaCompra::getData() {
 }
 
 void passarelaCompra::insereix() {
-
+	pqxx::connection conn(PARAMS);
+	pqxx::work txn = pqxx::work(conn);
+	string comanda = "INSERT INTO public.\"Compra\" VALUES ('" + usuari + "', '" + element + "', '" + data + "', " + to_string(preuPagat) + ");";
+	txn.exec(comanda);
+	txn.commit();
 }
 
 void passarelaCompra::modifica() {
@@ -32,5 +36,9 @@ void passarelaCompra::modifica() {
 }
 
 void passarelaCompra::esborra() {
-
+	pqxx::connection conn(PARAMS);
+	pqxx::work txn = pqxx::work(conn);
+	string comanda = "DELETE FROM public.\"Compra\" WHERE usuari = '" + usuari + "' AND element = '" + element + "';";
+	txn.exec(comanda);
+	txn.commit();
 }
