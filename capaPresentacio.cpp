@@ -118,6 +118,16 @@ void capaPresentacio::comprarPaquetPres() {
 void capaPresentacio::consultarCompresPres() {
 	cin.ignore();
 	system("CLS");
+	cout << "** Consulta compres **" << endl;
+	//comprova usuari amb la sesió inciada
+	//comprova els jocs que hi ha a la taula de compres tenen la pk del nom de l'usuari
+	TXconsultarCompres op = TXconsultarCompres(c);
+	try {
+		op.executar();
+	}
+	catch (exception& e) {
+		cout << e.what() << endl;
+	}
 	cout << "WORK IN PROGRESS" << endl;
 }
 
