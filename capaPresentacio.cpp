@@ -60,6 +60,8 @@ void capaPresentacio::registrarUsuariPres() {
 	getline(cin, correuE);
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
+	//tesing comprovar_data:
+	bool check = comprovarData(dataN);
 	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
 	try {
 		op.executar();
@@ -121,13 +123,7 @@ void capaPresentacio::consultarCompresPres() {
 	cout << "** Consulta compres **" << endl;
 	//comprova usuari amb la sesió inciada
 	//comprova els jocs que hi ha a la taula de compres tenen la pk del nom de l'usuari
-	TXconsultarCompres op = TXconsultarCompres(c);
-	try {
-		op.executar();
-	}
-	catch (exception& e) {
-		cout << e.what() << endl;
-	}
+
 	cout << "WORK IN PROGRESS" << endl;
 }
 
