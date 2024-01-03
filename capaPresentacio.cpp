@@ -58,6 +58,10 @@ void capaPresentacio::registrarUsuariPres() {
 	getline(cin, contrasenya);
 	cout << "Correu electronic: ";
 	getline(cin, correuE);
+	if (!comprovarCorreu(correuE)) {
+		cout << "Error: Format del correu incorrecte" << endl;
+		return;
+	}
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
 	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
@@ -82,6 +86,12 @@ void capaPresentacio::modificarUsuariPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "WORK IN PROGRESS" << endl;
+	/*
+	if (!comprovarCorreu(correuE)) {
+		cout << "Error: Format del correu incorrecte" << endl;
+		return;
+	}
+	*/
 }
 
 bool capaPresentacio::esborrarUsuariPres() {

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <pqxx/pqxx>
 #include <vector>
+#include <ctime>
+#include <regex>
 #include "transaccions/TXcomprarPaquet.h"
 #include "transaccions/TXcomprarVideojoc.h"
 #include "transaccions/TXconsultarCompres.h"
@@ -25,6 +27,11 @@ private:
 	capaPresentacio() {
 
 	};
+
+	bool comprovarCorreu(string s) {
+		regex pattern(R"(^[w-\.]+@([\w-]+\.)+[\w-]{2,4}$)");
+		return regex_match(s, pattern);
+	}
 
 public:
 
