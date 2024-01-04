@@ -120,15 +120,35 @@ void capaPresentacio::consultarUsuariPres() {
 void capaPresentacio::modificarUsuariPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "** Modifica usuari **" << endl;
-	
-
-	/*
-	if (!comprovarCorreu(correuE)) {
-		cout << "Error: Format del correu incorrecte" << endl;
-		return;
-	}
-	*/
+	string input;
+	cout << "** Modifica usuari **" << endl << endl;
+	CUmodificaUsuari op = CUmodificaUsuari();
+	TXconsultarUsuari::res r = op.consultaUsuari();
+	cout << "Nom complet: " << r.nom << endl;
+	cout << "Sobrenom: " << r.sobrenom << endl;
+	cout << "Correu electronic " << r.correu << endl;
+	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r.dataN) << endl << endl;
+	cout << "*********************************************" << endl;
+	cout << "Omplir la informacio que es vol modificar ..." << endl;
+	cout << "Nom complet: ";
+	getline(cin, input);
+	if (input.size() != 0) r.nom = input;
+	cout << "Contrasenya: ";
+	getline(cin, input);
+	if (input.size() != 0) r.contrasenya = input;
+	cout << "Correu electronic: ";
+	getline(cin, input);
+	if (input.size() != 0) r.correu = input;
+	cout << "Data naixement (DD/MM/AAAA): ";
+	getline(cin, input);
+	if (input.size() != 0) r.dataN = input;
+	op.modificaUsuari(r.nom, r.contrasenya, r.correu, dataFormatter(r.dataN));
+	cout << endl << "** Dades usuari modificades **" << endl;
+	r = op.consultaUsuari();
+	cout << "Nom complet: " << r.nom << endl;
+	cout << "Sobrenom: " << r.sobrenom << endl;
+	cout << "Correu electronic " << r.correu << endl;
+	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r.dataN) << endl << endl;
 }
 
 bool capaPresentacio::esborrarUsuariPres() {

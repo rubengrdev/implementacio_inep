@@ -10,7 +10,7 @@ class TXconsultarUsuari {
 	public:
 
 		struct res {
-			string nom, sobrenom, correu, dataN;
+			string nom, sobrenom, correu, dataN, contrasenya;
 		};
 
 		TXconsultarUsuari();

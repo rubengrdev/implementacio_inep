@@ -19,6 +19,7 @@ void TXconsultarUsuari::executar() {
     resultat.sobrenom = pus.getSobrenom();
     resultat.correu = pus.getCorreu();
     resultat.dataN = pus.getDataN();
+    resultat.contrasenya = pus.getContrasenya();
 }
 
 TXconsultarUsuari::res TXconsultarUsuari::obteResultat() {

@@ -18,6 +18,7 @@
 #include "transaccions/TXiniciarSessio.h"
 #include "transaccions/TXregistrarUsuari.h"
 #include "transaccions/TXtancarSessio.h"
+#include "transaccions/CUmodificaUsuari.h"
 
 using namespace std;
 

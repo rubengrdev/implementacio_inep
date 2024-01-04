@@ -59,7 +59,11 @@ void passarelaUsuari::insereix() {
 }
 
 void passarelaUsuari::modifica() {
-
+	pqxx::connection conn(PARAMS);
+	pqxx::work txn = pqxx::work(conn);
+	string comanda = "UPDATE usuari SET nom = '" + nom + "', contrasenya = '" + contrasenya + "', correu_electronic = '" + correuE + "', data_naixement = '" + dataN + "' WHERE sobrenom = '" + sobrenom + "';";
+	txn.exec(comanda);
+	txn.commit();
 }
 
 void passarelaUsuari::esborra() {
