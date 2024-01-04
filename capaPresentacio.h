@@ -53,7 +53,7 @@ private:
 		istringstream data_str(data);
 		counter = data.find('/');
 		int dia, mes, any;
-		if (counter == 2) {
+		if (counter == 2 || counter == 1) {
 			data_str >> dia >> delimiter >> mes >> delimiter >> any;
 			new_str = to_string(any) + "-" + to_string(mes) + "-" + to_string(dia);
 		}

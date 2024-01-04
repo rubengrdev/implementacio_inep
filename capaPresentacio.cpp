@@ -79,12 +79,12 @@ void capaPresentacio::registrarUsuariPres() {
 	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataFormatter(dataN));
 	try {
 		op.executar();
-		cout << "Usuari registrat correctament!" << endl;
 	}
 	catch (exception &e) {
 		cout << "Usuari no registrat: " << e.what() << endl;
 		return;
 	}
+	cout << "Usuari registrat correctament!" << endl;
 }
 
 void capaPresentacio::consultarUsuariPres() {
@@ -114,7 +114,7 @@ void capaPresentacio::consultarUsuariPres() {
 	TXconsultarCompres::res r2 = op2.obteResultat();
 	cout << r2.videojocs << " videojocs comprats." << endl;
 	cout << r2.paquets << " paquets de videojocs comprats." << endl;
-	cout << r2.total << " euros gastats en total." << endl;
+	cout << r2.total << " euros gastats en total." << endl << endl;
 }
 
 void capaPresentacio::modificarUsuariPres() {
@@ -190,24 +190,30 @@ void capaPresentacio::comprarVideojocPres() {
 	cout << "Descripcio: " << r.desc << endl;
 	cout << "Qualificacio edat: " << r.qualificacio << endl;
 	cout << "Genere: " << r.genere << endl;
-	cout << "Data llancament: " << r.data << endl;
+	cout << "Data llancament: " << dataFormatter(r.data) << endl;
 	cout << "Preu: " << r.preu << " euros" << endl;
 	cout << endl;
 	cout << "Vols continuar amb la compra (S/N): ";
 	char conf;
 	cin >> conf;
+	TXcomprarVideojoc op2 = TXcomprarVideojoc(vid);
 	if (conf == 'S') {
-		TXcomprarVideojoc op2 = TXcomprarVideojoc(vid);
 		try {
 			op2.executar();
-			cout << "Compra realitzada amb exit" << endl;
 		}
 		catch (const exception& e) {
-			cout << "Error: " << e.what() << endl;
+			cout << "Error: " << e.what() << endl << endl;
 			return;
 		}
 	}
 	else return;
+	TXcomprarVideojoc::res rec = op2.obteResultat();
+	cout << endl << "Compra registrada: " << dataFormatter(rec.data) << endl << endl;
+	cout << "Jocs relacionats : " << endl;
+	for (int i = 0; i < rec.recomanats.size(); i++) {
+		cout << "- " << rec.recomanats[i].nom << "; " << rec.recomanats[i].desc << "; " << rec.recomanats[i].preu << " euros" << endl;
+	}
+	cout << endl;
 }
 
 void capaPresentacio::comprarPaquetPres() {
@@ -229,13 +235,13 @@ void capaPresentacio::consultarCompresPres() {
 	}
 	TXconsultarCompres::res r = op.obteResultat();
 	for (int i = 0; i < r.elements.size(); i++) {
-		cout << r.elements[i].data << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << endl;
+		cout << r.elements[i].data << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << " euros" << endl;
 		if (r.elements[i].tipus == "paquet") {
 			cout << "    Videojocs:" << endl;
 			for (int j = 0; j < r.elements[i].nomv.size(); j++) cout << "        " << r.elements[i].nomv[j] << "; " << r.elements[i].descv[j] << endl;
 		}
 	}
-	cout << "Total: " << r.total << endl;
+	cout << "Total: " << r.total << " euros." << endl;
 	cout << endl;
 }
 
@@ -370,6 +376,7 @@ void capaPresentacio::consultarPaquetPres() {
 	cout << endl;
 	cout << "Jocs inclosos:" << endl;
 	for (int i = 0; i < r.vnoms.size(); i++) cout << "- " << r.vnoms[i] << "; " << r.vdescs[i] << "; " << r.vpreus[i] << " euros" << endl << endl;
+	cout << endl;
 }
 
 void capaPresentacio::consultarPaquetsPres() {

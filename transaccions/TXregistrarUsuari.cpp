@@ -23,7 +23,8 @@ void TXregistrarUsuari::executar(){
 		try {
 			pus.insereix();
 		}
-		catch (...) {
+		catch (const exception& e) {
+			cout << e.what() << endl;
 			throw exception("Correu ja registrat.");
 		}
 		return;
