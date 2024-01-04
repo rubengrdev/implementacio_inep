@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include "../cercadors/cercadoraUsuari.h"
+#include "../videoconsola.h"
+#include <stdexcept>
 
 using namespace std;
 
