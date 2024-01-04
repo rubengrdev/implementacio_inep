@@ -10,7 +10,7 @@ cercadoraConte::~cercadoraConte() {
 
 vector<passarelaConte> cercadoraConte::cerca(std::string n) {
     std::vector<passarelaConte> res;
-    string comanda = "SELECT * FROM public.\"Conte\" WHERE paquet = '" + n + "' OR videojoc = '" + n + "';";
+    string comanda = "SELECT * FROM conte WHERE paquet = '" + n + "' OR videojoc = '" + n + "';";
     pqxx::connection conn(PARAMS);
     pqxx::work txn(conn);
     pqxx::result q = txn.exec(comanda);

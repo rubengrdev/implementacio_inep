@@ -9,7 +9,7 @@ cercadoraUsuari::~cercadoraUsuari() {
 }
 
 passarelaUsuari cercadoraUsuari::cercaPerSobrenom(string sn) {
-    string comanda = "SELECT * FROM public.\"Usuari\" WHERE sobrenom = '" + sn + "';";
+    string comanda = "SELECT * FROM usuari WHERE sobrenom = '" + sn + "';";
     pqxx::row q;
 
     try {

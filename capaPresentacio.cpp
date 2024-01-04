@@ -1,5 +1,10 @@
 #include "capaPresentacio.h"
 
+capaPresentacio& capaPresentacio::getInstance() {
+	static capaPresentacio instance;
+	return instance;
+}
+
 capaPresentacio::~capaPresentacio() {
 
 }
@@ -58,13 +63,20 @@ void capaPresentacio::registrarUsuariPres() {
 	getline(cin, contrasenya);
 	cout << "Correu electronic: ";
 	getline(cin, correuE);
-	if (!comprovarCorreu(correuE)) {
-		cout << "Error: Format del correu incorrecte" << endl;
+	try {
+		//comprovarCorreu(correuE);
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << endl;
 		return;
 	}
 	cout << "Data de naixement (DD/MM/AAAA): ";
 	getline(cin, dataN);
-	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataN);
+	if (!comprovarData(dataN)) {
+		cout << "Error: Data no valida" << endl;
+		return;
+	}
+	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataFormatter(dataN));
 	try {
 		op.executar();
 		cout << "Usuari registrat correctament!" << endl;
@@ -79,7 +91,21 @@ void capaPresentacio::consultarUsuariPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta usuari **" << endl;
-	cout << "WORK IN PROGRESS" << endl;
+	TXconsultarUsuari op1 = TXconsultarUsuari();
+	try {
+		op1.executar();
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << endl;
+	}
+	TXconsultarUsuari::res r = op1.obteResultat();
+	cout << "Nom complet: " << r.nom << endl;
+	cout << "Sobrenom: " << r.sobrenom << endl;
+	cout << "Correu electronic: " << r.correu << endl;
+	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r.dataN) << endl;
+	cout << endl;
+
+	//Falta numero de compres i euros gastats
 }
 
 void capaPresentacio::modificarUsuariPres() {
@@ -164,7 +190,12 @@ void capaPresentacio::consultarCompresPres() {
 	system("CLS");
 	cout << "** Consulta compres **" << endl;
 	TXconsultarCompres op = TXconsultarCompres();
-	op.executar();
+	try {
+		op.executar();
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << endl;
+	}
 	TXconsultarCompres::res r = op.obteResultat();
 	for (int i = 0; i < r.elements.size(); i++) {
 		cout << r.elements[i].data << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << endl;

@@ -9,7 +9,7 @@ cercadoraPaquetVideojocs::~cercadoraPaquetVideojocs() {
 }
 
 passarelaPaquetVideojocs cercadoraPaquetVideojocs::cercaPerNom(string nomP) {
-    string comanda = "SELECT * FROM public.\"PaquetVideojocs\" WHERE nom = '" + nomP + "';";
+    string comanda = "SELECT * FROM paquet_videojoc WHERE nom = '" + nomP + "';";
     pqxx::row q;
 
     try {

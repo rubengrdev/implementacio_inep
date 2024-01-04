@@ -10,16 +10,11 @@ private:
 	bool sessioIniciada;
 	string usuari;
 
-	Videoconsola() {
-		sessioIniciada = false;
-	}
+	Videoconsola();
 
 public:
 
-	static Videoconsola& getInstance() {
-		static Videoconsola instance;
-		return instance;
-	}
+	static Videoconsola& getInstance();
 
 	string getUsuari();
 

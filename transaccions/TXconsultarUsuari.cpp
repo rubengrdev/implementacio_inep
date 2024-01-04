@@ -14,16 +14,11 @@ void TXconsultarUsuari::executar() {
 
     cercadoraUsuari cercador = cercadoraUsuari();
     
-    try {
-        passarelaUsuari pus = cercador.cercaPerSobrenom(sn);
-        resultat.nom = pus.getNom();
-        resultat.sobrenom = pus.getSobrenom();
-        resultat.correu = pus.getCorreu();
-        resultat.dataNaixement = pus.getDataNaixement();
-    } catch(const std::exception& e) {
-        // Llançar excepció si no trobem l'usuari
-        throw exception("Usuari no trobat: " + std::string(e.what()));
-    }
+    passarelaUsuari pus = cercador.cercaPerSobrenom(sn);
+    resultat.nom = pus.getNom();
+    resultat.sobrenom = pus.getSobrenom();
+    resultat.correu = pus.getCorreu();
+    resultat.dataN = pus.getDataN();
 }
 
 TXconsultarUsuari::res TXconsultarUsuari::obteResultat() {

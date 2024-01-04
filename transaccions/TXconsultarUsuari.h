@@ -7,14 +7,22 @@
 using namespace std;
 
 class TXconsultarUsuari {
-	private:
-		//Resultat
 	public:
+
+		struct res {
+			string nom, sobrenom, correu, dataN;
+		};
+
 		TXconsultarUsuari();
 
 		~TXconsultarUsuari();
 
 		void executar();
 
-		//obtenirResultat
+		res obteResultat();
+	
+	private:
+		
+		res resultat;
+
 };

@@ -9,7 +9,7 @@ cercadoraVideojoc::~cercadoraVideojoc() {
 }
 
 passarelaVideojoc cercadoraVideojoc::cercaPerNom(string n) {
-    string comanda = "SELECT * FROM public.\"Videojoc\" WHERE nom = '" + n + "';";
+    string comanda = "SELECT * FROM videojoc WHERE nom = '" + n + "';";
     pqxx::row q;
     try {
         pqxx::connection conn(PARAMS);
@@ -25,7 +25,7 @@ passarelaVideojoc cercadoraVideojoc::cercaPerNom(string n) {
 
 vector<passarelaVideojoc> cercadoraVideojoc::cercaNovetats(string d) {
     vector<passarelaVideojoc> res;
-    string comanda = "SELECT * FROM public.\"Videojoc\" WHERE datallancament >= '" + d + "' ORDER BY datallancament DESC;";
+    string comanda = "SELECT * FROM videojoc WHERE data_llansament >= '" + d + "' ORDER BY data_llansament DESC;";
     pqxx::connection conn(PARAMS);
     pqxx::work txn(conn);
     pqxx::result r = txn.exec(comanda);
@@ -38,7 +38,7 @@ vector<passarelaVideojoc> cercadoraVideojoc::cercaNovetats(string d) {
 
 vector<passarelaVideojoc> cercadoraVideojoc::cercaPerEdat(int edat) {
     vector<passarelaVideojoc> res;
-    string comanda = "SELECT * FROM public.\"Videojoc\" WHERE qualificacioEdat <= " + to_string(edat) + " ORDER BY qualificacioEdat DESC;";
+    string comanda = "SELECT * FROM videojoc WHERE qualificacio_edat <= " + to_string(edat) + " ORDER BY qualificacio_edat DESC;";
     pqxx::connection conn(PARAMS);
     pqxx::work txn(conn);
     pqxx::result r = txn.exec(comanda);

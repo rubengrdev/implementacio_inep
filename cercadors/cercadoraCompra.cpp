@@ -13,7 +13,7 @@ vector<passarelaCompra> cercadoraCompra::cercaPerUsuari(string u) {
     vector<passarelaCompra> res;
     pqxx::connection conn(PARAMS);
     pqxx::work txn(conn);
-    string comanda = "SELECT * FROM Compra WHERE usuari = '" + u + "' ORDER BY data DESC;";
+    string comanda = "SELECT * FROM compra WHERE usuari = '" + u + "' ORDER BY data DESC;";
     pqxx::result r = txn.exec(comanda);
     txn.commit();
     for (int i = 0; i < r.size(); i++) {
@@ -27,7 +27,7 @@ passarelaCompra cercadoraCompra::cercaPerElement(string e) {
     try {
         pqxx::connection conn(PARAMS);
         pqxx::work txn = pqxx::work(conn);
-        string comanda = "SELECT * FROM Compra WHERE element = '" + e + "';";
+        string comanda = "SELECT * FROM compra WHERE element = '" + e + "';";
         q = txn.exec1(comanda);
         txn.commit();
     }

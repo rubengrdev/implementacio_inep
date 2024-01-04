@@ -9,7 +9,7 @@ cercadoraElementCompra::~cercadoraElementCompra() {
 }
 
 passarelaElementCompra cercadoraElementCompra::cercaPerNom(string n){
-	string comanda = "SELECT * FROM public.\"ElementCompra\" WHERE nom = '" + n + "';";
+	string comanda = "SELECT * FROM element_compra WHERE nom = '" + n + "';";
 	pqxx::row q;
 	try {
 		pqxx::connection conn(PARAMS);
@@ -26,7 +26,7 @@ passarelaElementCompra cercadoraElementCompra::cercaPerNom(string n){
 
 vector<passarelaElementCompra> cercadoraElementCompra::totsVideojocs() {
 	vector<passarelaElementCompra> res;
-	string comanda = "SELECT * FROM public.\"ElementCompra\" INNER JOIN public.\"Videojoc\" ON \"ElementCompra\".nom = \"Videojoc\".nom ORDER BY \"Videojoc\".datallancament DESC;";
+	string comanda = "SELECT * FROM element_compra INNER JOIN videojoc ON element_compra.nom = videojoc.nom ORDER BY videojoc.data_llansament DESC;";
 	pqxx::connection conn(PARAMS);
 	pqxx::work txn = pqxx::work(conn);
 	pqxx::result q = txn.exec(comanda);
@@ -39,7 +39,7 @@ vector<passarelaElementCompra> cercadoraElementCompra::totsVideojocs() {
 
 vector<passarelaElementCompra> cercadoraElementCompra::totsPaquets() {
 	vector<passarelaElementCompra> res;
-	string comanda = "SELECT * FROM public.\"ElementCompra\" WHERE tipus = 'paquet';";
+	string comanda = "SELECT * FROM element_compra WHERE tipus = 'paquet';";
 	pqxx::connection conn(PARAMS);
 	pqxx::work txn = pqxx::work(conn);
 	pqxx::result q = txn.exec(comanda);

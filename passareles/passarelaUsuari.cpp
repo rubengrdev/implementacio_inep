@@ -53,7 +53,7 @@ void passarelaUsuari::setDataN(string dN) {
 void passarelaUsuari::insereix() {
 	pqxx::connection conn(PARAMS);
 	pqxx::work txn(conn);
-	string comanda = "INSERT INTO public.\"Usuari\" VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
+	string comanda = "INSERT INTO usuari VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
 	pqxx::result result = txn.exec(comanda);
 	txn.commit();
 }
@@ -65,7 +65,7 @@ void passarelaUsuari::modifica() {
 void passarelaUsuari::esborra() {
 	pqxx::connection conn(PARAMS);
 	pqxx::work txn = pqxx::work(conn);
-	string comanda = "DELETE FROM public.\"Usuari\" WHERE sobrenom = '" + sobrenom + "';";
+	string comanda = "DELETE FROM usuari WHERE sobrenom = '" + sobrenom + "';";
 	txn.exec(comanda);
 	txn.commit();
 }

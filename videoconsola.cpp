@@ -1,5 +1,14 @@
 #include "videoconsola.h"
 
+Videoconsola::Videoconsola() {
+	sessioIniciada = false;
+}
+
+Videoconsola& Videoconsola::getInstance() {
+	static Videoconsola instance;
+	return instance;
+}
+
 string Videoconsola::getUsuari(){
 	return usuari;
 }
