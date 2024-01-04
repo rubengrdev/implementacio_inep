@@ -23,6 +23,7 @@ class TXconsultarCompres {
 
 		struct res {
 			vector<element> elements;
+			int videojocs, paquets;
 			double total;
 		};
 

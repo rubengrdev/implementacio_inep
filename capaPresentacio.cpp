@@ -98,20 +98,31 @@ void capaPresentacio::consultarUsuariPres() {
 	catch (const exception& e) {
 		cout << "Error: " << e.what() << endl;
 	}
-	TXconsultarUsuari::res r = op1.obteResultat();
-	cout << "Nom complet: " << r.nom << endl;
-	cout << "Sobrenom: " << r.sobrenom << endl;
-	cout << "Correu electronic: " << r.correu << endl;
-	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r.dataN) << endl;
+	TXconsultarUsuari::res r1 = op1.obteResultat();
+	cout << "Nom complet: " << r1.nom << endl;
+	cout << "Sobrenom: " << r1.sobrenom << endl;
+	cout << "Correu electronic: " << r1.correu << endl;
+	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r1.dataN) << endl;
 	cout << endl;
-
-	//Falta numero de compres i euros gastats
+	TXconsultarCompres op2 = TXconsultarCompres();
+	try {
+		op2.executar();
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << endl;
+	}
+	TXconsultarCompres::res r2 = op2.obteResultat();
+	cout << r2.videojocs << " videojocs comprats." << endl;
+	cout << r2.paquets << " paquets de videojocs comprats." << endl;
+	cout << r2.total << " euros gastats en total." << endl;
 }
 
 void capaPresentacio::modificarUsuariPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	cout << "** Modifica usuari **" << endl;
+	
+
 	/*
 	if (!comprovarCorreu(correuE)) {
 		cout << "Error: Format del correu incorrecte" << endl;
