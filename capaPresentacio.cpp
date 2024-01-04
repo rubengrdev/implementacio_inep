@@ -64,7 +64,10 @@ void capaPresentacio::registrarUsuariPres() {
 	cout << "Correu electronic: ";
 	getline(cin, correuE);
 	try {
-		//comprovarCorreu(correuE);
+		if (!comprovarCorreu(correuE)) {
+			cout << "Format correu incorrecte, torna a començar..." << endl;
+			return;
+		}
 	}
 	catch (const exception& e) {
 		cout << "Error: " << e.what() << endl;

@@ -31,7 +31,7 @@ private:
 
 	//Funcio privada per comprovar que el correu te un format correcte
 	bool comprovarCorreu(string s) {
-		regex pattern(R"(^[w-\.]+@([\w-]+\.)*+[\w-]{2,4}$)");
+		regex pattern(R"(^[_a-z0-9-]*@[a-z0-9-]+(\.[a-z]{2,4})+$)");
 		return regex_match(s, pattern);
 	}
 
