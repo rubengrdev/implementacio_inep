@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include "../cercadors/cercadoraUsuari.h"
+#include "../passareles/passarelaUsuari.h"
 #include "../videoconsola.h"
 #include <stdexcept>
 

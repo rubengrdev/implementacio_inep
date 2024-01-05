@@ -2,9 +2,14 @@
 #include "../cercadors/cercadoraElementCompra.h"
 #include "../cercadors/cercadoraUsuari.h"
 #include "../cercadors/cercadoraVideojoc.h"
-#include "../videoconsola.h"
 #include "../cercadors/cercadoraConte.h"
+#include "../cercadors/cercadoraCompra.h"
+#include "../passareles/passarelaElementCompra.h"
+#include "../passareles/passarelaUsuari.h"
+#include "../passareles/passarelaVideojoc.h"
+#include "../passareles/passarelaConte.h"
 #include "../passareles/passarelaCompra.h"
+#include "../videoconsola.h"
 #include <iostream>
 #include <ctime>
 
