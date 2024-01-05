@@ -63,14 +63,8 @@ void capaPresentacio::registrarUsuariPres() {
 	getline(cin, contrasenya);
 	cout << "Correu electronic: ";
 	getline(cin, correuE);
-	try {
-		if (!comprovarCorreu(correuE)) {
-			cout << "Format correu incorrecte, torna a començar..." << endl;
-			return;
-		}
-	}
-	catch (const exception& e) {
-		cout << "Error: " << e.what() << endl;
+	if (!comprovarCorreu(correuE)) {
+		cout << "Error: Correu no valid." << endl;
 		return;
 	}
 	cout << "Data de naixement (DD/MM/AAAA): ";
@@ -144,6 +138,10 @@ void capaPresentacio::modificarUsuariPres() {
 	if (input.size() != 0) r.correu = input;
 	cout << "Data naixement (DD/MM/AAAA): ";
 	getline(cin, input);
+	if (!comprovarData(input)) {
+		cout << "Error: Data no valida." << endl;
+		return;
+	}
 	if (input.size() != 0) r.dataN = input;
 	op.modificaUsuari(r.nom, r.contrasenya, r.correu, dataFormatter(r.dataN));
 	cout << endl << "** Dades usuari modificades **" << endl;
@@ -238,7 +236,7 @@ void capaPresentacio::consultarCompresPres() {
 	}
 	TXconsultarCompres::res r = op.obteResultat();
 	for (int i = 0; i < r.elements.size(); i++) {
-		cout << r.elements[i].data << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << " euros" << endl;
+		cout << dataFormatter(r.elements[i].data) << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << " euros" << endl;
 		if (r.elements[i].tipus == "paquet") {
 			cout << "    Videojocs:" << endl;
 			for (int j = 0; j < r.elements[i].nomv.size(); j++) cout << "        " << r.elements[i].nomv[j] << "; " << r.elements[i].descv[j] << endl;
@@ -269,16 +267,12 @@ void capaPresentacio::consultarVideojocPres() {
 	cout << "Descripcio: " << r.desc << endl;
 	cout << "Qualificacio edat: " << r.qualificacio << endl;
 	cout << "Genere: " << r.genere << endl;
-	cout << "Data llancament: " << r.data << endl;
+	cout << "Data llancament: " << dataFormatter(r.data) << endl;
 	cout << "Preu: " << r.preu << " euros" << endl;
 	cout << "Paquets on esta inclos: ";
 	for (int i = 0; i < r.paquets.size(); i++) {
-		if (i == r.paquets.size() - 1) {
-			cout << r.paquets[i] << endl;
-		}
-		else {
-			cout << r.paquets[i] << ", ";
-		}
+		if (i == r.paquets.size() - 1) cout << r.paquets[i] << endl;
+		else cout << r.paquets[i] << ", ";
 	}
 	cout << endl;
 }
@@ -296,16 +290,12 @@ void capaPresentacio::consultarVideojocsPres() {
 		cout << "Descripcio: " << r[i].desc << endl;
 		cout << "Qualificacio edat: " << r[i].qualificacio << endl;
 		cout << "Genere: " << r[i].genere << endl;
-		cout << "Data llancament: " << r[i].data << endl;
+		cout << "Data llancament: " << dataFormatter(r[i].data) << endl;
 		cout << "Preu: " << r[i].preu << " euros" << endl;
 		cout << "Paquets on esta inclos: ";
 		for (int j = 0; j < r[i].paquets.size(); j++) {
-			if (j == r[i].paquets.size() - 1) {
-				cout << r[i].paquets[j];
-			}
-			else {
-				cout << r[i].paquets[j] << ", ";
-			}
+			if (j == r[i].paquets.size() - 1) cout << r[i].paquets[j];
+			else cout << r[i].paquets[j] << ", ";
 		}
 		if (i != r.size() - 1) cout << endl << "-----------------------------" << endl;
 	}
@@ -323,7 +313,7 @@ void capaPresentacio::consultarVideojocsEdatPres() {
 	cout << "** Consulta videojocs fins a " << edat << " anys **" << endl << endl;
 	vector<TXconsultarVideojocsPerEdat::res> r = op.obteResultat();
 	for (int i = 0; i < r.size(); i++) {
-		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << "; " << r[i].qualificacio << " PEGI" << "; " << r[i].genere << "; " << r[i].data;
+		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << "; " << r[i].qualificacio << " PEGI" << "; " << r[i].genere << "; " << dataFormatter(r[i].data);
 		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
 		for (int j = 0; j < r[i].paquets.size(); j++) {
 			if (j == r[i].paquets.size() - 1) cout << r[i].paquets[j];
@@ -341,12 +331,16 @@ void capaPresentacio::consultarNovetatsPres() {
 	cout << "** Consulta novetats **" << endl;
 	cout << "Data (DD/MM/AAAA): ";
 	getline(cin, data);
-	TXconsultarNovetats op = TXconsultarNovetats(data);
+	if (!comprovarData(data)) {
+		cout << "Error: Data no valida." << endl;
+		return;
+	}
+	TXconsultarNovetats op = TXconsultarNovetats(dataFormatter(data));
 	op.executar();
 	vector<TXconsultarNovetats::res> r = op.obteResultat();
 	cout << endl;
 	for (int i = 0; i < r.size(); i++) {
-		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << " euros; " << r[i].qualificacio << " PEGI; " << r[i].genere << "; " << r[i].data;
+		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << " euros; " << r[i].qualificacio << " PEGI; " << r[i].genere << "; " << dataFormatter(r[i].data);
 		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
 		for (int j = 0; j < r[i].paquets.size(); j++) {
 			if (j == r[i].paquets.size() - 1) cout << r[i].paquets[j];

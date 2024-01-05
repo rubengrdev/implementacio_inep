@@ -8,3 +8,4 @@ Debug/
 *.json
 Makefile
 *.o
+config.txt

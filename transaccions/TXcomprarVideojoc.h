@@ -18,22 +18,28 @@ using namespace std;
 class TXcomprarVideojoc {
 	public:
 
+		//Tupla de la informacio dels recomanats (videojocs que estan a paquets on esta el videojoc adquirit).
 		struct recomanacio {
 			string nom, desc;
 			double preu;
 		};
 
+		//Tupla amb informacio de la compra i tots els videojocs recomanats.
 		struct res {
 			string data;
 			vector<recomanacio> recomanats;
 		};
 
+		//Constructora
 		TXcomprarVideojoc(string n);
 
+		//Destructora
 		~TXcomprarVideojoc();
 
+		//executar: Crida per executar.
 		void executar();
 
+		//obteResultat: Crida per retornar el resultat.
 		res obteResultat();
 
 	private:

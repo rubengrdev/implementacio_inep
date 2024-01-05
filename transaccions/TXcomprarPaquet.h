@@ -4,8 +4,8 @@
 #include <vector>
 #include "../cercadors/cercadoraElementCompra.h"
 #include "../cercadors/cercadoraPaquetVideojocs.h"
-#include "../passareles/cercadoraElementCompra.h"
-#include "../passareles/cercadoraPaquetVideojocs.h"
+#include "../passareles/passarelaElementCompra.h"
+#include "../passareles/passarelaPaquetVideojocs.h"
 #include "../passareles/passarelaCompra.h"
 #include "../cercadors/cercadoraCompra.h"
 #include "../videoconsola.h"

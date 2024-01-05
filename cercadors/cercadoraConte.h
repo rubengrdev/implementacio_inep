@@ -11,9 +11,12 @@ class cercadoraConte
 
 	public:
 		
+		//Constructora
 		cercadoraConte();
 
+		//Destructora
 		~cercadoraConte();
 
+		//Funcio cerca: Busca tots els continguts (videojocs o paquets) que coincideixen amb el nom donat.
 		vector<passarelaConte> cerca(string n);
 };

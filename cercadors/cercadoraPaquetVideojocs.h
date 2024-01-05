@@ -12,10 +12,13 @@ class cercadoraPaquetVideojocs
 
 	public:
 		
+		//Constructora
 		cercadoraPaquetVideojocs();
 
+		//Destructora
 		~cercadoraPaquetVideojocs();
 
+		//cercaPerNom: Busca un paquet de videojocs per nom a la base de dades.
 		passarelaPaquetVideojocs cercaPerNom(string nomP);
 
 };

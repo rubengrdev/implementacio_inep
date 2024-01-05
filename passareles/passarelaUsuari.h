@@ -13,10 +13,13 @@ class passarelaUsuari
 
 	public:
 		
+		//Constructora
 		passarelaUsuari(string n, string sn, string c, string cE, string dN);
 
+		//Destructora
 		~passarelaUsuari();
 
+		//Getters
 		string getNom();
 
 		string getSobrenom();
@@ -27,14 +30,18 @@ class passarelaUsuari
 
 		string getDataN();
 
+		//Setters
 		void setNom(string n);
 
+		//No hi ha setter pel sobrenom ja que es l'id
+		
 		void setContrasenya(string c);
 
 		void setCorreu(string cE);
 
 		void setDataN(string dN);
 
+		//Operacions sobre la BD
 		void insereix();
 
 		void modifica();

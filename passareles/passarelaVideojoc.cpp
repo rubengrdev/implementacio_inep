@@ -1,5 +1,6 @@
 #include "passarelaVideojoc.h"
 
+//Constructora
 passarelaVideojoc::passarelaVideojoc(string n, int q, string data, string g, int mins) {
 	nom = n;
 	qualificacio = q;
@@ -8,10 +9,12 @@ passarelaVideojoc::passarelaVideojoc(string n, int q, string data, string g, int
 	minsEstimat = mins;
 }
 
+//Destructora
 passarelaVideojoc::~passarelaVideojoc() {
 
 }
 
+//Getters
 string passarelaVideojoc::getNom() {
 	return nom;
 }
@@ -31,3 +34,7 @@ int passarelaVideojoc::getQualificacio() {
 int passarelaVideojoc::getMinsEstimat() {
 	return minsEstimat;
 }
+
+//No fan falta setters ja que l'usuari no pot modificar el cataleg de la botiga.
+
+//No fa falta cap operacio amb la base de dades ja que l'usuari no pot modificar el catalega de la botiga.

@@ -12,10 +12,13 @@ class passarelaElementCompra
 
 	public:
 
+		//Constructora
 		passarelaElementCompra(string n, string desc, double p, string t);
 
+		//Destructora
 		~passarelaElementCompra();
 
+		//Getters
 		string getNom();
 
 		string getDescripcio();
@@ -24,7 +27,7 @@ class passarelaElementCompra
 
 		string getTipus();
 
-		//No fan falta setters ni operacions sobre la BD ja que l'usuari no pot modificar el cataleg
+		//No fan falta setters ja que l'usuari no pot modificar el cataleg de la botiga.
 
+		//No fan falta operacions de inserir, modificar i esborrar ja que l'usuari no pot modificar el cataleg de la botiga.
 };
-

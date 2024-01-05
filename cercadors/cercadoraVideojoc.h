@@ -12,14 +12,19 @@ class cercadoraVideojoc
 
 	public:
 		
+		//Constructora
 		cercadoraVideojoc();
 
+		//Destructora
 		~cercadoraVideojoc();
 
+		// cercaPerNom: Busca un videojoc per nom en la base de dades.
 		passarelaVideojoc cercaPerNom(string n);
 		
+		// cercaNovetats: Retorna una llista de videojocs llançats des d'una data especifica.
 		vector<passarelaVideojoc> cercaNovetats(string d);
 
+		// cercaPerEdat: Retorna videojocs que son adequats per a una edat especifica o menys.
 		vector<passarelaVideojoc> cercaPerEdat(int e);
 
 };
