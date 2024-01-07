@@ -6,12 +6,12 @@
 
 -- Creació de taules i restriccions de la BD
 
-CREATE TABLE public."Genere"(
+CREATE TABLE public.genere(
 	nom text NOT NULL,
 	PRIMARY KEY (nom)
 );
 
-INSERT INTO public."Genere" VALUES 
+INSERT INTO public.genere VALUES 
 	('Accio'), 
 	('Aventura'), 
 	('Esports'), 
@@ -20,16 +20,16 @@ INSERT INTO public."Genere" VALUES
 	('Simulacio'), 
 	('Tir');
 
-CREATE TABLE public."Usuari"(
+CREATE TABLE public.usuari(
 	sobrenom text NOT NULL,
 	nom text NOT NULL,
 	contrasenya text NOT NULL,
-	correuElectronic text NOT NULL UNIQUE,
-	dataNaixement date NOT NULL,
+	correu_electronic text NOT NULL UNIQUE,
+	data_naixement date NOT NULL,
 	PRIMARY KEY (sobrenom)
 );
 
-CREATE TABLE public."ElementCompra"(
+CREATE TABLE public.element_compra(
 	nom text NOT NULL,
 	descripcio text NOT NULL,
 	preu float NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE public."ElementCompra"(
 	PRIMARY KEY (nom)
 );
 
-INSERT INTO public."ElementCompra" VALUES
+INSERT INTO public.element_compra VALUES
 	('Cyberpunk 2077', 'Cyberpunk 2077 is an open-world, action-adventure RPG set in the dark future of Night City — a dangerous megalopolis obsessed with power, glamor, and ceaseless body modification.', 59.99, 'videojoc'),
 	('Forza Horizon 5', 'Your Ultimate Horizon Adventure awaits! Explore the vibrant open world landscapes of Mexico with limitless, fun driving action in the world’s greatest cars.', 59.99, 'videojoc'),
 	('Deep Rock Galactic', 'Deep Rock Galactic is a 1-4 player co-op FPS featuring badass space Dwarves, 100% destructible environments, procedurally-generated caves, and endless hordes of alien monsters.', 29.99, 'videojoc'),
@@ -79,13 +79,13 @@ INSERT INTO public."ElementCompra" VALUES
 	('CD Projekt RED', 'CD PROJEKT RED is a development studio founded in 2002. Our mission is to tell emotional stories riddled with meaningful choices and consequences, as well as featuring characters gamers can truly connect with.', 79.99, 'paquet'),
 	('Puzzle', 'A puzzle is a game, problem, or toy that tests a person ingenuity or knowledge. In a puzzle, the solver is expected to put pieces together (or take them apart) in a logical way, in order to arrive at the correct or fun solution of the puzzle. There are different genres of puzzles, such as crossword puzzles, word-search puzzles, number puzzles, relational puzzles, and logic puzzles. Puzzles are often created to be a form of entertainment but they can also arise from serious mathematical or logical problems.', 24.99, 'paquet');
 
-CREATE TABLE public."PaquetVideojocs"(
+CREATE TABLE public.paquet_videojoc(
 	nom text NOT NULL,
 	PRIMARY KEY (nom),
-	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom)
+	FOREIGN KEY (nom) REFERENCES element_compra(nom)
 );
 
-INSERT INTO public."PaquetVideojocs" VALUES
+INSERT INTO public.paquet_videojoc VALUES
 	('Valve'),
 	('DOOM'),
 	('EA'),
@@ -94,20 +94,20 @@ INSERT INTO public."PaquetVideojocs" VALUES
 	('CD Projekt RED'),
 	('Puzzle');
 
-CREATE TABLE public."Videojoc"(
+CREATE TABLE public.videojoc(
 	nom text NOT NULL,
 	genere text NOT NULL,
-	qualificacioEdat int NOT NULL,
-	dataLlancament date NOT NULL,
-	minsEstimat int,
+	qualificacio_edat int NOT NULL,
+	data_llansament date NOT NULL,
+	mins_estimat int,
 	PRIMARY KEY (nom),
-	FOREIGN KEY (nom) REFERENCES "ElementCompra"(nom),
-	FOREIGN KEY (genere) REFERENCES "Genere"(nom),
-	CHECK (qualificacioEdat = 3 OR qualificacioEdat = 7 OR qualificacioEdat = 12 OR qualificacioEdat = 16 OR qualificacioEdat = 18),
-	CHECK (minsEstimat = NULL OR minsEstimat > 0)
+	FOREIGN KEY (nom) REFERENCES element_compra(nom),
+	FOREIGN KEY (genere) REFERENCES genere(nom),
+	CHECK (qualificacio_edat = 3 OR qualificacio_edat = 7 OR qualificacio_edat = 12 OR qualificacio_edat = 16 OR qualificacio_edat = 18),
+	CHECK (mins_estimat = NULL OR mins_estimat > 0)
 );
 
-INSERT INTO public."Videojoc" VALUES 
+INSERT INTO public.videojoc VALUES 
 	('Cyberpunk 2077', 'Rol', 18, '2020-12-10', NULL),
 	('Forza Horizon 5', 'Simulacio', 3, '2021-11-09', NULL),
 	('Deep Rock Galactic', 'Accio', 16, '2020-05-13', NULL),
@@ -140,26 +140,26 @@ INSERT INTO public."Videojoc" VALUES
 	('We Were Here Forever', 'Aventura', 7, '2022-05-10', NULL),
 	('Assassins Creed Valhalla', 'Aventura', 18, '2022-12-06', NULL);
 
-CREATE TABLE public."Compra"(
+CREATE TABLE public.compra(
 	usuari text NOT NULL,
 	element text NOT NULL,
 	data date NOT NULL,
-	preuPagat float NOT NULL,
+	preu_pagat float NOT NULL,
 	PRIMARY KEY (usuari, element),
-	FOREIGN KEY (usuari) REFERENCES "Usuari"(sobrenom) ON DELETE CASCADE,
-	FOREIGN KEY (element) REFERENCES "ElementCompra"(nom) ON DELETE CASCADE,
-	CHECK (preuPagat > 0)
+	FOREIGN KEY (usuari) REFERENCES usuari(sobrenom) ON DELETE CASCADE,
+	FOREIGN KEY (element) REFERENCES element_compra(nom) ON DELETE CASCADE,
+	CHECK (preu_pagat > 0)
 );
 
-CREATE TABLE public."Conte"(
+CREATE TABLE public.conte(
 	paquet text NOT NULL,
 	videojoc text NOT NULL,
 	PRIMARY KEY (paquet, videojoc),
-	FOREIGN KEY (paquet) REFERENCES "PaquetVideojocs"(nom),
-	FOREIGN KEY (videojoc) REFERENCES "Videojoc"(nom) ON DELETE CASCADE
+	FOREIGN KEY (paquet) REFERENCES paquet_videojoc(nom),
+	FOREIGN KEY (videojoc) REFERENCES videojoc(nom) ON DELETE CASCADE
 );
 
-INSERT INTO public."Conte" VALUES
+INSERT INTO public.conte VALUES
 	('Valve', 'Portal'),
 	('Valve', 'Portal 2'),
 	('Valve', 'Counter-Strike 2'),
@@ -185,3 +185,9 @@ INSERT INTO public."Conte" VALUES
 	('Puzzle', 'Portal'),
 	('Puzzle', 'Portal 2'),
 	('Puzzle', 'We Were Here Forever');
+
+CREATE VIEW public.preu_jocs AS
+SELECT paquet_videojoc.nom AS nom_paquet, sum(element_compra.preu) AS preu_jocs
+	FROM conte, paquet_videojoc, element_compra
+	WHERE conte.paquet = paquet_videojoc.nom AND conte.videojoc = element_compra.nom
+	GROUP BY paquet_videojoc.nom;

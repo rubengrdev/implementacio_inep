@@ -1,5 +1,6 @@
 #include "passarelaUsuari.h"
 
+//Constructora
 passarelaUsuari::passarelaUsuari(string n, string sn, string c, string cE, string dN) {
 	nom = n;
 	sobrenom = sn;
@@ -8,10 +9,12 @@ passarelaUsuari::passarelaUsuari(string n, string sn, string c, string cE, strin
 	dataN = dN;
 }
 
+//Destructora
 passarelaUsuari::~passarelaUsuari() {
 
 }
 
+//Getters
 string passarelaUsuari::getNom() {
 	return nom;
 }
@@ -32,6 +35,7 @@ string passarelaUsuari::getDataN() {
 	return dataN;
 }
 
+//Setters
 void passarelaUsuari::setNom(string n) {
 	nom = n;
 }
@@ -50,33 +54,27 @@ void passarelaUsuari::setDataN(string dN) {
 	dataN = dN;
 }
 
+//Operacions sobre la BD
 void passarelaUsuari::insereix() {
-	try {
-		pqxx::connection conn(PARAMS);
-		if (conn.is_open()) {
-			cout << "Connexio exitosa amb la base de dades." << endl;
-			pqxx::work txn(conn);
-			string comanda = "INSERT INTO public.\"Usuari\" VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
-			pqxx::result result = txn.exec(comanda);
-			txn.commit();
-		}
-		else {
-			cerr << "Error de connexio amb la base de dades." << endl << endl;
-		}
-
-	}catch (const exception& e) {
-		cerr << "Error: " << e.what() << endl;
-	}
+	pqxx::connection conn(PARAMS); //Crea la connexio amb la base de dades.
+	pqxx::work txn(conn); //Crea la transaccio.
+	string comanda = "INSERT INTO usuari VALUES('"+sobrenom+"', '"+nom+"', '"+contrasenya+"', '"+correuE+"', '"+dataN+"');";
+	pqxx::result result = txn.exec(comanda); //Executa la comanda d'inserir.
+	txn.commit(); //Finalitza la transaccio.
 }
 
 void passarelaUsuari::modifica() {
-
+	pqxx::connection conn(PARAMS); //Crea la connexio amb la base de dades.
+	pqxx::work txn = pqxx::work(conn); //Crea la transaccio.
+	string comanda = "UPDATE usuari SET nom = '" + nom + "', contrasenya = '" + contrasenya + "', correu_electronic = '" + correuE + "', data_naixement = '" + dataN + "' WHERE sobrenom = '" + sobrenom + "';";
+	txn.exec(comanda); //Executa la comanda de modificacio.
+	txn.commit(); //Finalitza la transaccio.
 }
 
 void passarelaUsuari::esborra() {
-	pqxx::connection conn(PARAMS);
-	pqxx::work txn = pqxx::work(conn);
-	string comanda = "DELETE FROM public.\"Usuari\" WHERE sobrenom = '" + sobrenom + "';";
-	txn.exec(comanda);
-	txn.commit();
+	pqxx::connection conn(PARAMS); //Crea la connexio amb la base de dades.
+	pqxx::work txn = pqxx::work(conn); //Crea la transaccio.
+	string comanda = "DELETE FROM usuari WHERE sobrenom = '" + sobrenom + "';";
+	txn.exec(comanda); //Executa la comanda de modificacio.
+	txn.commit(); //Finalitza la transaccio.
 }

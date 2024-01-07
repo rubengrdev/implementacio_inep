@@ -1,33 +1,51 @@
 #include "TXcomprarPaquet.h"
 
-TXcomprarPaquet::TXcomprarPaquet(string nom) {
-    nomPaquet = nom;
-    Videoconsola& v = Videoconsola::getInstance();
-    usuari = v.getUsuari();
+TXcomprarPaquet::TXcomprarPaquet(string nom) : nomPaquet(nom) {
+    // Constructor
 }
 
 TXcomprarPaquet::~TXcomprarPaquet() {
-    
+    // Destructor
 }
 
 void TXcomprarPaquet::executar() {
-    // Suposem que tenim un nom d'usuari i un nom de paquet com a atributs de la classe
     cercadoraElementCompra cercadorEl = cercadoraElementCompra();
     cercadoraPaquetVideojocs cercadorPa = cercadoraPaquetVideojocs();
+    cercadoraConte cercadorCon = cercadoraConte();
 
-    // Verificar existència del paquet
+    Videoconsola& v = Videoconsola::getInstance();
+    string usuari = v.getUsuari();
+
     passarelaElementCompra el = cercadorEl.cercaPerNom(nomPaquet);
     passarelaPaquetVideojocs pa = cercadorPa.cercaPerNom(nomPaquet);
+    vector<passarelaConte> pcon = cercadorCon.cerca(nomPaquet);
 
     time_t ara = time(0);
     struct tm temps;
     localtime_s(&temps, &ara);
-    string data = to_string(temps.tm_year) + "-" + to_string(temps.tm_mon) + "-" + to_string(temps.tm_mday);
+    string data = to_string(temps.tm_year + 1900) + "-" + to_string(temps.tm_mon + 1) + "-" + to_string(temps.tm_mday);
+
+    for (int i = 0; i < pcon.size(); i++) {
+        passarelaCompra vid = passarelaCompra(usuari, pcon[i].getVideojoc(), data, el.getPreu());
+        try {
+            vid.insereix();
+        }
+        catch (...) {
+            //No importa si l'usuari ja ha comprat el videojoc anteriorment, per tant, si salta l'excepcio de compraJaExisteix, la ignorem.
+        }
+        
+    }
     passarelaCompra compra = passarelaCompra(usuari, nomPaquet, data, el.getPreu());
-    compra.insereix();
-
-    // Aquí s'ha de gestionar la lògica de la compra.
-    // Per exemple, registrar la compra en una taula de compres, actualitzar estocs, etc.
-
-    // Commit de la transacció, o rollback en cas d'error.
+    try {
+        compra.insereix();
+    }
+    catch (...) {
+        throw exception("Ja s'ha comprat el paquet.");
+    }
+    resultat = data;
 }
+
+string TXcomprarPaquet::obteResultat() {
+    return resultat;
+}
+    

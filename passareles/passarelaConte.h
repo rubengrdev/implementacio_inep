@@ -11,15 +11,18 @@ class passarelaConte
 
 	public:
 
+		//Constructora
 		passarelaConte(string v, string p);
 
+		//Destructora
 		~passarelaConte();
 
+		//Getters
 		string getVideojoc();
 
 		string getPaquet();
 
-		//No fan falta setters ni operacions sobre la BD ja que l'usuari no pot modificar el cataleg
+		//No fan falta setters ja que l'usuari no pot modificar el cataleg de la botiga.
 
+		//No fan falta operacions de inserir, modificar i esborrar ja que l'usuari no pot modificar el cataleg de la botiga.
 };
-

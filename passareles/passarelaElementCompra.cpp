@@ -1,5 +1,6 @@
 #include "passarelaElementCompra.h"
 
+//Constructora
 passarelaElementCompra::passarelaElementCompra(string n, string desc, double p, string t) {
 	nom = n;
 	descripcio = desc;
@@ -7,10 +8,12 @@ passarelaElementCompra::passarelaElementCompra(string n, string desc, double p, 
 	tipus = t;
 }
 
+//Destructora
 passarelaElementCompra::~passarelaElementCompra() {
 
 }
 
+//Getters
 string passarelaElementCompra::getNom() {
 	return nom;
 }
@@ -26,3 +29,7 @@ double passarelaElementCompra::getPreu() {
 string passarelaElementCompra::getTipus() {
 	return tipus;
 }
+
+//No fan falta setters ja que l'usuari no pot modificar el cataleg de la botiga.
+
+//No fan falta operacions de inserir, modificar i esborrar ja que l'usuari no pot modificar el cataleg de la botiga.

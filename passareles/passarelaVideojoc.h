@@ -12,10 +12,13 @@ class passarelaVideojoc
 
 	public:
 
+		//Constructora
 		passarelaVideojoc(string n, int q, string data, string g, int mins);
 
+		//Destructora
 		~passarelaVideojoc();
 
+		//Getters
 		string getNom();
 
 		string getDataLlan();
@@ -26,6 +29,7 @@ class passarelaVideojoc
 
 		int getMinsEstimat();
 
-		//No fan falta setters ni operacions sobre la BD ja que l'usuari no pot modificar el cataleg
-};
+		//No fan falta setters ja que l'usuari no pot modificar el cataleg de la botiga.
 
+		//No fa falta cap operacio amb la base de dades ja que l'usuari no pot modificar el catalega de la botiga.
+};

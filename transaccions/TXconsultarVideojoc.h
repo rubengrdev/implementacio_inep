@@ -8,12 +8,12 @@
 #include "../passareles/passarelaConte.h"
 #include "../cercadors/cercadoraConte.h"
 
-
 using namespace std;
 
 class TXconsultarVideojoc {
 	public:
 
+		//Tupla amb tota la informacio a retornar.
 		struct res
 		{
 			string nom, desc, genere, data;
@@ -22,12 +22,16 @@ class TXconsultarVideojoc {
 			vector<string> paquets;
 		};
 
+		//Constructora
 		TXconsultarVideojoc(string n);
 
+		//Destructora
 		~TXconsultarVideojoc();
 
+		//executar: Crida per executar.
 		void executar();
 
+		//obteResultat: Crida per retornar el resultat.
 		res obteResultat();
 
 	private:

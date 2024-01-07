@@ -10,10 +10,13 @@ class cercadoraUsuari
 
 	public:
 		
+		//Constructora
 		cercadoraUsuari();
 
+		//Destructora
 		~cercadoraUsuari();
 
+		//cercaPerSobrenom: Busca un usuari per sobrenom en la base de dades.
 		passarelaUsuari cercaPerSobrenom(string sn);
 
 };

@@ -13,12 +13,16 @@ class cercadoraCompra
 
 	public:
 		
+		//Constructora
 		cercadoraCompra();
 
+		//Destructora
 		~cercadoraCompra();
 
+		//cercaPerUsuari: Busca totes les compres d'un usuari en especific.
 		vector<passarelaCompra> cercaPerUsuari(string u);
 
+		// cercaPerElement: Busca una compra per un element especific.
 		passarelaCompra cercaPerElement(string el);
 
 };

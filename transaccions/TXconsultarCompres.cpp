@@ -8,22 +8,47 @@ TXconsultarCompres::~TXconsultarCompres() {
     // Destructor
 }
 
-void TXconsultarCompres::executar() {/*
-    cercadoraCompra cercador = cercadoraCompra();
-    // Aquí pots afegir el codi per a cercar compres.
-    // Per exemple, cercar totes les compres d'un usuari específic.
+void TXconsultarCompres::executar() {
+    cercadoraCompra comp = cercadoraCompra();
+    cercadoraElementCompra el = cercadoraElementCompra();
 
-    // Suposem que tenim un mètode per obtenir totes les compres
-    vector<passarelaCompra> compres = cercador.totesLesCompres();
+    Videoconsola& consola = Videoconsola::getInstance();
+    string usuari = consola.getUsuari();
 
-    for (const auto& compra : compres) {
-        // Processar cada compra i afegir al resultat
-        res r;
-        r.nomVideojoc = compra.getNomVideojoc();
-        r.preu = compra.getPreu();
-        r.data = compra.getData();
-        resultat.push_back(r);
-    }*/
+    vector<passarelaCompra> pcom = comp.cercaPerUsuari(usuari);
+
+    double total = 0;
+    int paquets = 0;
+    int videojocs = 0;
+
+    for (int i = 0; i < pcom.size(); i++) {
+        element e = element();
+        e.nom = pcom[i].getElement();
+        passarelaElementCompra pel = el.cercaPerNom(e.nom);
+        if (pel.getPreu() == pcom[i].getPreu()) {
+            e.desc = pel.getDescripcio();
+            e.tipus = pel.getTipus();
+            e.preu = pcom[i].getPreu();
+            e.data = pcom[i].getData();
+            if (e.tipus == "paquet") {
+                paquets++;
+                cercadoraConte con = cercadoraConte();
+                vector<passarelaConte> pcon = con.cerca(e.nom);
+                for (int j = 0; j < pcon.size(); j++) {
+                    videojocs++;
+                    passarelaElementCompra videojoc = el.cercaPerNom(pcon[j].getVideojoc());
+                    e.nomv.push_back(videojoc.getNom());
+                    e.descv.push_back(videojoc.getDescripcio());
+                }
+            }
+            else videojocs++;
+            total += e.preu;
+            resultat.elements.push_back(e);
+        }
+    }
+    resultat.paquets = paquets;
+    resultat.videojocs = videojocs;
+    resultat.total = total;
 }
 
 TXconsultarCompres::res TXconsultarCompres::obteResultat() {
