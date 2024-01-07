@@ -8,6 +8,8 @@
 #include "../passareles/passarelaPaquetVideojocs.h"
 #include "../passareles/passarelaCompra.h"
 #include "../cercadors/cercadoraCompra.h"
+#include "../cercadors/cercadoraConte.h"
+#include "../passareles/passarelaConte.h"
 #include "../videoconsola.h"
 
 using namespace std;
@@ -27,10 +29,10 @@ class TXcomprarPaquet {
 
 		void executar();
 
-		vector<res> obteResultat();
+		string obteResultat();
 
 	private:
 		
 		string nomPaquet;
-		vector<res> resultat;
+		string resultat;
 };

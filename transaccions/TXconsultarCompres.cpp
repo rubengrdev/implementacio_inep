@@ -25,24 +25,26 @@ void TXconsultarCompres::executar() {
         element e = element();
         e.nom = pcom[i].getElement();
         passarelaElementCompra pel = el.cercaPerNom(e.nom);
-        e.desc = pel.getDescripcio();
-        e.tipus = pel.getTipus();
-        e.preu = pcom[i].getPreu();
-        e.data = pcom[i].getData();
-        if (e.tipus == "paquet") {
-            paquets++;
-            cercadoraConte con = cercadoraConte();
-            vector<passarelaConte> pcon = con.cerca(e.nom);
-            for (int j = 0; j < pcon.size(); j++) {
-                videojocs++;
-                passarelaElementCompra videojoc = el.cercaPerNom(pcon[i].getVideojoc());
-                e.nomv.push_back(videojoc.getNom());
-                e.descv.push_back(videojoc.getDescripcio());
+        if (pel.getPreu() == pcom[i].getPreu()) {
+            e.desc = pel.getDescripcio();
+            e.tipus = pel.getTipus();
+            e.preu = pcom[i].getPreu();
+            e.data = pcom[i].getData();
+            if (e.tipus == "paquet") {
+                paquets++;
+                cercadoraConte con = cercadoraConte();
+                vector<passarelaConte> pcon = con.cerca(e.nom);
+                for (int j = 0; j < pcon.size(); j++) {
+                    videojocs++;
+                    passarelaElementCompra videojoc = el.cercaPerNom(pcon[j].getVideojoc());
+                    e.nomv.push_back(videojoc.getNom());
+                    e.descv.push_back(videojoc.getDescripcio());
+                }
             }
+            else videojocs++;
+            total += e.preu;
+            resultat.elements.push_back(e);
         }
-        else videojocs++;
-        total += e.preu;
-        resultat.elements.push_back(e);
     }
     resultat.paquets = paquets;
     resultat.videojocs = videojocs;

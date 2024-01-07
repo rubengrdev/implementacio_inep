@@ -220,13 +220,50 @@ void capaPresentacio::comprarVideojocPres() {
 void capaPresentacio::comprarPaquetPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "WORK IN PROGRESS" << endl;
+	string paq;
+	cout << "** Comprar paquet **" << endl;
+	cout << "Nom paquet: ";
+	getline(cin, paq);
+	TXconsultarPaquet op1 = TXconsultarPaquet(paq);
+	try {
+		op1.executar();
+	}
+	catch (const exception& e) {
+		cout << e.what() << endl;
+		return;
+	}
+	cout << "Informacio sobre el paquet..." << endl;
+	TXconsultarPaquet::res r = op1.obteResultat();
+	cout << "Nom paquet: " << r.nom << endl;
+	cout << "Descripcio: " << r.desc << endl;
+	cout << "Preu: " << r.preu << " euros (estalvi de " << r.estalvi << " euros)" << endl;
+	cout << endl;
+	cout << "Jocs inclosos: " << endl << endl;
+	for (int i = 0; i < r.vnoms.size(); i++) {
+		cout << "> " << r.vnoms[i] << "; " << r.vdescs[i] << "; " << r.vpreus[i] << " euros" << endl;
+	}
+	cout << endl << "Vols continuar amb la compra (S/N): ";
+	char conf;
+	cin >> conf;
+	TXcomprarPaquet op2 = TXcomprarPaquet(paq);
+	if (conf == 'S') {
+		try {
+			op2.executar();
+			string res = op2.obteResultat();
+			cout << endl << "Compra registrada: " << dataFormatter(res) << endl;
+		}
+		catch (const exception& e) {
+			cout << "Error: " << e.what() << endl << endl;
+			return;
+		}
+	}
+	else return;
 }
 
 void capaPresentacio::consultarCompresPres() {
 	cin.ignore();
 	system("CLS");
-	cout << "** Consulta compres **" << endl;
+	cout << "** Consulta compres **" << endl << endl;
 	TXconsultarCompres op = TXconsultarCompres();
 	try {
 		op.executar();
@@ -241,6 +278,7 @@ void capaPresentacio::consultarCompresPres() {
 			cout << "    Videojocs:" << endl;
 			for (int j = 0; j < r.elements[i].nomv.size(); j++) cout << "        " << r.elements[i].nomv[j] << "; " << r.elements[i].descv[j] << endl;
 		}
+		cout << endl;
 	}
 	cout << "Total: " << r.total << " euros." << endl;
 	cout << endl;
