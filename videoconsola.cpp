@@ -17,12 +17,9 @@ string Videoconsola::getUsuari(){
 }
 
 //Setters
-void Videoconsola::iniciarSessio(passarelaUsuari pus2){
+void Videoconsola::iniciarSessio(passarelaUsuari *pus2){
 	sessioIniciada = true;
-	cercadoraUsuari us = cercadoraUsuari();
-	*pus = pus2;
-	
-	//usuari = pus->getSobrenom();
+	pus = pus2;
 }
 
 void Videoconsola::tancarSessio(){

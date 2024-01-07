@@ -24,7 +24,7 @@ public:
 	string getUsuari();
 
 	//Setters
-	void iniciarSessio(passarelaUsuari pus);
+	void iniciarSessio(passarelaUsuari* pus);
 
 	void tancarSessio();
 };
