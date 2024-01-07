@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "passareles/passarelaUsuari.h"
 
 using namespace std;
 
@@ -8,7 +9,8 @@ class Videoconsola {
 private:
 
 	bool sessioIniciada;
-	string usuari;
+	//string usuari;
+	passarelaUsuari* pus;
 
 	//Constructora privada
 	Videoconsola();
@@ -22,7 +24,7 @@ public:
 	string getUsuari();
 
 	//Setters
-	void iniciarSessio(string u);
+	void iniciarSessio(passarelaUsuari* pus);
 
 	void tancarSessio();
 };

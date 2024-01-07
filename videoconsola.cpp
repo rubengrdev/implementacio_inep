@@ -1,5 +1,5 @@
 #include "videoconsola.h"
-
+#include "cercadors/cercadoraUsuari.h"
 //Constructora privada
 Videoconsola::Videoconsola() {
 	sessioIniciada = false;
@@ -13,13 +13,13 @@ Videoconsola& Videoconsola::getInstance() {
 
 //Getter
 string Videoconsola::getUsuari(){
-	return usuari;
+	return pus->getSobrenom();
 }
 
 //Setters
-void Videoconsola::iniciarSessio(string u){
+void Videoconsola::iniciarSessio(passarelaUsuari *pus2){
 	sessioIniciada = true;
-	usuari = u;
+	pus = pus2;
 }
 
 void Videoconsola::tancarSessio(){
