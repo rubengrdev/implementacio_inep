@@ -185,3 +185,9 @@ INSERT INTO public.conte VALUES
 	('Puzzle', 'Portal'),
 	('Puzzle', 'Portal 2'),
 	('Puzzle', 'We Were Here Forever');
+
+CREATE VIEW public.preu_jocs AS
+SELECT paquet_videojoc.nom AS nom_paquet, sum(element_compra.preu) AS preu_jocs
+	FROM conte, paquet_videojoc, element_compra
+	WHERE conte.paquet = paquet_videojoc.nom AND conte.videojoc = element_compra.nom
+	GROUP BY paquet_videojoc.nom;
