@@ -1,35 +1,31 @@
 #include "TXconsultarNovetats.h"
 
-TXconsultarNovetats::TXconsultarNovetats(string d) {
-    // Constructor
-    data = d;
+// Constructor: Inicialitza la data de consulta per a les novetats
+TXconsultarNovetats::TXconsultarNovetats(string d) : data(d) {
 }
 
+// Destructor
 TXconsultarNovetats::~TXconsultarNovetats() {
-    // Destructor
 }
 
+// executar: Realitza la consulta de les novetats des de la data especificada
+// Pre: data ha estat inicialitzada
+// Post: resultat conté les novetats trobades des de la data especificada
 void TXconsultarNovetats::executar() {
     cercadoraElementCompra el = cercadoraElementCompra();
     cercadoraVideojoc vid = cercadoraVideojoc();
     cercadoraConte co = cercadoraConte();
     vector<passarelaVideojoc> novetats = vid.cercaNovetats(data);
-    for (int i = 0; i < novetats.size(); i++) {
-        passarelaElementCompra pel = el.cercaPerNom(novetats[i].getNom());
-        vector<passarelaConte> pco = co.cerca(novetats[i].getNom());
+    for (auto& novetat : novetats) {
         res r = res();
-        r.nom = pel.getNom();
-        r.desc = pel.getDescripcio();
-        r.preu = pel.getPreu();
-        r.qualificacio = novetats[i].getQualificacio();
-        r.data = novetats[i].getDataLlan();
-        for (int j = 0; j < pco.size(); j++) {
-            r.paquets.push_back(pco[j].getPaquet());
-        }
+        r.ompleDades(novetat, el, co); // Omple les dades de la resposta amb informació de la novetat
         resultat.push_back(r);
     }
 }
 
+// obteResultat: Retorna les novetats trobades
+// Pre: 'executar' ha estat cridat
+// Post: Retorna un vector amb les novetats des de la data especificada
 vector<TXconsultarNovetats::res> TXconsultarNovetats::obteResultat() {
     return resultat;
 }
