@@ -42,7 +42,18 @@ private:
 		char delimiter;
 		//Extreu els valors en el cas de format DD/MM/AAAA
 		data_str >> dia >> delimiter >> mes >> delimiter >> any;
-		if (data_str.eof() && delimiter == '/' && dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && any > 0) validesa = true;
+
+		struct tm input;
+		input.tm_year = any - 1900; input.tm_mon = mes - 1; input.tm_mday = dia;
+		input.tm_hour = 0; input.tm_min = 0; input.tm_sec = 0;
+
+		time_t ara = time(0);
+		struct tm temps;
+		localtime_s(&temps, &ara);
+
+		double diff = difftime(mktime(&temps), mktime(&input));
+
+		if (data_str.eof() && delimiter == '/' && dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && any > 0 && diff > 0) validesa = true;
 		return validesa;
 	}
 

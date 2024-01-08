@@ -14,18 +14,16 @@ TXcomprarVideojoc::~TXcomprarVideojoc() {
 void TXcomprarVideojoc::executar() {
     cercadoraElementCompra cercadorEl = cercadoraElementCompra();
     cercadoraVideojoc cercadorVid = cercadoraVideojoc();
-    cercadoraUsuari cercadorUs = cercadoraUsuari();
 
     Videoconsola& consola = Videoconsola::getInstance();
-    string usuari = consola.getUsuari(); //Obtenir el nom d'usuari a partir de la videoconsola.
+    passarelaUsuari* usuari = consola.getUsuari(); //Obtenir el nom d'usuari a partir de la videoconsola.
 
     //Crear les passareles d'elementCompra, videojoc i usuari.
     passarelaVideojoc pvid = cercadorVid.cercaPerNom(nom);
     passarelaElementCompra pel = cercadorEl.cercaPerNom(nom);
-    passarelaUsuari pus = cercadorUs.cercaPerSobrenom(usuari);
 
     //Obtenir data de naixement de l'usuari.
-    string dataN = pus.getDataN();
+    string dataN = usuari -> getDataN();
 
     //Calcular edat de l'usuari.
     char delimiter;
@@ -52,7 +50,7 @@ void TXcomprarVideojoc::executar() {
 
     resultat.data = data;
 
-    passarelaCompra compra = passarelaCompra(usuari, nom, data, pel.getPreu());
+    passarelaCompra compra = passarelaCompra(usuari -> getSobrenom(), nom, data, pel.getPreu());
     try {
         compra.insereix();
     }
@@ -64,18 +62,18 @@ void TXcomprarVideojoc::executar() {
     //Busca tots els paquets on esta el videojoc adquirit
     cercadoraConte con = cercadoraConte();
     vector<passarelaConte> conv = con.cerca(nom);
-    for (int i = 0; i < conv.size(); i++) {
+    for (auto& conte : conv) {
         //Busca tots els videojocs que conte el paquet
-        vector<passarelaConte> conp = con.cerca(conv[i].getPaquet());
-        for (int j = 0; j < conp.size(); j++) {
-            if (conp[j].getVideojoc() != nom) {
+        vector<passarelaConte> conp = con.cerca(conte.getPaquet());
+        for (auto& conteP : conp) {
+            if (conteP.getVideojoc() != nom) {
                 bool trobat = false;
-                passarelaElementCompra r = cercadorEl.cercaPerNom(conp[j].getVideojoc());
+                passarelaElementCompra r = cercadorEl.cercaPerNom(conteP.getVideojoc());
                 recomanacio re = recomanacio();
                 re.nom = r.getNom();
                 re.desc = r.getDescripcio();
                 re.preu = r.getPreu();
-                for (int jj = 0; !trobat && jj < resultat.recomanats.size(); jj++) trobat = (resultat.recomanats[jj].nom == re.nom);
+                for (auto & recomanat : resultat.recomanats) trobat = (recomanat.nom == re.nom);
                 //Si el videojoc no es el videojoc aquirit i encara no s'ha afegit a la llista de recomantas, l'afegeix
                 if(!trobat) resultat.recomanats.push_back(re);
             }

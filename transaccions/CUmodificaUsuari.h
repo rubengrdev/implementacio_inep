@@ -1,6 +1,5 @@
 #include <iostream>
 #include "../transaccions/TXconsultarUsuari.h"
-#include "../cercadors/cercadoraUsuari.h"
 #include "../passareles/passarelaUsuari.h"
 #include "../videoconsola.h"
 

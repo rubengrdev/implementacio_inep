@@ -17,8 +17,17 @@ void TXconsultarNovetats::executar() {
     cercadoraConte co = cercadoraConte();
     vector<passarelaVideojoc> novetats = vid.cercaNovetats(data);
     for (auto& novetat : novetats) {
+        passarelaElementCompra pel = el.cercaPerNom(novetat.getNom());
+        vector<passarelaConte> pco = co.cerca(novetat.getNom());
         res r = res();
-        r.ompleDades(novetat, el, co); // Omple les dades de la resposta amb informació de la novetat
+        r.nom = pel.getNom();
+        r.desc = pel.getDescripcio();
+        r.preu = pel.getPreu();
+        r.qualificacio = novetat.getQualificacio();
+        r.data = novetat.getDataLlan();
+        for (auto& conte : pco) {
+            r.paquets.push_back(conte.getPaquet());
+        }
         resultat.push_back(r);
     }
 }

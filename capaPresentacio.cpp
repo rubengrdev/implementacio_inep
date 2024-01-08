@@ -185,7 +185,7 @@ void capaPresentacio::comprarVideojocPres() {
 		cout << e.what() << endl;
 		return;
 	}
-	cout << "Informacio sobre el videojoc..." << endl;
+	cout << endl << "Informacio sobre el videojoc..." << endl << endl;
 	TXconsultarVideojoc::res r = op1.obteResultat();
 	cout << "Nom videojoc: " << r.nom << endl;
 	cout << "Descripcio: " << r.desc << endl;
@@ -299,7 +299,7 @@ void capaPresentacio::consultarVideojocPres() {
 		cout << e.what() << endl;
 		return;
 	}
-	cout << "Informacio sobre el videojoc..." << endl;
+	cout << endl << "Informacio sobre el videojoc..." << endl << endl;
 	TXconsultarVideojoc::res r = op.obteResultat();
 	cout << "Nom videojoc: " << r.nom << endl;
 	cout << "Descripcio: " << r.desc << endl;
@@ -321,7 +321,7 @@ void capaPresentacio::consultarVideojocsPres() {
 	cout << "** Consulta tots els videojocs **" << endl;
 	TXconsultarVideojocs op = TXconsultarVideojocs();
 	op.executar();
-	cout << "Informacio sobre els videojocs..." << endl;
+	cout << endl << "Informacio sobre els videojocs..." << endl << endl;
 	vector<TXconsultarVideojocs::res> r = op.obteResultat();
 	for (int i = 0; i < r.size(); i++) {
 		cout << "Nom videojoc: " << r[i].nom << endl;
@@ -348,7 +348,7 @@ void capaPresentacio::consultarVideojocsEdatPres() {
 	cin >> edat;
 	TXconsultarVideojocsPerEdat op = TXconsultarVideojocsPerEdat(edat);
 	op.executar();
-	cout << "** Consulta videojocs fins a " << edat << " anys **" << endl << endl;
+	cout << endl << "** Consulta videojocs fins a " << edat << " anys **" << endl << endl;
 	vector<TXconsultarVideojocsPerEdat::res> r = op.obteResultat();
 	for (int i = 0; i < r.size(); i++) {
 		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << "; " << r[i].qualificacio << " PEGI" << "; " << r[i].genere << "; " << dataFormatter(r[i].data);

@@ -9,8 +9,7 @@ class Videoconsola {
 private:
 
 	bool sessioIniciada;
-	//string usuari;
-	passarelaUsuari* pus;
+	passarelaUsuari* usuari;
 
 	//Constructora privada
 	Videoconsola();
@@ -21,10 +20,10 @@ public:
 	static Videoconsola& getInstance();
 
 	//Getter
-	string getUsuari();
+	passarelaUsuari* getUsuari();
 
 	//Setters
-	void iniciarSessio(passarelaUsuari* pus);
+	void iniciarSessio(passarelaUsuari* ppus);
 
 	void tancarSessio();
 };

@@ -3,10 +3,8 @@
 #include <vector>
 #include "../cercadors/cercadoraElementCompra.h"
 #include "../passareles/passarelaElementCompra.h"
-#include "../cercadors/cercadoraConte.h"
-#include "../passareles/passarelaConte.h"
-#include "../cercadors/cercadoraVideojoc.h"
-#include "../passareles/passarelaVideojoc.h"
+#include "../cercadors/cercadoraPaquetVideojocs.h"
+#include "../passareles/passarelaPaquetVideojocs.h"
 
 using namespace std;
 

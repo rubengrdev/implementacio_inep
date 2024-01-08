@@ -21,7 +21,7 @@ void TXregistrarUsuari::executar(){
     } catch (...) {
         try {
             pus.insereix();
-        } catch (const exception& e) {
+        } catch (...) {
             throw exception("Correu ja registrat.");
         }
     }

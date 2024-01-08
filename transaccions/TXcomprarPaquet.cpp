@@ -17,7 +17,7 @@ void TXcomprarPaquet::executar() {
     cercadoraConte cercadorCon = cercadoraConte();
 
     Videoconsola& v = Videoconsola::getInstance();
-    string usuari = v.getUsuari();
+    passarelaUsuari* usuari = v.getUsuari();
 
     passarelaElementCompra el = cercadorEl.cercaPerNom(nomPaquet);
     passarelaPaquetVideojocs pa = cercadorPa.cercaPerNom(nomPaquet);
@@ -29,24 +29,22 @@ void TXcomprarPaquet::executar() {
     string data = to_string(temps.tm_year + 1900) + "-" + to_string(temps.tm_mon + 1) + "-" + to_string(temps.tm_mday);
 
     // Realitza la compra dels videojocs inclosos en el paquet i del mateix paquet.
+    try {
+        passarelaCompra compra = passarelaCompra(usuari->getSobrenom(), nomPaquet, data, el.getPreu());
+        compra.insereix();
+    }
+    catch (...) {
+        throw exception("Ja s'ha comprat el paquet.");
+    }
     for (auto& conte : pcon) {
         try {
-            passarelaCompra vid = passarelaCompra(usuari, conte.getVideojoc(), data, el.getPreu());
+            passarelaCompra vid = passarelaCompra(usuari -> getSobrenom(), conte.getVideojoc(), data, el.getPreu());
             vid.insereix();
         }
         catch (...) {
             // Si l'usuari ja ha comprat el videojoc anteriorment, ignora l'excepció.
         }
     }
-
-    try {
-        passarelaCompra compra = passarelaCompra(usuari, nomPaquet, data, el.getPreu());
-        compra.insereix();
-    }
-    catch (...) {
-        throw exception("Ja s'ha comprat el paquet.");
-    }
-
     resultat = data; // Estableix la data de la compra com a resultat.
 }
 

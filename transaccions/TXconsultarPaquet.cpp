@@ -13,19 +13,23 @@ TXconsultarPaquet::~TXconsultarPaquet() {
 // Pre: n conté el nom del paquet
 // Post: resultat conté informació del paquet i els seus videojocs
 void TXconsultarPaquet::executar(){
-    cercadoraElementCompra el = cercadoraElementCompra();
-    passarelaElementCompra pel = el.cercaPerNom(n);
-    cercadoraPaquetVideojocs pa = cercadoraPaquetVideojocs();
-    passarelaPaquetVideojocs ppa = pa.cercaPerNom(n);
-    cercadoraConte co = cercadoraConte();
-    vector<passarelaConte> pco = co.cerca(n);
-
-    // Omple resultat amb dades del paquet i els seus videojocs
-    resultat.nom = ppa.getNom();
-    resultat.desc = pel.getDescripcio();
-    resultat.preu = pel.getPreu();
-    double total = calculaTotal(pco, el); // Calcula total dels preus dels videojocs inclosos
-    resultat.estalvi = total - resultat.preu;
+	cercadoraElementCompra el = cercadoraElementCompra();
+	passarelaElementCompra pel = el.cercaPerNom(n);
+	cercadoraPaquetVideojocs pa = cercadoraPaquetVideojocs();
+	passarelaPaquetVideojocs ppa = pa.cercaPerNom(n);
+	cercadoraConte co = cercadoraConte();
+	vector<passarelaConte> pco = co.cerca(n);
+	resultat.nom = ppa.getNom();
+	resultat.desc = pel.getDescripcio();
+	resultat.preu = pel.getPreu();
+	double total = 0;
+	for (int i = 0; i < pco.size(); i++) {
+		passarelaElementCompra pvid = el.cercaPerNom(pco[i].getVideojoc());
+		resultat.vnoms.push_back(pvid.getNom());
+		resultat.vdescs.push_back(pvid.getDescripcio());
+		resultat.vpreus.push_back(pvid.getPreu());
+	}
+	resultat.estalvi = pa.preuJocs(n) - resultat.preu;
 }
 
 // obteResultat: Retorna informació del paquet consultat

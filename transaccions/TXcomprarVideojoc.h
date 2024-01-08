@@ -1,6 +1,5 @@
 #pragma once
 #include "../cercadors/cercadoraElementCompra.h"
-#include "../cercadors/cercadoraUsuari.h"
 #include "../cercadors/cercadoraVideojoc.h"
 #include "../cercadors/cercadoraConte.h"
 #include "../cercadors/cercadoraCompra.h"

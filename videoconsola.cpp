@@ -3,6 +3,7 @@
 //Constructora privada
 Videoconsola::Videoconsola() {
 	sessioIniciada = false;
+	usuari = NULL;
 }
 
 //Operacio per rebre la instancia de videoconsola 
@@ -12,16 +13,17 @@ Videoconsola& Videoconsola::getInstance() {
 }
 
 //Getter
-string Videoconsola::getUsuari(){
-	return pus->getSobrenom();
+passarelaUsuari* Videoconsola::getUsuari(){
+	return usuari;
 }
 
 //Setters
-void Videoconsola::iniciarSessio(passarelaUsuari *pus2){
+void Videoconsola::iniciarSessio(passarelaUsuari *ppus){
 	sessioIniciada = true;
-	pus = pus2;
+	usuari = ppus;
 }
 
 void Videoconsola::tancarSessio(){
 	sessioIniciada = false;
+	usuari = NULL;
 }
