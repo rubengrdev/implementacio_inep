@@ -27,12 +27,16 @@ class TXconsultarCompres {
 			double total;
 		};
 
+		//Constructora
 		TXconsultarCompres();
 
+		//Destructora
 		~TXconsultarCompres();
 
+		//Operació executar
 		void executar();
 
+		//Operació per rebre el resultat
 		res obteResultat();
 
 	private:

@@ -8,11 +8,12 @@ class Videoconsola {
 
 private:
 
-	bool sessioIniciada;
 	passarelaUsuari* usuari;
 
 	//Constructora privada
-	Videoconsola();
+	Videoconsola() {
+		usuari = NULL;
+	}
 
 public:
 

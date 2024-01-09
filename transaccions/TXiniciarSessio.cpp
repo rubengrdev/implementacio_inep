@@ -18,9 +18,7 @@ void TXiniciarSessio::executar(){
         resultat = true;
         Videoconsola& vid = Videoconsola::getInstance();
         vid.iniciarSessio(&pus);
-    }else{
-        throw exception("Usuari o contrasenya incorrecta");
-    }
+    }else throw exception("Usuari o contrasenya incorrecta");
 }
 
 // obteResultat: Retorna el resultat de l'operació.

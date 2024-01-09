@@ -21,12 +21,16 @@ class TXconsultarNovetats {
 			vector<string> paquets;
 		};
 
+		//Constructora
 		TXconsultarNovetats(string d);
 
+		//Destructora
 		~TXconsultarNovetats();
 
+		//Operació executar
 		void executar();
 
+		//Operació per rebre el resultat
 		vector<res> obteResultat();
 
 	private:

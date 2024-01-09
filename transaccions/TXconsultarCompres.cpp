@@ -12,37 +12,44 @@ TXconsultarCompres::~TXconsultarCompres() {
 // Pre: cap
 // Post: Emplena 'resultat' amb les compres realitzades per l'usuari.
 void TXconsultarCompres::executar() {
+    //Crea les cercadores
     cercadoraCompra comp = cercadoraCompra();
     cercadoraElementCompra el = cercadoraElementCompra();
+
+    //Obté l'usuari a partir de la videoconsola
     Videoconsola& consola = Videoconsola::getInstance();
     passarelaUsuari* usuari = consola.getUsuari();
 
-    vector<passarelaCompra> pcom = comp.cercaPerUsuari(usuari -> getSobrenom());
+    //Obté totes les compres fetes per l'usuari logejat
+    vector<passarelaCompra> compres = comp.cercaPerUsuari(usuari -> getSobrenom());
 
+    //Inicialitza valors
     resultat.total = 0; resultat.paquets = 0; resultat.videojocs = 0;
 
     // Processa cada compra, incloent informació dels videojocs i paquets.
-    for (int i = 0; i < pcom.size(); i++) {
+    for (auto& compra : compres) {
         element e = element();
-        e.nom = pcom[i].getElement();
+        e.nom = compra.getElement();
         passarelaElementCompra pel = el.cercaPerNom(e.nom);
-        if (pel.getPreu() == pcom[i].getPreu()) {
+        //Si el preu de compra és el mateix que el preu de l'element, vol dir que si és un videojoc, no es va comprar dins de cap paquet
+        if (pel.getPreu() == compra.getPreu()) {
             e.desc = pel.getDescripcio();
             e.tipus = pel.getTipus();
-            e.preu = pcom[i].getPreu();
-            e.data = pcom[i].getData();
+            e.preu = compra.getPreu();
+            e.data = compra.getData();
+            //Si l'element és un paquet, cerca la llista de tots els videojocs que conté
             if (e.tipus == "paquet") {
-                resultat.paquets++;
+                resultat.paquets++; //Actualitzar comptador de paquets
                 cercadoraConte con = cercadoraConte();
-                vector<passarelaConte> pcon = con.cerca(e.nom);
-                for (int j = 0; j < pcon.size(); j++) {
-                    resultat.videojocs++;
-                    passarelaElementCompra videojoc = el.cercaPerNom(pcon[j].getVideojoc());
+                vector<passarelaConte> videojocs = con.cerca(e.nom);
+                for (auto& vids : videojocs) {
+                    resultat.videojocs++; //Actualitzar comptador de videojocs
+                    passarelaElementCompra videojoc = el.cercaPerNom(vids.getVideojoc());
                     e.nomv.push_back(videojoc.getNom());
                     e.descv.push_back(videojoc.getDescripcio());
                 }
             }
-            else resultat.videojocs++;
+            else resultat.videojocs++; //Actualitzar comptador de videojocs
             resultat.total += e.preu;
             resultat.elements.push_back(e);
         }
