@@ -11,10 +11,10 @@ passarelaUsuari* Videoconsola::getUsuari(){
 }
 
 //Setters
-void Videoconsola::iniciarSessio(passarelaUsuari *ppus){
+void Videoconsola::iniciarSessio(passarelaUsuari* ppus){
 	usuari = ppus;
 }
 
 void Videoconsola::tancarSessio(){
-	usuari = NULL;
+	usuari = nullptr;
 }

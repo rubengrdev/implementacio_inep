@@ -1,7 +1,10 @@
 #include "TXiniciarSessio.h"
 
 // Constructora
-TXiniciarSessio::TXiniciarSessio(string sn, string cs) : sobrenom(sn), contrasenya(cs), resultat(false) {
+TXiniciarSessio::TXiniciarSessio(string sn, string cs) {
+    sobrenom = sn;
+    contrasenya = cs;
+    resultat = false;
 }
 
 // Destructora

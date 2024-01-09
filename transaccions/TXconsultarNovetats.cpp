@@ -1,7 +1,8 @@
 #include "TXconsultarNovetats.h"
 
 // Constructor: Inicialitza la data de consulta per a les novetats
-TXconsultarNovetats::TXconsultarNovetats(string d) : data(d) {
+TXconsultarNovetats::TXconsultarNovetats(string d) {
+    data = d;
 }
 
 // Destructor

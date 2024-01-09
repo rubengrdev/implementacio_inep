@@ -12,7 +12,7 @@ private:
 
 	//Constructora privada
 	Videoconsola() {
-		usuari = NULL;
+		usuari = nullptr;
 	}
 
 public:

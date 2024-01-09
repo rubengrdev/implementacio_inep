@@ -1,8 +1,8 @@
 #include "TXcomprarVideojoc.h"
 
 //Constructora
-TXcomprarVideojoc::TXcomprarVideojoc(string n) : nom(n) {
-    
+TXcomprarVideojoc::TXcomprarVideojoc(string n) {
+    nom = n;
 }
 
 //Destructora
@@ -24,7 +24,7 @@ void TXcomprarVideojoc::executar() {
     passarelaElementCompra pel = cercadorEl.cercaPerNom(nom);
 
     //Obtenir data de naixement de l'usuari.
-    string dataN = usuari -> getDataN();
+    string dataN = usuari->getDataN();
 
     //Calcular edat de l'usuari.
     char delimiter;
