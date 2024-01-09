@@ -346,6 +346,10 @@ void capaPresentacio::consultarVideojocsEdatPres() {
 	cout << "** Consulta videojocs per edat **" << endl;
 	cout << "Edat maxima (anys): ";
 	cin >> edat;
+	if (edat <= 0) {
+		cout << "Introdueix una edat superior a 0." << endl;
+		return;
+	}
 	TXconsultarVideojocsPerEdat op = TXconsultarVideojocsPerEdat(edat);
 	op.executar();
 	cout << endl << "** Consulta videojocs fins a " << edat << " anys **" << endl << endl;
