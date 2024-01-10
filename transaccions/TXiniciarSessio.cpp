@@ -20,7 +20,7 @@ void TXiniciarSessio::executar(){
     if(pus.getContrasenya() == contrasenya){
         resultat = true;
         Videoconsola& vid = Videoconsola::getInstance();
-        vid.iniciarSessio(&pus);
+        vid.iniciarSessio(pus);
     }else throw exception("Usuari o contrasenya incorrecta");
 }
 

@@ -8,11 +8,11 @@ class Videoconsola {
 
 private:
 
-	passarelaUsuari* usuari;
+	passarelaUsuari usuari;
 
 	//Constructora privada
 	Videoconsola() {
-		usuari = nullptr;
+
 	}
 
 public:
@@ -21,10 +21,12 @@ public:
 	static Videoconsola& getInstance();
 
 	//Getter
-	passarelaUsuari* getUsuari();
+	passarelaUsuari getUsuari();
 
 	//Setters
-	void iniciarSessio(passarelaUsuari* ppus);
+	void iniciarSessio(passarelaUsuari pus);
 
 	void tancarSessio();
+
+	void refrescaUsuari(string nom, string contrasenya, string correu, string data);
 };

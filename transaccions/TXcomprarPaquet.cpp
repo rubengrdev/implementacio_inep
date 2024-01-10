@@ -19,7 +19,7 @@ void TXcomprarPaquet::executar() {
 
     //Obté l'usuari a partir de la videoconsola
     Videoconsola& v = Videoconsola::getInstance();
-    passarelaUsuari* usuari = v.getUsuari();
+    passarelaUsuari usuari = v.getUsuari();
 
     //Cerca tota la informació relativa al paquet
     passarelaElementCompra el = cercadorEl.cercaPerNom(nomPaquet);
@@ -34,7 +34,7 @@ void TXcomprarPaquet::executar() {
 
     // Realitza la compra dels videojocs inclosos en el paquet i del mateix paquet.
     try {
-        passarelaCompra compra = passarelaCompra(usuari->getSobrenom(), nomPaquet, data, el.getPreu());
+        passarelaCompra compra = passarelaCompra(usuari.getSobrenom(), nomPaquet, data, el.getPreu());
         compra.insereix();
     }
     catch (...) {
@@ -43,7 +43,7 @@ void TXcomprarPaquet::executar() {
     }
     for (auto& conte : pcon) {
         try {
-            passarelaCompra vid = passarelaCompra(usuari -> getSobrenom(), conte.getVideojoc(), data, el.getPreu());
+            passarelaCompra vid = passarelaCompra(usuari.getSobrenom(), conte.getVideojoc(), data, el.getPreu());
             vid.insereix();
         }
         catch (...) {

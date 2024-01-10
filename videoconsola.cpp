@@ -6,15 +6,22 @@ Videoconsola& Videoconsola::getInstance() {
 }
 
 //Getter
-passarelaUsuari* Videoconsola::getUsuari(){
+passarelaUsuari Videoconsola::getUsuari(){
 	return usuari;
 }
 
 //Setters
-void Videoconsola::iniciarSessio(passarelaUsuari* ppus){
-	usuari = ppus;
+void Videoconsola::iniciarSessio(passarelaUsuari pus){
+	usuari = pus;
 }
 
 void Videoconsola::tancarSessio(){
-	usuari = nullptr;
+
+}
+
+void Videoconsola::refrescaUsuari(string nom, string contrasenya, string correu, string data) {
+	usuari.setNom(nom);
+	usuari.setContrasenya(contrasenya);
+	usuari.setCorreu(correu);
+	usuari.setDataN(data);
 }

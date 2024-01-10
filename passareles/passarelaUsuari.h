@@ -16,6 +16,9 @@ class passarelaUsuari
 		//Constructora
 		passarelaUsuari(string n, string sn, string c, string cE, string dN);
 
+		//Constructora per defecte (per poder posar una passarelaUsuari com a atribut a la classe videconsola)
+		passarelaUsuari();
+
 		//Destructora
 		~passarelaUsuari();
 

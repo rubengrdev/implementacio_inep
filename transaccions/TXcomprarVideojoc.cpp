@@ -17,14 +17,14 @@ void TXcomprarVideojoc::executar() {
     cercadoraVideojoc cercadorVid = cercadoraVideojoc();
 
     Videoconsola& consola = Videoconsola::getInstance();
-    passarelaUsuari* usuari = consola.getUsuari(); //Obté l'usuari a partir de la videoconsola.
+    passarelaUsuari usuari = consola.getUsuari(); //Obté l'usuari a partir de la videoconsola.
 
     //Crear les passareles d'elementCompra i videojoc.
     passarelaVideojoc pvid = cercadorVid.cercaPerNom(nom);
     passarelaElementCompra pel = cercadorEl.cercaPerNom(nom);
 
     //Obtenir data de naixement de l'usuari.
-    string dataN = usuari->getDataN();
+    string dataN = usuari.getDataN();
 
     //Calcular edat de l'usuari.
     char delimiter;
@@ -47,7 +47,7 @@ void TXcomprarVideojoc::executar() {
     
     //Comprovar si l'usuari te suficient edat per comprar el videojoc.
     if (pvid.getQualificacio() > anys) throw exception("No tens suficient edat.");
-    passarelaCompra compra = passarelaCompra(usuari -> getSobrenom(), nom, data, pel.getPreu());
+    passarelaCompra compra = passarelaCompra(usuari.getSobrenom(), nom, data, pel.getPreu());
     try {
         compra.insereix();
     }

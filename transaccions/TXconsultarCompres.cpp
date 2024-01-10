@@ -18,10 +18,10 @@ void TXconsultarCompres::executar() {
 
     //Obté l'usuari a partir de la videoconsola
     Videoconsola& consola = Videoconsola::getInstance();
-    passarelaUsuari* usuari = consola.getUsuari();
+    passarelaUsuari usuari = consola.getUsuari();
 
     //Obté totes les compres fetes per l'usuari logejat
-    vector<passarelaCompra> compres = comp.cercaPerUsuari(usuari -> getSobrenom());
+    vector<passarelaCompra> compres = comp.cercaPerUsuari(usuari.getSobrenom());
 
     //Inicialitza valors
     resultat.total = 0; resultat.paquets = 0; resultat.videojocs = 0;

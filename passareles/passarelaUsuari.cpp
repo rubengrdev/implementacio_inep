@@ -9,6 +9,11 @@ passarelaUsuari::passarelaUsuari(string n, string sn, string c, string cE, strin
 	dataN = dN;
 }
 
+//Constructora per defecte (per poder posar una passarelaUsuari com a atribut a la classe videconsola)
+passarelaUsuari::passarelaUsuari() {
+
+}
+
 //Destructora
 passarelaUsuari::~passarelaUsuari() {
 
@@ -16,15 +21,6 @@ passarelaUsuari::~passarelaUsuari() {
 
 //Getters
 string passarelaUsuari::getNom() {
-    // Comprovem si 'this' és un punter nul, el que indicaria que l'objecte no està inicialitzat correctament.
-    if (this == nullptr) {
-        throw std::runtime_error("Error: L'objecte no està inicialitzat correctament.");
-    }
-    // Comprovem si la variable membre 'nom' està buida, el que indicaria que no s'ha establert per aquest objecte.
-    if (nom.empty()) {
-        throw std::runtime_error("Error: 'nom' no està definit per a aquest objecte.");
-    }
-    // Retornem el nom si totes les comprovacions són correctes.
     return nom;
 }
 

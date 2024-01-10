@@ -13,10 +13,10 @@ TXesborrarUsuari::~TXesborrarUsuari() {
 // Post: Si la contrasenya és correcta, esborra l'usuari i tanca la sessió
 void TXesborrarUsuari::executar() {
     Videoconsola& vid = Videoconsola::getInstance();
-    passarelaUsuari* usuari = vid.getUsuari();
+    passarelaUsuari usuari = vid.getUsuari();
 
-    if (usuari -> getContrasenya() == contrasenya) {
-        usuari -> esborra(); // Esborra l'usuari
+    if (usuari.getContrasenya() == contrasenya) {
+        usuari.esborra(); // Esborra l'usuari
         result = false;
         vid.tancarSessio(); // Tanca la sessió
     } else {

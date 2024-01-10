@@ -138,12 +138,19 @@ void capaPresentacio::modificarUsuariPres() {
 	if (input.size() != 0) r.correu = input;
 	cout << "Data naixement (DD/MM/AAAA): ";
 	getline(cin, input);
-	if (!comprovarData(input)) {
-		cout << "Error: Data no valida." << endl;
-		return;
+	if (input.size() != 0) {
+		if (!comprovarData(input)) {
+			cout << "Error: Data no valida." << endl;
+			return;
+		}
+		r.dataN = dataFormatter(input);
 	}
-	if (input.size() != 0) r.dataN = input;
-	op.modificaUsuari(r.nom, r.contrasenya, r.correu, dataFormatter(r.dataN));
+	try {
+		op.modificaUsuari(r.nom, r.contrasenya, r.correu, r.dataN);
+	}
+	catch (const exception& e) {
+		cout << "Error: " << e.what() << endl;
+	}
 	cout << endl << "** Dades usuari modificades **" << endl;
 	r = op.consultaUsuari();
 	cout << "Nom complet: " << r.nom << endl;
@@ -258,6 +265,7 @@ void capaPresentacio::comprarPaquetPres() {
 		}
 	}
 	else return;
+	cout << endl;
 }
 
 void capaPresentacio::consultarCompresPres() {
@@ -424,9 +432,6 @@ void capaPresentacio::consultarPaquetsPres() {
 	cout << "** Consulta paquets **" << endl;
 	TXconsultarPaquets op = TXconsultarPaquets();
 	op.executar();
-	vector<TXconsultarPaquets::res> v = op.obteResultat();
-	for (int i = 0; i < v.size(); i++) {
-		cout << v[i].nom << "; " << v[i].desc << "; " << v[i].preu << " euros (ESTALVI: " << v[i].estalvi << " euros)" << endl;
-		cout << endl;
-	}
+	vector<TXconsultarPaquets::res> paquets = op.obteResultat();
+	for (auto& paquet : paquets) cout << paquet.nom << "; " << paquet.desc << "; " << paquet.preu << " euros (ESTALVI: " << paquet.estalvi << " euros)" << endl << endl;
 }
