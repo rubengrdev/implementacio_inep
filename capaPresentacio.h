@@ -30,50 +30,13 @@ private:
 	};
 
 	//Funcio privada per comprovar que el correu te un format correcte
-	bool comprovarCorreu(string s) {
-		regex pattern(R"(^[_a-z0-9-]*@[a-z0-9-]+(\.[a-z]{2,4})+$)");
-		return regex_match(s, pattern);
-	}
+	bool comprovarCorreu(string s);
 
-	bool comprovarData(string data) {
-		istringstream data_str(data);
-		bool validesa = false;
-		int dia, mes, any;
-		char delimiter;
-		//Extreu els valors en el cas de format DD/MM/AAAA
-		data_str >> dia >> delimiter >> mes >> delimiter >> any;
-
-		struct tm input;
-		input.tm_year = any - 1900; input.tm_mon = mes - 1; input.tm_mday = dia;
-		input.tm_hour = 0; input.tm_min = 0; input.tm_sec = 0;
-
-		time_t ara = time(0);
-		struct tm temps;
-		localtime_s(&temps, &ara);
-
-		double diff = difftime(mktime(&temps), mktime(&input));
-
-		if (data_str.eof() && delimiter == '/' && dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && any > 0 && diff > 0) validesa = true;
-		return validesa;
-	}
-
-	string dataFormatter(string data) {
-		size_t counter;
-		char delimiter;
-		string new_str;
-		istringstream data_str(data);
-		counter = data.find('/');
-		int dia, mes, any;
-		if (counter == 2 || counter == 1) {
-			data_str >> dia >> delimiter >> mes >> delimiter >> any;
-			new_str = to_string(any) + "-" + to_string(mes) + "-" + to_string(dia);
-		}
-		else if (counter == -1) {
-			data_str >> any >> delimiter >> mes >> delimiter >> dia;
-			new_str = to_string(dia) + "/" + to_string(mes) + "/" + to_string(any);
-		}
-		return new_str;
-	}
+	//Funcio privada per comprovar que la data introduida per l'usuari te un format correcte
+	bool comprovarData(string data);
+	
+	//Funcio per traduir el format entre el que s'utilitza a la interfície i la que s'utilitza a la base de dades
+	string dataFormatter(string data);
 
 public:
 

@@ -20,8 +20,17 @@ void Videoconsola::tancarSessio(){
 }
 
 void Videoconsola::refrescaUsuari(string nom, string contrasenya, string correu, string data) {
-	usuari.setNom(nom);
-	usuari.setContrasenya(contrasenya);
-	usuari.setCorreu(correu);
-	usuari.setDataN(data);
+	string correuAnt = usuari.getCorreu();
+	try {
+		usuari.setNom(nom);
+		usuari.setContrasenya(contrasenya);
+		usuari.setCorreu(correu);
+		usuari.setDataN(data);
+		usuari.modifica();
+	}
+	catch (...) {
+		usuari.setCorreu(correuAnt);
+		if (correuAnt != correu) throw exception("Correu ja registrat.");
+
+	}
 }

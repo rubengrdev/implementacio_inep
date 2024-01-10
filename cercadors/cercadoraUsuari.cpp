@@ -19,7 +19,7 @@ passarelaUsuari cercadoraUsuari::cercaPerSobrenom(string sn) {
         txn.commit(); // Finalitza la transaccio.
     } catch(...) {
         //Si la consulta no retorna exactament una fila (excepcio de exec1), llença la excepcio UsuariNoExisteix
-        throw exception("No existeix l'usuari a buscar");
+        throw exception("No existeix l'usuari");
     }
     return passarelaUsuari(q[1].c_str(), q[0].c_str(), q[2].c_str(), q[3].c_str(), q[4].c_str()); // Retorna el resultat.
 }

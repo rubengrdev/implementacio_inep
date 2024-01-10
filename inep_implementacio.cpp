@@ -12,10 +12,10 @@ int main() {
 	while (true) {
 		if (!sessioIniciada) {
 			while (!sessioIniciada) {
-				cout << "*********************" << endl << "    Menu Principal" << endl << "*********************" << endl;
-				cout << "1. Iniciar sessio" << endl;
-				cout << "2. Registrar usuari" << endl;
-				cout << "3. Sortir" << endl;
+				cout << "*********************" << "\n" << "    Menu Principal" << "\n" << "*********************" << "\n";
+				cout << "1. Iniciar sessio" << "\n";
+				cout << "2. Registrar usuari" << "\n";
+				cout << "3. Sortir" << "\n";
 				cout << "Opcio: ";
 				cin >> op;
 				system("CLS");
@@ -29,26 +29,26 @@ int main() {
 				case 3:
 					return 0;
 				default:
-					cout << "Selecciona una opcio valida amb les tecles de l'1 al 3" << endl;
+					cout << "Selecciona una opcio valida amb les tecles de l'1 al 3" << "\n";
 				}
 			}
 		}
-		cout << "*********************" << endl << "    Menu Principal" << endl << "*********************" << endl;
-		cout << "1. Gestionar usuari" << endl;
-		cout << "2. Gestionar compres" << endl;
-		cout << "3. Consultar" << endl;
-		cout << "4. Tancar sessio" << endl;
-		cout << "5. Sortir" << endl;
+		cout << "*********************" << "\n" << "    Menu Principal" << "\n" << "*********************" << "\n";
+		cout << "1. Gestionar usuari" << "\n";
+		cout << "2. Gestionar compres" << "\n";
+		cout << "3. Consultar" << "\n";
+		cout << "4. Tancar sessio" << "\n";
+		cout << "5. Sortir" << "\n";
 		cout << "Opcio: ";
 		cin >> op;
 		system("CLS");
 		switch (op) {
 			case 1:
-				cout << endl << "--- GESTIONAR USUARI ---" << endl;
-				cout << "1. Consultar usuari" << endl;
-				cout << "2. Modificar usuari" << endl;
-				cout << "3. Esborrar usuari" << endl;
-				cout << "4. Tornar" << endl;
+				cout << "\n" << "--- GESTIONAR USUARI ---" << "\n";
+				cout << "1. Consultar usuari" << "\n";
+				cout << "2. Modificar usuari" << "\n";
+				cout << "3. Esborrar usuari" << "\n";
+				cout << "4. Tornar" << "\n";
 				cout << "Opcio: ";
 				cin >> op;
 				system("CLS");
@@ -65,16 +65,16 @@ int main() {
 					case 4:
 						break;
 					default:
-						cout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << endl;
+						cout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << "\n";
 						break;
 					}
 				break;
 			case 2:
-				cout << endl << "--- GESTIO DE COMPRES ---" << endl;
-				cout << "1. Comprar videojoc" << endl;
-				cout << "2. Comprar paquet videojocs" << endl;
-				cout << "3. Consultar compres" << endl;
-				cout << "4. Tornar" << endl;
+				cout << "\n" << "--- GESTIO DE COMPRES ---" << "\n";
+				cout << "1. Comprar videojoc" << "\n";
+				cout << "2. Comprar paquet videojocs" << "\n";
+				cout << "3. Consultar compres" << "\n";
+				cout << "4. Tornar" << "\n";
 				cout << "Opcio: ";
 				cin >> op;
 				system("CLS");
@@ -91,19 +91,19 @@ int main() {
 					case 4:
 						break;
 					default:
-					cout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << endl;
+					cout << "Selecciona una opcio valida amb les tecles de l'1 al 4" << "\n";
 					break;
 				}
 				break;
 			case 3:
-				cout << endl << "--- CONSULTES DE VIDEOJOCS ---" << endl;
-				cout << "1. Consultar videojoc" << endl;
-				cout << "2. Consultar videojocs" << endl;
-				cout << "3. Consultar videojocs per edat" << endl;
-				cout << "4. Consultar novetats videojocs" << endl;
-				cout << "5. Consultar paquet videojocs" << endl;
-				cout << "6. Consultar paquets videojocs" << endl;
-				cout << "7. Tornar" << endl;
+				cout << "\n" << "--- CONSULTES DE VIDEOJOCS ---" << "\n";
+				cout << "1. Consultar videojoc" << "\n";
+				cout << "2. Consultar videojocs" << "\n";
+				cout << "3. Consultar videojocs per edat" << "\n";
+				cout << "4. Consultar novetats videojocs" << "\n";
+				cout << "5. Consultar paquet videojocs" << "\n";
+				cout << "6. Consultar paquets videojocs" << "\n";
+				cout << "7. Tornar" << "\n";
 				cout << "Opcio: ";
 				cin >> op;
 				system("CLS");
@@ -129,7 +129,7 @@ int main() {
 					case 7:
 						break;
 					default:
-						cout << "Selecciona una opcio valida amb les tecles de l'1 al 7" << endl;
+						cout << "Selecciona una opcio valida amb les tecles de l'1 al 7" << "\n";
 						break;
 				}
 				break;
@@ -139,7 +139,7 @@ int main() {
 			case 5:
 				return 0;
 			default:
-				cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 5" << endl;
+				cout << "Selecciona una opcio vàlida amb les tecles de l'1 al 5" << "\n";
 		}
 	}
 	return 0;

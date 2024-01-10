@@ -14,15 +14,18 @@ TXregistrarUsuari::~TXregistrarUsuari() {
 // Post: Registra l'usuari si no existeix, altrament llança excepció.
 void TXregistrarUsuari::executar(){
     passarelaUsuari pus(nom, sobrenom, constrasenya, correuE, dataN);
+    cercadoraUsuari find_us = cercadoraUsuari();
     try {
-        cercadoraUsuari find_us = cercadoraUsuari();
         find_us.cercaPerSobrenom(sobrenom);
-        throw exception("L'usuari ja existeix.");
-    } catch (...) {
+    }
+    catch (...) {
         try {
             pus.insereix();
-        } catch (...) {
+            return;
+        }
+        catch (...) {
             throw exception("Correu ja registrat.");
         }
     }
+    throw exception("L'usuari ja existeix.");
 }
