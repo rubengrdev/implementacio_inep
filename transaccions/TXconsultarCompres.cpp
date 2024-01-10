@@ -43,10 +43,16 @@ void TXconsultarCompres::executar() {
                 cercadoraConte con = cercadoraConte();
                 vector<passarelaConte> videojocs = con.cerca(e.nom);
                 for (auto& vids : videojocs) {
-                    resultat.videojocs++; //Actualitzar comptador de videojocs
-                    passarelaElementCompra videojoc = el.cercaPerNom(vids.getVideojoc());
-                    e.nomv.push_back(videojoc.getNom());
-                    e.descv.push_back(videojoc.getDescripcio());
+                    for (auto& com : compres) {
+                        if (com.getElement() == vids.getVideojoc() && com.getPreu() != pel.getPreu()) break;
+                        else if (com.getElement() == vids.getVideojoc() && com.getPreu() == pel.getPreu()) {
+                            resultat.videojocs++; //Actualitzar comptador de videojocs
+                            passarelaElementCompra videojoc = el.cercaPerNom(vids.getVideojoc());
+                            e.nomv.push_back(videojoc.getNom());
+                            e.descv.push_back(videojoc.getDescripcio());
+                            break;
+                        }
+                    }
                 }
             }
             else resultat.videojocs++; //Actualitzar comptador de videojocs
