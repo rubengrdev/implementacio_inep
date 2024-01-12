@@ -1,25 +1,24 @@
 #include "CUmodificaUsuari.h"
 
-//Constructora
-CUmodificaUsuari::CUmodificaUsuari() {
+// Constructora: Inicialitza l'objecte sense estat específic.
+CUmodificaUsuari::CUmodificaUsuari() {}
 
-}
+// Destructora: Neteja recursos si és necessari.
+CUmodificaUsuari::~CUmodificaUsuari() {}
 
-//Destructora
-CUmodificaUsuari:: ~CUmodificaUsuari() {
-
-}
-
-//consultaUsuari: retorna informacio sobre l'usuari.
+// consultaUsuari: Retorna informació de l'usuari actualment logejat.
+// Pre: Cap
+// Post: Retorna un objecte amb les dades de l'usuari logejat.
 TXconsultarUsuari::res CUmodificaUsuari::consultaUsuari() {
-	TXconsultarUsuari op = TXconsultarUsuari();
-	op.executar();
-	TXconsultarUsuari::res r = op.obteResultat();
-	return r;
+    TXconsultarUsuari op;
+    op.executar();
+    return op.obteResultat(); // Retorna les dades de l'usuari logejat.
 }
 
-//modificaUsuari: modifica la informacio de l'usuari logejat.
+// modificaUsuari: Modifica les dades de l'usuari logejat.
+// Pre: Requereix nom, contrasenya, correu electrònic i data de naixement.
+// Post: Actualitza les dades de l'usuari logejat a la videoconsola.
 void CUmodificaUsuari::modificaUsuari(string nomU, string contraU, string correuU, string naixU) {
-	Videoconsola& vid = Videoconsola::getInstance();
-	vid.refrescaUsuari(nomU, contraU, correuU, naixU); //Modificar l'usuari logejat a la videoconsola
+    Videoconsola& vid = Videoconsola::getInstance();
+    vid.refrescaUsuari(nomU, contraU, correuU, naixU); // Actualitza les dades de l'usuari a la videoconsola.
 }
