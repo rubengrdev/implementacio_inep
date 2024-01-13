@@ -20,7 +20,7 @@ vector<passarelaConte> cercadoraConte::cerca(std::string n) {
     string comanda = "SELECT * FROM conte WHERE paquet = '" + n + "' OR videojoc = '" + n + "';";
     pqxx::result q = txn.exec(comanda); // Executa la consulta SQL.
     txn.commit(); // Confirma la transacció.
-    for (auto& fila : q) {
+    for (auto fila : q) {
         // Afegeix a la llista els continguts trobats.
         res.emplace_back(fila[1].c_str(), fila[0].c_str());
     }

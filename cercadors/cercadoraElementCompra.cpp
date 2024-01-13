@@ -38,7 +38,7 @@ vector<passarelaElementCompra> cercadoraElementCompra::totsVideojocs() {
     pqxx::work txn(conn); // Inicia una transacció.
     pqxx::result q = txn.exec(comanda); // Executa la consulta.
     txn.commit(); // Confirma la transacció.
-    for (auto& fila : q) {
+    for (auto fila : q) {
         // Afegeix a la llista els videojocs trobats.
         res.emplace_back(fila[0].c_str(), fila[1].c_str(), fila[2].as<double>(), fila[3].c_str());
     }
@@ -55,7 +55,7 @@ vector<passarelaElementCompra> cercadoraElementCompra::totsPaquets() {
     pqxx::work txn(conn); // Inicia una transacció.
     pqxx::result q = txn.exec(comanda); // Executa la consulta.
     txn.commit(); // Confirma la transacció.
-    for (auto& fila : q) {
+    for (auto fila : q) {
         // Afegeix a la llista els paquets trobats.
         res.emplace_back(fila[0].c_str(), fila[1].c_str(), fila[2].as<double>(), fila[3].c_str());
     }

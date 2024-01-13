@@ -42,7 +42,7 @@ double cercadoraPaquetVideojocs::preuJocs(string nomP) {
     }
     catch (...) {
         // Si no es troba el paquet, llença una excepció.
-        throw exception("No s'ha pogut determinar el preu dels jocs del paquet");
+        throw exception("No existeix el paquet a buscar");
     }
     return q[0].as<double>(); // Retorna el preu total dels videojocs del paquet.
 }

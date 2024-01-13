@@ -20,7 +20,7 @@ vector<passarelaCompra> cercadoraCompra::cercaPerUsuari(string u) {
     string comanda = "SELECT * FROM compra WHERE usuari = '" + u + "' ORDER BY data DESC;";
     pqxx::result r = txn.exec(comanda); // Executa la consulta SQL.
     txn.commit(); // Confirma la transacció.
-    for (auto& fila : r) {
+    for (auto fila : r) {
         // Afegeix les dades de compra al vector de resultats.
         res.emplace_back(fila[0].c_str(), fila[1].c_str(), fila[2].c_str(), fila[3].as<double>());
     }

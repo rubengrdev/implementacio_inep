@@ -20,5 +20,5 @@ TXconsultarUsuari::res CUmodificaUsuari::consultaUsuari() {
 // Post: Actualitza les dades de l'usuari logejat a la videoconsola.
 void CUmodificaUsuari::modificaUsuari(string nomU, string contraU, string correuU, string naixU) {
     Videoconsola& vid = Videoconsola::getInstance();
-    vid.refrescaUsuari(nomU, contraU, correuU, naixU); // Actualitza les dades de l'usuari a la videoconsola.
+    vid.refrescaUsuari(nomU, contraU, correuU, naixU); // Actualitza les dades de l'usuari a la videoconsola i la BD.
 }

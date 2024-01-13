@@ -66,15 +66,15 @@ bool capaPresentacio::iniciarSessioPres() {
 	getline(cin, s);
 	cout << "Contrasenya: ";
 	getline(cin, c);
-	TXiniciarSessio op = TXiniciarSessio(s, c);
+	TXiniciarSessio is(s, c);
 	try{
-		op.executar();
+		is.executar();
 	}
 	catch(...){
 		cout << "Usuari o contrasenya incorrecta" << "\n" << "\n";
 	}
-	if (op.obteResultat()) cout << "Sessio iniciada correctament!" << "\n" << "\n";
-	return op.obteResultat();
+	if (is.obteResultat()) cout << "Sessio iniciada correctament!" << "\n" << "\n";
+	return is.obteResultat();
 }
 
 bool capaPresentacio::tancarSessioPres() {
@@ -84,7 +84,7 @@ bool capaPresentacio::tancarSessioPres() {
 	cout << "** Tancar sessio **" << "\n";
 	cout << "Vols tancar la sessio (S/N): ";
 	cin >> op;
-	TXtancarSessio ts = TXtancarSessio();
+	TXtancarSessio ts;
 	if (op == "S") {
 		ts.executar();
 		cout << "Sessio tancada correctament!" << "\n" << "\n";
@@ -122,9 +122,9 @@ void capaPresentacio::registrarUsuariPres() {
 		cout << "Error: Data no valida" << "\n" << "\n";
 		return;
 	}
-	TXregistrarUsuari op = TXregistrarUsuari(nom, sobrenom, contrasenya, correuE, dataFormatter(dataN));
+	TXregistrarUsuari ru(nom, sobrenom, contrasenya, correuE, dataFormatter(dataN));
 	try {
-		op.executar();
+		ru.executar();
 	}
 	catch (exception &e) {
 		cout << "Error: " << e.what() << "\n" << "\n";
@@ -137,23 +137,23 @@ void capaPresentacio::consultarUsuariPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta usuari **" << "\n";
-	TXconsultarUsuari op1 = TXconsultarUsuari();
+	TXconsultarUsuari cu;
 	try {
-		op1.executar();
+		cu.executar();
 	}
 	catch (const exception& e) {
 		cout << "Error: " << e.what() << "\n" << "\n";
 	}
-	TXconsultarUsuari::res r1 = op1.obteResultat();
+	TXconsultarUsuari::res r1 = cu.obteResultat();
 	cout << "Nom complet: " << r1.nom << "\n";
 	cout << "Sobrenom: " << r1.sobrenom << "\n";
 	cout << "Correu electronic: " << r1.correu << "\n";
 	cout << "Data naixement (DD/MM/AAAA): " << dataFormatter(r1.dataN) << "\n";
 	cout << "\n";
-	TXconsultarCompres op2 = TXconsultarCompres();
+	TXconsultarCompres cc;
 	try {
-		op2.executar();
-		TXconsultarCompres::res r2 = op2.obteResultat();
+		cc.executar();
+		TXconsultarCompres::res r2 = cc.obteResultat();
 		cout << r2.videojocs << " videojocs comprats." << "\n";
 		cout << r2.paquets << " paquets de videojocs comprats." << "\n";
 		cout << r2.total << " euros gastats en total." << "\n" << "\n";
@@ -168,8 +168,8 @@ void capaPresentacio::modificarUsuariPres() {
 	system("CLS");
 	string input;
 	cout << "** Modifica usuari **" << "\n" << "\n";
-	CUmodificaUsuari op = CUmodificaUsuari();
-	TXconsultarUsuari::res r = op.consultaUsuari();
+	CUmodificaUsuari mu;
+	TXconsultarUsuari::res r = mu.consultaUsuari();
 	cout << "Nom complet: " << r.nom << "\n";
 	cout << "Sobrenom: " << r.sobrenom << "\n";
 	cout << "Correu electronic " << r.correu << "\n";
@@ -195,9 +195,9 @@ void capaPresentacio::modificarUsuariPres() {
 		r.dataN = dataFormatter(input);
 	}
 	try {
-		op.modificaUsuari(r.nom, r.contrasenya, r.correu, r.dataN);
+		mu.modificaUsuari(r.nom, r.contrasenya, r.correu, r.dataN);
 		cout << "**************Dades modificades**************" << "\n";
-		r = op.consultaUsuari();
+		r = mu.consultaUsuari();
 		cout << "Nom complet: " << r.nom << "\n";
 		cout << "Sobrenom: " << r.sobrenom << "\n";
 		cout << "Correu electronic " << r.correu << "\n";
@@ -215,15 +215,15 @@ bool capaPresentacio::esborrarUsuariPres() {
 	cout << "** Esborrar usuari **" << "\n";
 	cout << "Introdueix la teva contrasenya per confirmar l'esborrat: ";
 	cin >> c;
-	TXesborrarUsuari op = TXesborrarUsuari(c);
+	TXesborrarUsuari eu(c);
 	try {
-		op.executar();
+		eu.executar();
 		cout << "Usuari esborrat correctament!" << "\n" << "\n";
 	}
 	catch (const exception& e) {
 		cout << e.what() << "\n" << "\n";
 	}
-	return op.obteResultat();
+	return eu.obteResultat();
 }
 
 void capaPresentacio::comprarVideojocPres() {
@@ -233,16 +233,16 @@ void capaPresentacio::comprarVideojocPres() {
 	cout << "** Comprar videojoc **" << "\n";
 	cout << "Nom videojoc: ";
 	getline(cin, vid);
-	TXconsultarVideojoc op1 = TXconsultarVideojoc(vid);
+	TXconsultarVideojoc cv(vid);
 	try {
-		op1.executar();
+		cv.executar();
 	}
 	catch (const exception& e) {
 		cout << e.what() << "\n" << "\n";
 		return;
 	}
 	cout << "\n" << "Informacio sobre el videojoc..." << "\n" << "\n";
-	TXconsultarVideojoc::res r = op1.obteResultat();
+	TXconsultarVideojoc::res r = cv.obteResultat();
 	cout << "Nom videojoc: " << r.nom << "\n";
 	cout << "Descripcio: " << r.desc << "\n";
 	cout << "Qualificacio edat: " << r.qualificacio << "\n";
@@ -254,10 +254,10 @@ void capaPresentacio::comprarVideojocPres() {
 	char conf;
 	cin >> conf;
 	cout << "\n";
-	TXcomprarVideojoc op2 = TXcomprarVideojoc(vid);
+	TXcomprarVideojoc comv(vid);
 	if (conf == 'S') {
 		try {
-			op2.executar();
+			comv.executar();
 		}
 		catch (const exception& e) {
 			cout << "Error: " << e.what() << "\n" << "\n";
@@ -265,7 +265,7 @@ void capaPresentacio::comprarVideojocPres() {
 		}
 	}
 	else return;
-	TXcomprarVideojoc::res rec = op2.obteResultat();
+	TXcomprarVideojoc::res rec = comv.obteResultat();
 	cout << "Compra registrada: " << dataFormatter(rec.data) << "\n" << "\n";
 	cout << "Jocs relacionats : " << "\n";
 	for (int i = 0; i < rec.recomanats.size(); i++) {
@@ -281,16 +281,16 @@ void capaPresentacio::comprarPaquetPres() {
 	cout << "** Comprar paquet **" << "\n";
 	cout << "Nom paquet: ";
 	getline(cin, paq);
-	TXconsultarPaquet op1 = TXconsultarPaquet(paq);
+	TXconsultarPaquet cp(paq);
 	try {
-		op1.executar();
+		cp.executar();
 	}
 	catch (const exception& e) {
 		cout << e.what() << "\n" << "\n";
 		return;
 	}
 	cout << "Informacio sobre el paquet..." << "\n";
-	TXconsultarPaquet::res r = op1.obteResultat();
+	TXconsultarPaquet::res r = cp.obteResultat();
 	cout << "Nom paquet: " << r.nom << "\n";
 	cout << "Descripcio: " << r.desc << "\n";
 	cout << "Preu: " << r.preu << " euros (estalvi de " << r.estalvi << " euros)" << "\n";
@@ -302,11 +302,11 @@ void capaPresentacio::comprarPaquetPres() {
 	cout << "\n" << "Vols continuar amb la compra (S/N): ";
 	char conf;
 	cin >> conf;
-	TXcomprarPaquet op2 = TXcomprarPaquet(paq);
+	TXcomprarPaquet comp(paq);
 	if (conf == 'S') {
 		try {
-			op2.executar();
-			string res = op2.obteResultat();
+			comp.executar();
+			string res = comp.obteResultat();
 			cout << "\n" << "Compra registrada: " << dataFormatter(res) << "\n";
 		}
 		catch (const exception& e) {
@@ -321,18 +321,18 @@ void capaPresentacio::consultarCompresPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta compres **" << "\n" << "\n";
-	TXconsultarCompres op = TXconsultarCompres();
+	TXconsultarCompres cc;
 	try {
-		op.executar();
+		cc.executar();
 	}
 	catch (const exception& e) {
 		cout << "Error: " << e.what() << "\n" << "\n";
 	}
-	TXconsultarCompres::res r = op.obteResultat();
+	TXconsultarCompres::res r = cc.obteResultat();
 	for (int i = 0; i < r.elements.size(); i++) {
 		cout << dataFormatter(r.elements[i].data) << " " << r.elements[i].tipus << " " << r.elements[i].nom << "; " << r.elements[i].desc << "; " << r.elements[i].preu << " euros" << "\n";
 		if (r.elements[i].tipus == "paquet") {
-			cout << "    Videojocs:" << "\n";
+			cout << "    Videojocs inclosos a la compra del paquet:" << "\n";
 			for (int j = 0; j < r.elements[i].nomv.size(); j++) cout << "        " << r.elements[i].nomv[j] << "; " << r.elements[i].descv[j] << "\n";
 		}
 		cout << "\n";
@@ -348,16 +348,16 @@ void capaPresentacio::consultarVideojocPres() {
 	cout << "** Consulta videojoc **" << "\n";
 	cout << "Introdueix el nom del videojoc a consultar : ";
 	getline(cin, s);
-	TXconsultarVideojoc op = TXconsultarVideojoc(s);
+	TXconsultarVideojoc cv(s);
 	try {
-		op.executar();
+		cv.executar();
 	}
 	catch (const exception& e) {
 		cout << e.what() << "\n" << "\n";
 		return;
 	}
 	cout << "\n" << "Informacio sobre el videojoc..." << "\n" << "\n";
-	TXconsultarVideojoc::res r = op.obteResultat();
+	TXconsultarVideojoc::res r = cv.obteResultat();
 	cout << "Nom videojoc: " << r.nom << "\n";
 	cout << "Descripcio: " << r.desc << "\n";
 	cout << "Qualificacio edat: " << r.qualificacio << "\n";
@@ -376,10 +376,10 @@ void capaPresentacio::consultarVideojocsPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta tots els videojocs **" << "\n";
-	TXconsultarVideojocs op = TXconsultarVideojocs();
-	op.executar();
+	TXconsultarVideojocs cv;
+	cv.executar();
 	cout << "\n" << "Informacio sobre els videojocs..." << "\n" << "\n";
-	vector<TXconsultarVideojocs::res> r = op.obteResultat();
+	vector<TXconsultarVideojocs::res> r = cv.obteResultat();
 	for (int i = 0; i < r.size(); i++) {
 		cout << "Nom videojoc: " << r[i].nom << "\n";
 		cout << "Descripcio: " << r[i].desc << "\n";
@@ -407,10 +407,10 @@ void capaPresentacio::consultarVideojocsEdatPres() {
 		cout << "Introdueix una edat superior a 0." << "\n";
 		return;
 	}
-	TXconsultarVideojocsPerEdat op = TXconsultarVideojocsPerEdat(edat);
-	op.executar();
+	TXconsultarVideojocsPerEdat cv(edat);
+	cv.executar();
 	cout << "\n" << "** Consulta videojocs fins a " << edat << " anys **" << "\n" << "\n";
-	vector<TXconsultarVideojocsPerEdat::res> r = op.obteResultat();
+	vector<TXconsultarVideojocsPerEdat::res> r = cv.obteResultat();
 	for (int i = 0; i < r.size(); i++) {
 		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << "; " << r[i].qualificacio << " PEGI" << "; " << r[i].genere << "; " << dataFormatter(r[i].data);
 		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
@@ -434,16 +434,17 @@ void capaPresentacio::consultarNovetatsPres() {
 		cout << "Error: Data no valida." << "\n" << "\n";
 		return;
 	}
-	if (data.size() == 0) {
+	if (data.size() == 0) { //Si l'usuari no entra cap data, es fa la cerca amb la data actual
 		time_t ara = time(0);
 		struct tm temps;
 		localtime_s(&temps, &ara);
 		data = to_string(temps.tm_year + 1900) + "-" + to_string(temps.tm_mon + 1) + "-" + to_string(temps.tm_mday);
+		data = dataFormatter(data);
 	}
-	TXconsultarNovetats op = TXconsultarNovetats(dataFormatter(data));
-	op.executar();
-	vector<TXconsultarNovetats::res> r = op.obteResultat();
-	cout << "\n";
+	TXconsultarNovetats cn(dataFormatter(data));
+	cn.executar();
+	vector<TXconsultarNovetats::res> r = cn.obteResultat();
+	cout << "\n" << "Videojocs llancats a partir del " << data << ":" << "\n" << "\n";
 	for (int i = 0; i < r.size(); i++) {
 		cout << r[i].nom << "; " << r[i].desc << "; " << r[i].preu << " euros; " << r[i].qualificacio << " PEGI; " << r[i].genere << "; " << dataFormatter(r[i].data);
 		if (r[i].paquets.size() != 0) cout << "; Paquets: ";
@@ -462,15 +463,15 @@ void capaPresentacio::consultarPaquetPres() {
 	cout << "** Consulta paquet **" << "\n";
 	cout << "Nom paquet: ";
 	getline(cin, nPaquet);
-	TXconsultarPaquet op = TXconsultarPaquet(nPaquet);
+	TXconsultarPaquet cp(nPaquet);
 	try {
-		op.executar();
+		cp.executar();
 	}
 	catch (const exception& e) {
 		cout << e.what() << "\n" << "\n";
 		return;
 	}
-	TXconsultarPaquet::res r = op.obteResultat();
+	TXconsultarPaquet::res r = cp.obteResultat();
 	cout << "Informacio paquet ..." << "\n" << "\n";
 	cout << "Nom paquet: " << r.nom << "\n" << "\n";
 	cout << "Descripcio: " << r.desc << "\n" << "\n";
@@ -485,8 +486,8 @@ void capaPresentacio::consultarPaquetsPres() {
 	cin.ignore();
 	system("CLS");
 	cout << "** Consulta paquets **" << "\n";
-	TXconsultarPaquets op = TXconsultarPaquets();
-	op.executar();
-	vector<TXconsultarPaquets::res> paquets = op.obteResultat();
+	TXconsultarPaquets cp;
+	cp.executar();
+	vector<TXconsultarPaquets::res> paquets = cp.obteResultat();
 	for (auto& paquet : paquets) cout << paquet.nom << "; " << paquet.desc << "; " << paquet.preu << " euros (ESTALVI: " << paquet.estalvi << " euros)" << "\n" << "\n";
 }

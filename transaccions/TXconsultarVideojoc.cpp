@@ -1,8 +1,10 @@
 #include "TXconsultarVideojoc.h"
 
 // Constructora: Assigna el nom del videojoc a consultar.
-TXconsultarVideojoc::TXconsultarVideojoc(string n) : nomV(n), resultat(res()) {}
-
+TXconsultarVideojoc::TXconsultarVideojoc(string n) {
+    nomV = n;
+    resultat = res();
+}
 // Destructora: Accions de neteja si són necessàries.
 TXconsultarVideojoc::~TXconsultarVideojoc() {}
 
